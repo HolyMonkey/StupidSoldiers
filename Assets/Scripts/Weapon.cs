@@ -38,7 +38,8 @@ public class Weapon : MonoBehaviour
         {
             transform.position = Vector3.Slerp(transform.position, _target.position, 10*Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, _target.rotation, 10 * Time.deltaTime);
-        } else
+        } 
+        else
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -124,7 +125,7 @@ public class Weapon : MonoBehaviour
     private IEnumerator DisactivateColliderAtTime()
     {
         _collider.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.9f);
         _collider.enabled = true;
     }
 }

@@ -6,8 +6,8 @@ public class Emojies : MonoBehaviour
 {
 	[SerializeField] private ParticleSystem effectSad;
     [SerializeField] private ParticleSystem effectSmile;
-    private float _lastEmojiTime = 0;
 
+    private float _lastEmojiTime = 0;
 
     public void PlaySmile()
     {
