@@ -25,13 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent <Barrier>())
-        {
+        if (other.GetComponent<Barrier>() | other.GetComponent<Multiplier>() | other.GetComponent<Zombie>()| other.GetComponent<SlowMotionTrigger>() | other.GetComponent<Ground>())
             Destroy(gameObject);
-        }
-        if (other.GetComponent<Multiplier>())
-        {
-            Destroy(gameObject);
-        }
     }
 }

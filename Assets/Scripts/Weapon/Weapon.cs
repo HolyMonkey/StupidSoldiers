@@ -14,27 +14,27 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private ParticleSystem _shootEffect;
 
-    [SerializeField] private ParticleSystem _hitEffect;
+    [SerializeField] private ParticleSystem _hitWhitBarrierEffect;
 
     [SerializeField] private float _minRotationSpeed;
     [SerializeField] private float _maxRotationSpeed;
-    [SerializeField] private float _fallRotationSpeed;
+    [SerializeField] private float _speedRotationAfterRecoil;
     [SerializeField] private float _speedReducedRotation;
+    [SerializeField] private float _speedChangeRotationToZeroAfterGrounded;
+
+    [SerializeField] private float _invulnerabilityDurationAfterTouchGround;
 
     [SerializeField] private float _shootDelay;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private AnimationCurve _gravityCurve;
-    [SerializeField] private float _fallDuration;
-    [SerializeField] private float _recoilForceDuration;
+    [SerializeField] private float _jumpFromTheGroundForce;
+    [SerializeField] private AnimationCurve _gravityAfterShootCurve;
+    //[SerializeField] private float _fallDuration;
+    [SerializeField] private float _recoilMoveDuration;
     [SerializeField] private AnimationCurve _recoilForceCurve;
     [SerializeField] private float _recoilMoveSpeed;
-    [SerializeField] private float _gravityFallSpeed;
+    [SerializeField] private float _gravityForce;
+    [SerializeField] private float _speedNormalizeGravity;
 
-    [SerializeField] private float _speedChangeY;
-    [SerializeField] private float _speedChangeRotationToZero;
     
-
-
     private float _modifireRotation = 1;
     private float _currentMoveXSpeed=0;
     private float _currentMoveYSpeed=0;
@@ -42,6 +42,7 @@ public abstract class Weapon : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private bool _touchedOfGround = false;
+    private bool _isInvulnerability = false;
     private bool _canShoot = true;
     private Vector3 _moveTarget;
 
@@ -50,6 +51,7 @@ public abstract class Weapon : MonoBehaviour
     private IEnumerator _rotationToZero;
     private IEnumerator _shootDelayTime;
     private IEnumerator _jumpOnGround;
+    private IEnumerator _invulnerabilityAfterTouchGround;
 
     private const float _laserRenderDistance = 50;
 
@@ -63,25 +65,25 @@ public abstract class Weapon : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _audioSource.clip = _shootSound;
         _shootEffect.gameObject.SetActive(true);
-        _currentMoveYSpeed = _gravityFallSpeed;
+        _currentMoveYSpeed = _gravityForce;
 
         _normalizeGravityAfterShoot = NormalizeGravity();
         _changeSpeedAfterShoot = ChangeSpeedAfterShoot();
         _rotationToZero =SlowRotationToZero();
         _shootDelayTime = ShootDelayTime();
         _jumpOnGround = JumpOnGround();
+        _invulnerabilityAfterTouchGround = InvulnerabilityAfterTouchGround();
     }
 
     private void Update()
     {
-         LaserRendering();
+        // LaserRendering();
 
         if (Input.GetKeyDown(KeyCode.Space) & _canShoot)
             Shoot();
 
             Rotate();
             Move();
-
     }
 
     private void Rotate()
@@ -109,7 +111,6 @@ public abstract class Weapon : MonoBehaviour
 
     private void ShowShootEffect()
     {
-
         //_shootEffect.Play();
         _audioSource.Play();
         _animator.Play("Shoot");
@@ -124,8 +125,9 @@ public abstract class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Ground>())
+        if (other.GetComponent<Ground>()& !_isInvulnerability )
         {
+            _isInvulnerability = true;
             _touchedOfGround = true; 
             Touch();
         }
@@ -136,7 +138,7 @@ public abstract class Weapon : MonoBehaviour
     }
     private IEnumerator NormalizeRotationSpeed()
     {
-        while (_currentRotationSpeed > _fallRotationSpeed)
+        while (_currentRotationSpeed > _speedRotationAfterRecoil)
         {
             _currentRotationSpeed -= _speedReducedRotation * Time.deltaTime;
             yield return null;
@@ -186,10 +188,12 @@ public abstract class Weapon : MonoBehaviour
 
     private void Jump()
     {
+        _invulnerabilityAfterTouchGround = InvulnerabilityAfterTouchGround();
+        StartCoroutine(_invulnerabilityAfterTouchGround);
+
         _jumpOnGround = JumpOnGround();
         StartCoroutine(_jumpOnGround);
         _touchedOfGround = false;
-
         StopCoroutine(_rotationToZero);
         _rotationToZero = SlowRotationToZero();
 
@@ -207,7 +211,7 @@ public abstract class Weapon : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position,transform.right);
-        Physics.Raycast(ray, out hit,100);
+        Physics.Raycast(ray, out hit,10);
 
         if (hit.collider != null)
         {            
@@ -217,6 +221,12 @@ public abstract class Weapon : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private IEnumerator InvulnerabilityAfterTouchGround()
+    {
+        yield return new WaitForSeconds(_invulnerabilityDurationAfterTouchGround);
+        _isInvulnerability = false;
     }
 
     private IEnumerator ShootDelayTime()
@@ -229,7 +239,7 @@ public abstract class Weapon : MonoBehaviour
     {
         _currentMoveYSpeed = 3;
         yield return new WaitForSeconds(1.5f);
-        _currentMoveYSpeed = _gravityFallSpeed;
+        _currentMoveYSpeed = _gravityForce;
         _touchedOfGround = false;
         yield return null;
     }
@@ -238,22 +248,22 @@ public abstract class Weapon : MonoBehaviour
     {
         StartCoroutine(_normalizeGravityAfterShoot);
         float elapsedTime = 0;
-        while(elapsedTime < _recoilForceDuration)
+        while(elapsedTime < _recoilMoveDuration)
         {
             yield return null;
             elapsedTime += Time.deltaTime;
-            float progress = elapsedTime / _recoilForceDuration;
+            float progress = elapsedTime / _recoilMoveDuration;
 
             _currentMoveXSpeed = _moveTarget.x * _recoilForceCurve.Evaluate(progress)* _recoilMoveSpeed;
-            _currentMoveYSpeed = _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityCurve.Evaluate(progress) * _gravityFallSpeed;
+            _currentMoveYSpeed = _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce;
         }
     }
 
     private IEnumerator NormalizeGravity()
     {
-        while(_currentMoveYSpeed< _gravityFallSpeed | _currentMoveYSpeed > _gravityFallSpeed)
+        while(_currentMoveYSpeed< _gravityForce | _currentMoveYSpeed > _gravityForce)
         {
-            _currentMoveYSpeed = Mathf.MoveTowards(_currentMoveYSpeed, _gravityFallSpeed, _speedChangeY);
+            _currentMoveYSpeed = Mathf.MoveTowards(_currentMoveYSpeed, _gravityForce, _speedNormalizeGravity);
             yield return null;
         }
     }
@@ -262,7 +272,7 @@ public abstract class Weapon : MonoBehaviour
     {
         while (_currentRotationSpeed>0)
         {
-            _currentRotationSpeed = Mathf.MoveTowards(_currentRotationSpeed, 0, _speedChangeRotationToZero);
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, 0, _speedChangeRotationToZeroAfterGrounded);
             _currentMoveYSpeed = -1;
             _currentMoveXSpeed = 0;
             yield return null;
@@ -274,8 +284,8 @@ public abstract class Weapon : MonoBehaviour
     {
         _rigidbody.AddForce(Vector3.up * 1000);
         _rigidbody.AddForce(Vector3.back * 1000);
-        _hitEffect.gameObject.SetActive(true);
-        _hitEffect.Play();
+        _hitWhitBarrierEffect.gameObject.SetActive(true);
+        _hitWhitBarrierEffect.Play();
     }
 
     public void DisableShooting()

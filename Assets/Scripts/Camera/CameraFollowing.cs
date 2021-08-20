@@ -6,14 +6,10 @@ using UnityEngine.Events;
 public class CameraFollowing : MonoBehaviour
 {
     [SerializeField] private Weapon _target;
-    [SerializeField] private float _speedChangeDuration;
-    [SerializeField] private float _defaultFollowSpeed;
-    [SerializeField] private AnimationCurve _followSpeed;
-    [SerializeField] private float _speedChange;
-
-    [SerializeField] private float _effectDuration;
-    [SerializeField] private ParticleSystem _endEffect;
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private float _durationOfSpeedNormalization;
+    [SerializeField] private AnimationCurve _speed“ormalization—urve;
+    [SerializeField] private float _speedAfterShoot;
+    [SerializeField] private float _delayAfterShoot;
 
     [SerializeField] private float _slowMotionDuration;
     [SerializeField] private AnimationCurve _slowMotionForce;
@@ -31,7 +27,7 @@ public class CameraFollowing : MonoBehaviour
     {
         _slowMotion = ShowSlowMotion();
         _normalizeFollowSpeed = NormalizeSpeed();
-        _currentSpeed = _defaultFollowSpeed;
+        _currentSpeed = 1;
         _targetDistance = _target.transform.position - transform.position;
         _target.Shooted += Shoot;
         _target.Hit += OnWeaponHitInTarget;
@@ -61,20 +57,22 @@ public class CameraFollowing : MonoBehaviour
 
     private void Shoot()
     {
-        _currentSpeed = 0.01f;
-        StopCoroutine(_normalizeFollowSpeed);
+        _currentSpeed = _speedAfterShoot;
 
+        StopCoroutine(_normalizeFollowSpeed);
         _normalizeFollowSpeed = NormalizeSpeed();
         StartCoroutine(_normalizeFollowSpeed);
     }
 
     private IEnumerator NormalizeSpeed()
     {
+        yield return new WaitForSeconds(_delayAfterShoot);
+
         float elapsedTime = 0;
-        while(elapsedTime< _speedChangeDuration)
+        while(elapsedTime< _durationOfSpeedNormalization)
         {
-            float progress = elapsedTime / _speedChangeDuration;
-            _currentSpeed =  _followSpeed.Evaluate(progress);
+            float progress = elapsedTime / _durationOfSpeedNormalization;
+            _currentSpeed =  Mathf.Lerp(_currentSpeed,_speed“ormalization—urve.Evaluate(progress),0.01f );
             elapsedTime += Time.deltaTime;
             yield return null;
         }        
@@ -98,9 +96,4 @@ public class CameraFollowing : MonoBehaviour
         _followMode = true;
     }
  
-    public void ShowResultEffect()
-    {
-        _endEffect.gameObject.SetActive(true);
-        _endEffect.Play();
-    }
 }

@@ -11,7 +11,7 @@ public class Game : MonoBehaviour
     [SerializeField] private CameraFollowing _camera;
     [SerializeField] private Multiplier[] _multipliers;
     [SerializeField] private Barrier[] _barriers;
-    [SerializeField] private UI _uiPanel;
+    //[SerializeField] private UI _uiPanel;
 
     public event UnityAction GameStarted;
 
@@ -60,7 +60,7 @@ public class Game : MonoBehaviour
 
     private void OnBarrierHit()
     {
-        _uiPanel.ShowPraise();
+       // _uiPanel.ShowPraise();
     }
 
     private void StartGame()
