@@ -65,7 +65,7 @@ public class Game : MonoBehaviour
 
     private void StartGame()
     {
-        _camera.StartFollow();
+        //_camera.StartFollow();
         GameStarted?.Invoke();
         _currentWeapon.enabled = true;
     }

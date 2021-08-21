@@ -22,6 +22,9 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float _speedReducedRotation;
     [SerializeField] private float _speedChangeRotationToZeroAfterGrounded;
 
+
+    [SerializeField] private float _delayBeforeChangeRotateDirection;
+
     [SerializeField] private float _invulnerabilityDurationAfterTouchGround;
 
     [SerializeField] private float _shootDelay;
@@ -140,7 +143,7 @@ public abstract class Weapon : MonoBehaviour
     {
         while (_currentRotationSpeed > _speedRotationAfterRecoil)
         {
-            _currentRotationSpeed -= _speedReducedRotation * Time.deltaTime;
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _speedRotationAfterRecoil, 0.001f) ;
             yield return null;
         }
     }
@@ -159,8 +162,8 @@ public abstract class Weapon : MonoBehaviour
         ShowShootEffect();
         SpawnButtlet();
 
-        ChangeRotateSpeed();
-        ReversRotateDirection();
+
+        StartCoroutine(ChangeRotateDirection());
 
         _moveTarget = GetRecoilDirection();
 
@@ -178,7 +181,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Move()
     {
-        _rigidbody.velocity = new Vector3(_currentMoveXSpeed, _currentMoveYSpeed, 0);
+        _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity,new Vector3(_currentMoveXSpeed, _currentMoveYSpeed, 0), 0.25f);
     }
 
     private Vector3 GetRecoilDirection()
@@ -211,7 +214,7 @@ public abstract class Weapon : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position,transform.right);
-        Physics.Raycast(ray, out hit,10);
+        Physics.Raycast(ray, out hit,15);
 
         if (hit.collider != null)
         {            
@@ -221,6 +224,14 @@ public abstract class Weapon : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private IEnumerator ChangeRotateDirection()
+    {
+        yield return new WaitForSeconds(_delayBeforeChangeRotateDirection);
+
+        ChangeRotateSpeed();
+        ReversRotateDirection();
     }
 
     private IEnumerator InvulnerabilityAfterTouchGround()
@@ -237,10 +248,9 @@ public abstract class Weapon : MonoBehaviour
 
     private IEnumerator JumpOnGround()
     {
-        _currentMoveYSpeed = 3;
+        _rigidbody.AddForce(Vector3.up* _jumpFromTheGroundForce);
         yield return new WaitForSeconds(1.5f);
         _currentMoveYSpeed = _gravityForce;
-        _touchedOfGround = false;
         yield return null;
     }
 
@@ -254,16 +264,20 @@ public abstract class Weapon : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / _recoilMoveDuration;
 
-            _currentMoveXSpeed = _moveTarget.x * _recoilForceCurve.Evaluate(progress)* _recoilMoveSpeed;
-            _currentMoveYSpeed = _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce;
-        }
+            //_currentMoveXSpeed =Mathf.Lerp(_currentMoveXSpeed, _moveTarget.x * _recoilForceCurve.Evaluate(progress)* _recoilMoveSpeed, 0.5f);
+            //_currentMoveYSpeed =Mathf.Lerp(_currentMoveYSpeed, _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce,0.5f);
+
+            _currentMoveXSpeed = _moveTarget.x * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed;
+            _currentMoveYSpeed =_moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce;
+        
+    }
     }
 
     private IEnumerator NormalizeGravity()
     {
         while(_currentMoveYSpeed< _gravityForce | _currentMoveYSpeed > _gravityForce)
         {
-            _currentMoveYSpeed = Mathf.MoveTowards(_currentMoveYSpeed, _gravityForce, _speedNormalizeGravity);
+            _currentMoveYSpeed = Mathf.Lerp(_currentMoveYSpeed, _gravityForce, _speedNormalizeGravity);
             yield return null;
         }
     }
