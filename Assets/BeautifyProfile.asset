@@ -59,15 +59,15 @@ MonoBehaviour:
   outlineIntensityMultiplier: 1
   thermalVision: 0
   lensDirt: 1
-  lensDirtThreshold: 0.523
+  lensDirtThreshold: 0.5
   lensDirtIntensity: 0.9
   lensDirtTexture: {fileID: 2800000, guid: f5c5080de097a4274bab7bc2bf5017f6, type: 3}
   bloom: 1
   bloomCullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   bloomLayerMaskDownsampling: 1
-  bloomIntensity: 2
+  bloomIntensity: 1.23
   bloomMaxBrightness: 1000
   bloomBoost0: 0
   bloomBoost1: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   bloomAntiflicker: 0
   bloomUltra: 0
   bloomUltraResolution: 10
-  bloomThreshold: 0.93
+  bloomThreshold: 2.5
   bloomCustomize: 0
   bloomWeight0: 0.5
   bloomWeight1: 0.5
@@ -86,21 +86,21 @@ MonoBehaviour:
   bloomWeight3: 0.5
   bloomWeight4: 0.5
   bloomWeight5: 0.5
-  bloomBlur: 1
+  bloomBlur: 0
   bloomDepthAtten: 1
   bloomNearAtten: 0
   bloomLayerZBias: 0.0001
   bloomTint: {r: 1, g: 1, b: 1, a: 0}
   anamorphicFlares: 1
-  anamorphicFlaresIntensity: 2
+  anamorphicFlaresIntensity: 1
   anamorphicFlaresAntiflicker: 0
   anamorphicFlaresUltra: 0
   anamorphicFlaresUltraResolution: 10
-  anamorphicFlaresThreshold: 0.92
-  anamorphicFlaresSpread: 0.89
+  anamorphicFlaresThreshold: 2.5
+  anamorphicFlaresSpread: 1
   anamorphicFlaresVertical: 0
   anamorphicFlaresTint: {r: 1, g: 1, b: 1, a: 0.16470589}
-  anamorphicFlaresBlur: 1
+  anamorphicFlaresBlur: 0
   depthOfField: 0
   depthOfFieldTransparencySupport: 0
   depthOfFieldTargetFocus: {fileID: 0}
