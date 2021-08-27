@@ -18,7 +18,7 @@ public class ZombieRagDollModel : MonoBehaviour
 
         foreach (var bone in _bones)
         {
-  //          bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
+            bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
         }
     }
 
