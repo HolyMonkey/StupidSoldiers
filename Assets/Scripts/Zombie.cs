@@ -11,10 +11,10 @@ public class Zombie : MonoBehaviour
     [SerializeField] private GameObject _groundBloodSpawnPoint;
     [SerializeField] private GameObject _spineBloodSpawnPoint;
 
-    [SerializeField] private ParticleSystem _bodyBloodEffect;
-    [SerializeField] private ParticleSystem _headShotBloodEffect;
-    [SerializeField] private ParticleSystem _groundBloodEffect;
-    [SerializeField] private ParticleSystem _spineBloodEffect;
+
+    [SerializeField] private ParticleSystem _spineBloodEffectWall;
+    [SerializeField] private ParticleSystem _spineBloodEffectGround;
+    [SerializeField] private ParticleSystem _neaskBloodEffect;
     [SerializeField] private SlowMotionTrigger _headTrigger;
     [SerializeField] private Animator _animator;
 
@@ -48,10 +48,17 @@ public class Zombie : MonoBehaviour
     {
         if (_canDeath)
         {
-            var groundBlood = Instantiate(_groundBloodEffect);
-            groundBlood.transform.position = _groundBloodSpawnPoint.transform.position;
-            var spineBloodEffect = Instantiate(_spineBloodEffect);
-            spineBloodEffect.transform.position = _spineBloodSpawnPoint.transform.position;                
+            _triggerBodyCapsuleCollider.enabled = false;
+            _triggerHeadSphereCollider.enabled = false;
+
+          //  var groundBlood = Instantiate(_groundBloodEffect);
+          //  groundBlood.transform.position = _groundBloodSpawnPoint.transform.position;
+
+            var spineBloodEffectWall = Instantiate(_spineBloodEffectWall);
+            spineBloodEffectWall.transform.position = _spineBloodSpawnPoint.transform.position;
+
+            var spineBloodEffectGround = Instantiate(_spineBloodEffectGround);
+            spineBloodEffectGround.transform.position = _spineBloodSpawnPoint.transform.position;
 
             _canDeath = false;
 
@@ -59,16 +66,16 @@ public class Zombie : MonoBehaviour
             _ragDollModel.SetActive(true);
 
 
-            _triggerBodyCapsuleCollider.enabled = false;
-            _triggerHeadSphereCollider.enabled = false;
         }
     }
 
     private void HeadHit()
     {
         _zombiesHead.gameObject.transform.localScale = new Vector3( 0.001f, 0.001f, 0.001f);
-        var pieceOfTheBrainEffect = Instantiate(_headShotBloodEffect);
-        pieceOfTheBrainEffect.transform.position = _nesk.transform.position;
+     //   var pieceOfTheBrainEffect = Instantiate(_headShotBloodEffect);
+     //   pieceOfTheBrainEffect.transform.position = _nesk.transform.position;
+        
+        var heaskBloodEffect = Instantiate(_neaskBloodEffect,_nesk.transform);
         TryDeath();
     }
 
@@ -86,8 +93,8 @@ public class Zombie : MonoBehaviour
 
     private void SpawnBloodEffect(Transform hit)
     {
-        var hitEffect = Instantiate(_bodyBloodEffect, _ragDollModel.transform);
-        hitEffect.transform.position = _triggerBodyCapsuleCollider.transform.position;
+     //   var hitEffect = Instantiate(_bodyBloodEffect, _ragDollModel.transform);
+      //  hitEffect.transform.position = _triggerBodyCapsuleCollider.transform.position;
     }
 
 }

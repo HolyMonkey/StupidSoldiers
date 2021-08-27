@@ -11,10 +11,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private Bullet _bulletTemplate;
     [SerializeField] private Transform _bulletSpawnPoint;
     [SerializeField] private Transform _recoilDirectionPoint;
-    [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private ParticleSystem _shootEffect;
-
-    [SerializeField] private ParticleSystem _hitWhitBarrierEffect;
 
     [SerializeField] private float _minRotationSpeed;
     [SerializeField] private float _maxRotationSpeed;
@@ -30,7 +26,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float _shootDelay;
     [SerializeField] private float _jumpFromTheGroundForce;
     [SerializeField] private AnimationCurve _gravityAfterShootCurve;
-    //[SerializeField] private float _fallDuration;
     [SerializeField] private float _recoilMoveDuration;
     [SerializeField] private AnimationCurve _recoilForceCurve;
     [SerializeField] private float _recoilMoveSpeed;
@@ -55,6 +50,7 @@ public abstract class Weapon : MonoBehaviour
     private IEnumerator _shootDelayTime;
     private IEnumerator _jumpOnGround;
     private IEnumerator _invulnerabilityAfterTouchGround;
+    private IEnumerator _rotateSpeedNormalization;
 
     private const float _laserRenderDistance = 50;
 
@@ -67,7 +63,6 @@ public abstract class Weapon : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _audioSource.clip = _shootSound;
-        _shootEffect.gameObject.SetActive(true);
         _currentMoveYSpeed = _gravityForce;
 
         _normalizeGravityAfterShoot = NormalizeGravity();
@@ -75,13 +70,13 @@ public abstract class Weapon : MonoBehaviour
         _rotationToZero =SlowRotationToZero();
         _shootDelayTime = ShootDelayTime();
         _jumpOnGround = JumpOnGround();
+        _rotateSpeedNormalization = NormalizeRotationSpeed();
+
         _invulnerabilityAfterTouchGround = InvulnerabilityAfterTouchGround();
     }
 
     private void Update()
     {
-        // LaserRendering();
-
         if (Input.GetKeyDown(KeyCode.Space) & _canShoot)
             Shoot();
 
@@ -94,19 +89,6 @@ public abstract class Weapon : MonoBehaviour
         transform.Rotate(0,0,_currentRotationSpeed* -_modifireRotation*Time.deltaTime);
     }
 
-    private void LaserRendering()
-    {
-        _lineRenderer.SetPosition(0, _bulletSpawnPoint.position);
-        
-        if (Physics.Raycast(new Ray(_bulletSpawnPoint.position, transform.right), out RaycastHit hit))
-        {
-            _lineRenderer.SetPosition(1, hit.point);
-        }
-        else
-        {
-            _lineRenderer.SetPosition(1, _bulletSpawnPoint.position + transform.right *_laserRenderDistance);
-        }       
-    }
     private void SpawnButtlet()
     {
         var bullet = Instantiate(_bulletTemplate, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
@@ -122,8 +104,9 @@ public abstract class Weapon : MonoBehaviour
     private void ChangeRotateSpeed()
     {
         _currentRotationSpeed = Random.Range(_minRotationSpeed, _maxRotationSpeed);
-        StopCoroutine(NormalizeRotationSpeed());
-        StartCoroutine(NormalizeRotationSpeed());
+        StopCoroutine(_rotateSpeedNormalization);
+        _rotateSpeedNormalization = NormalizeRotationSpeed();
+        StartCoroutine(_rotateSpeedNormalization);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -162,8 +145,8 @@ public abstract class Weapon : MonoBehaviour
         ShowShootEffect();
         SpawnButtlet();
 
-
         StartCoroutine(ChangeRotateDirection());
+        ChangeRotateSpeed();
 
         _moveTarget = GetRecoilDirection();
 
@@ -199,7 +182,6 @@ public abstract class Weapon : MonoBehaviour
         _touchedOfGround = false;
         StopCoroutine(_rotationToZero);
         _rotationToZero = SlowRotationToZero();
-
     }
 
     private void Touch()
@@ -230,7 +212,6 @@ public abstract class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(_delayBeforeChangeRotateDirection);
 
-        ChangeRotateSpeed();
         ReversRotateDirection();
     }
 
@@ -258,19 +239,15 @@ public abstract class Weapon : MonoBehaviour
     {
         StartCoroutine(_normalizeGravityAfterShoot);
         float elapsedTime = 0;
-        while(elapsedTime < _recoilMoveDuration)
+        while (elapsedTime < _recoilMoveDuration)
         {
             yield return null;
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / _recoilMoveDuration;
 
-            //_currentMoveXSpeed =Mathf.Lerp(_currentMoveXSpeed, _moveTarget.x * _recoilForceCurve.Evaluate(progress)* _recoilMoveSpeed, 0.5f);
-            //_currentMoveYSpeed =Mathf.Lerp(_currentMoveYSpeed, _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce,0.5f);
-
             _currentMoveXSpeed = _moveTarget.x * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed;
-            _currentMoveYSpeed =_moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce;
-        
-    }
+            _currentMoveYSpeed = _moveTarget.y * _recoilForceCurve.Evaluate(progress) * _recoilMoveSpeed + _gravityAfterShootCurve.Evaluate(progress) * _gravityForce;
+        }
     }
 
     private IEnumerator NormalizeGravity()
@@ -292,14 +269,6 @@ public abstract class Weapon : MonoBehaviour
             yield return null;
         }
             _currentMoveYSpeed = 0;
-    }
-
-    public void JumpBack()
-    {
-        _rigidbody.AddForce(Vector3.up * 1000);
-        _rigidbody.AddForce(Vector3.back * 1000);
-        _hitWhitBarrierEffect.gameObject.SetActive(true);
-        _hitWhitBarrierEffect.Play();
     }
 
     public void DisableShooting()
