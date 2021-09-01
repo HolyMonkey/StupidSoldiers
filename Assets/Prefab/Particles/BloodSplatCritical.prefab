@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3743093232359756323}
   - component: {fileID: 3743093232359756322}
   - component: {fileID: 3743093232359756349}
+  - component: {fileID: 836398924601704887}
   m_Layer: 0
   m_Name: BlobColorGround
   m_TagString: Untagged
@@ -220,7 +221,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 0.028188448, b: 0, a: 1}
       maxGradient:
@@ -4864,6 +4865,29 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &836398924601704887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743093232359756348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d021965b134a9c4e9ab35fb38aa5146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodMaterials:
+  - {fileID: 2100000, guid: 1d8f8a51e3841524bbfd7c20d4513b14, type: 2}
+  - {fileID: 2100000, guid: 7ffdaea638cafca47ba8c7f4311102b4, type: 2}
+  - {fileID: 2100000, guid: 94022bbcb853c7d4a96a91f5c6cde427, type: 2}
+  - {fileID: 2100000, guid: 36b29d77340c0174793e1ce5efb74ac8, type: 2}
+  - {fileID: 2100000, guid: 715516f1b8965ce4eaab10dcdff8f0b8, type: 2}
+  - {fileID: 2100000, guid: 3ce3603218ae65c4a8441367d42d78b4, type: 2}
+  - {fileID: 2100000, guid: e1613ce562dda264c9a9fedcc8be080b, type: 2}
+  - {fileID: 2100000, guid: c0742ffe4a77c9340a12a537e7c08df0, type: 2}
+  - {fileID: 2100000, guid: ec8584de9cca81c4c95933bc9029a8d6, type: 2}
+  - {fileID: 2100000, guid: bb415217f94028243971577b265a5d73, type: 2}
 --- !u!1 &7414723311290133355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,7 +5072,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 0.8392157, g: 0, b: 0, a: 1}
       maxGradient:
@@ -9796,7 +9820,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 0.8392157, g: 0, b: 0, a: 1}
       maxGradient:
@@ -14600,7 +14624,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 0.8392157, g: 0, b: 0, a: 1}
       maxGradient:

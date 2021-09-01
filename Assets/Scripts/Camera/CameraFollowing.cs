@@ -15,21 +15,33 @@ public class CameraFollowing : MonoBehaviour
 
     private Vector3 _offset;
     private IEnumerator _slowMotion;
+    private IEnumerator _shootDelay;
 
 
     public event UnityAction EffectEnded;
+
+
+    private void WaitShootDelay()
+    {
+        StopCoroutine(_shootDelay);
+        _shootDelay = ShootDelay();
+        StartCoroutine(_shootDelay);
+    }
 
     private void OnEnable()
     {
         _slowMotion = ShowSlowMotion();
         _offset = _target.transform.position - transform.position;
-
+        _target.Shooted += WaitShootDelay;
         _target.Hit += OnWeaponHitInTarget;
+
+        _shootDelay = ShootDelay();
     }
 
     private void OnDisable()
     {
         _target.Hit -= OnWeaponHitInTarget;
+        _target.Shooted -= WaitShootDelay;
 
     }
 
@@ -46,6 +58,8 @@ public class CameraFollowing : MonoBehaviour
         StartCoroutine(_slowMotion);
     }
 
+
+
     private IEnumerator ShowSlowMotion()
     {
         float elapsedTime = 0;
@@ -58,5 +72,12 @@ public class CameraFollowing : MonoBehaviour
             yield return null;
         }
         Time.timeScale = 1;
+    }
+    private IEnumerator ShootDelay()
+    {
+        float smoothSpeed = _smoothSpeed;
+        _smoothSpeed = 0;
+        yield return new WaitForSeconds(_delayAfterShoot);
+        _smoothSpeed = 0.125f;
     }
 }

@@ -18,8 +18,10 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float _speedReducedRotation;
     [SerializeField] private float _speedChangeRotationToZeroAfterGrounded;
 
-
     [SerializeField] private float _delayBeforeChangeRotateDirection;
+
+    [SerializeField] private float _fireLineLiveDuration;
+    [SerializeField] private ParticleSystem _fireLine;
 
     [SerializeField] private float _invulnerabilityDurationAfterTouchGround;
 
@@ -37,12 +39,13 @@ public abstract class Weapon : MonoBehaviour
     private float _currentMoveXSpeed=0;
     private float _currentMoveYSpeed=0;
     private float _currentRotationSpeed;
+    private Vector3 _moveTarget;
     private Rigidbody _rigidbody;
+    private ParticleSystem _spawnedFireLine;
 
     private bool _touchedOfGround = false;
     private bool _isInvulnerability = false;
     private bool _canShoot = true;
-    private Vector3 _moveTarget;
 
     private IEnumerator _changeSpeedAfterShoot;
     private IEnumerator _normalizeGravityAfterShoot;
@@ -51,8 +54,6 @@ public abstract class Weapon : MonoBehaviour
     private IEnumerator _jumpOnGround;
     private IEnumerator _invulnerabilityAfterTouchGround;
     private IEnumerator _rotateSpeedNormalization;
-
-    private const float _laserRenderDistance = 50;
 
     public event UnityAction GameOver;
     public event UnityAction Collided;
@@ -96,7 +97,10 @@ public abstract class Weapon : MonoBehaviour
 
     private void ShowShootEffect()
     {
-        //_shootEffect.Play();
+        _spawnedFireLine = Instantiate(_fireLine, _bulletSpawnPoint.transform);
+        _spawnedFireLine.Play();
+        _spawnedFireLine.startLifetime = _fireLineLiveDuration;
+
         _audioSource.Play();
         _animator.Play("Shoot");
     }
