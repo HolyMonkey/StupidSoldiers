@@ -18,7 +18,7 @@ public class ZombieRagDollModel : MonoBehaviour
 
         foreach (var bone in _bones)
         {
-            bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
+        //    bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
         }
     }
 
@@ -31,24 +31,9 @@ public class ZombieRagDollModel : MonoBehaviour
 
             foreach (var bone in _bones)
             {
-//                bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
                 bone.velocity = Vector3.Lerp(bone.velocity, new Vector3(_backDirection.x*_backForce *Time.deltaTime, _backDirection.y * _upForce * Time.deltaTime, bone.velocity.z),0.5f);
             }
             yield return null;
         }
-
-        
-        foreach (var bone in _bones)
-        {
-            bone.useGravity = false;
-            bone.isKinematic = true;
-        }
-        
-    }
-
-    private IEnumerator Jump()
-    {
-
-        yield return null;
     }
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class BloodMaterialChanger : MonoBehaviour
 {
     [SerializeField] private Material[] _bloodMaterials;
-
-    
-
     private void OnEnable()
     {
         ParticleSystemRenderer particleSystemRenderer = GetComponent<ParticleSystemRenderer>();

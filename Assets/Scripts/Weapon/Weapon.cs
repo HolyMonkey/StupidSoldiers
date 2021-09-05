@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,6 +43,7 @@ public abstract class Weapon : MonoBehaviour
     private Vector3 _moveTarget;
     private Rigidbody _rigidbody;
     private ParticleSystem _spawnedFireLine;
+    private List<ParticleSystem> _fireLines= new List<ParticleSystem>();
 
     private bool _touchedOfGround = false;
     private bool _isInvulnerability = false;
@@ -237,6 +239,13 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _currentMoveYSpeed = _gravityForce;
         yield return null;
+    }
+
+    private IEnumerator ShowFireLine()
+    {
+        yield return new WaitForSeconds(_fireLineLiveDuration+1);
+
+
     }
 
     private IEnumerator ChangeSpeedAfterShoot()

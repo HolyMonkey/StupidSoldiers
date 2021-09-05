@@ -9,6 +9,7 @@ public class CameraFollowing : MonoBehaviour
 
     [SerializeField] private float _delayAfterShoot;
     [SerializeField] private float _smoothSpeed;
+    [SerializeField] private float _smoothSpeedRemoved;
 
     [SerializeField] private float _slowMotionDuration;
     [SerializeField] private AnimationCurve _slowMotionForce;
@@ -42,7 +43,6 @@ public class CameraFollowing : MonoBehaviour
     {
         _target.Hit -= OnWeaponHitInTarget;
         _target.Shooted -= WaitShootDelay;
-
     }
 
     private void FixedUpdate()
@@ -57,8 +57,6 @@ public class CameraFollowing : MonoBehaviour
         _slowMotion = ShowSlowMotion();
         StartCoroutine(_slowMotion);
     }
-
-
 
     private IEnumerator ShowSlowMotion()
     {
@@ -75,9 +73,15 @@ public class CameraFollowing : MonoBehaviour
     }
     private IEnumerator ShootDelay()
     {
-        float smoothSpeed = _smoothSpeed;
+
         _smoothSpeed = 0;
         yield return new WaitForSeconds(_delayAfterShoot);
+
+        while (_smoothSpeed < 0.125f)
+        {
+            _smoothSpeed = Mathf.MoveTowards(_smoothSpeed, 0.125f, _smoothSpeedRemoved);
+            yield return null;
+        }
         _smoothSpeed = 0.125f;
     }
 }
