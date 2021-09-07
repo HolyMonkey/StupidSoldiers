@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6a4566c8b774512813a3992aa8b88d, type: 3}
   m_Name: BeautifyProfile
   m_EditorClassIdentifier: 
-  dither: 0.029
+  dither: 0.0298
   ditherDepth: 0
   sharpenMinDepth: 0
   sharpenMaxDepth: 0.999
@@ -28,10 +28,10 @@ MonoBehaviour:
   antialiasStrength: 20
   antialiasDepthThreshold: 0.001
   saturate: 1
-  contrast: 1.02
-  brightness: 1.05
+  contrast: 0.844
+  brightness: 1.09
   daltonize: 0
-  hardLightIntensity: 0.5
+  hardLightIntensity: 0.252
   hardLightBlend: 0
   vignetting: 0
   vignettingColor: {r: 0.3, g: 0.3, b: 0.3, a: 0.05}
@@ -67,7 +67,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   bloomLayerMaskDownsampling: 1
-  bloomIntensity: 1.23
+  bloomIntensity: 1.07
   bloomMaxBrightness: 1000
   bloomBoost0: 0
   bloomBoost1: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   bloomAntiflicker: 0
   bloomUltra: 0
   bloomUltraResolution: 10
-  bloomThreshold: 2.5
+  bloomThreshold: 1.94
   bloomCustomize: 0
   bloomWeight0: 0.5
   bloomWeight1: 0.5
@@ -87,9 +87,9 @@ MonoBehaviour:
   bloomWeight4: 0.5
   bloomWeight5: 0.5
   bloomBlur: 0
-  bloomDepthAtten: 1
+  bloomDepthAtten: 0.992
   bloomNearAtten: 0
-  bloomLayerZBias: 0.0001
+  bloomLayerZBias: -0.032
   bloomTint: {r: 1, g: 1, b: 1, a: 0}
   anamorphicFlares: 1
   anamorphicFlaresIntensity: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
   anamorphicFlaresUltra: 0
   anamorphicFlaresUltraResolution: 10
   anamorphicFlaresThreshold: 2.5
-  anamorphicFlaresSpread: 1
+  anamorphicFlaresSpread: 1.014
   anamorphicFlaresVertical: 0
   anamorphicFlaresTint: {r: 1, g: 1, b: 1, a: 0.16470589}
   anamorphicFlaresBlur: 0

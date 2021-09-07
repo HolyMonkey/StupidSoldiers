@@ -15,11 +15,6 @@ public class ZombieRagDollModel : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(Fall());
-
-        foreach (var bone in _bones)
-        {
-        //    bone.AddExplosionForce(_explosionForce, _explosionPosition.position, _explosionForceRadius);
-        }
     }
 
     private IEnumerator Fall()

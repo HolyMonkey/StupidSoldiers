@@ -244,8 +244,6 @@ public abstract class Weapon : MonoBehaviour
     private IEnumerator ShowFireLine()
     {
         yield return new WaitForSeconds(_fireLineLiveDuration+1);
-
-
     }
 
     private IEnumerator ChangeSpeedAfterShoot()

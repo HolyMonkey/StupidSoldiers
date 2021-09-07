@@ -1836,12 +1836,12 @@ MonoBehaviour:
     type: 3}
   _bulletSpawnPoint: {fileID: 416717853}
   _recoilDirectionPoint: {fileID: 1643000636}
-  _minRotationSpeed: 550
+  _minRotationSpeed: 560
   _maxRotationSpeed: 480
   _speedRotationAfterRecoil: 250
   _speedReducedRotation: 100
   _speedChangeRotationToZeroAfterGrounded: 0.05
-  _delayBeforeChangeRotateDirection: 0.01
+  _delayBeforeChangeRotateDirection: 0.03
   _fireLineLiveDuration: 2
   _fireLine: {fileID: 19884158, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
   _invulnerabilityDurationAfterTouchGround: 0.5
@@ -1852,30 +1852,30 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.07574463
-      inSlope: 11.781824
-      outSlope: 11.781824
+      value: 0.07357788
+      inSlope: 2.3417497
+      outSlope: 2.3417497
       tangentMode: 0
       weightedMode: 3
       inWeight: 0
-      outWeight: 0.100866266
+      outWeight: 0.35055485
     - serializedVersion: 3
-      time: 0.08098622
-      value: 0.5107947
-      inSlope: 3.057341
-      outSlope: 3.057341
+      time: 0.43477166
+      value: 0.7031672
+      inSlope: 0.6064999
+      outSlope: 0.6064999
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.7175744
-      outWeight: 0.13435571
+      inWeight: 0.09544074
+      outWeight: 0.25849986
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -0.011666147
-      outSlope: -0.011666147
+      inSlope: 0.2503694
+      outSlope: 0.2503694
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.20678525
+      inWeight: 0.4625001
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1885,36 +1885,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0036125183
-      value: 0.9987526
-      inSlope: -0.6754694
-      outSlope: -0.6754694
-      tangentMode: 34
+      time: 0.0034516575
+      value: 1.1611353
+      inSlope: -0.68170774
+      outSlope: -0.68170774
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.20618992
     - serializedVersion: 3
-      time: 0.5497269
-      value: 0.62498873
-      inSlope: -0.8294718
-      outSlope: -0.8294718
-      tangentMode: 34
+      time: 0.3381164
+      value: 0.8819669
+      inSlope: -0.9404771
+      outSlope: -0.9404771
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9918518
-      value: 0.19017029
-      inSlope: -0.98347425
-      outSlope: -0.98347425
-      tangentMode: 34
+      time: 0.99716187
+      value: 0.20646667
+      inSlope: -1.0288146
+      outSlope: -1.0288146
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.15061913
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _recoilMoveSpeed: 6
+  _recoilMoveSpeed: 5
   _gravityForce: -9.8
   _speedNormalizeGravity: 0.4
 --- !u!54 &493380989
@@ -5992,6 +5992,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167356547}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1181309521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181309523}
+  - component: {fileID: 1181309522}
+  m_Layer: 0
+  m_Name: RagDollGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1181309522
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181309521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1181309523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181309521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6766975, y: -3.04, z: -0.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1185545141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8818317179011274554, guid: c845bd1de8280e84492c967ea0a4e53e,
@@ -9157,8 +9201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 493380988}
-  _delayAfterShoot: 0.2
-  _smoothSpeed: 0.125
+  _delayAfterShoot: 0.15
+  _smoothSpeed: 0.12
   _smoothSpeedRemoved: 0.05
   _slowMotionDuration: 1
   _slowMotionForce:
@@ -9213,7 +9257,7 @@ MonoBehaviour:
   _compareMode: 0
   _compareLineAngle: 1.4
   _compareLineWidth: 0.002
-  _dither: 0.029
+  _dither: 0.0298
   _ditherDepth: 0
   _sharpenMinDepth: 0
   _sharpenMaxDepth: 0.999
@@ -9225,10 +9269,10 @@ MonoBehaviour:
   _sharpenClamp: 0.45
   _sharpenMotionSensibility: 0.5
   _saturate: 1
-  _contrast: 1.02
-  _brightness: 1.05
+  _contrast: 0.844
+  _brightness: 1.09
   _daltonize: 0
-  _hardLightIntensity: 0.5
+  _hardLightIntensity: 0.252
   _hardLightBlend: 0
   _vignetting: 0
   _vignettingColor: {r: 0.3, g: 0.3, b: 0.3, a: 0.05}
@@ -9264,7 +9308,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   _bloomLayerMaskDownsampling: 1
-  _bloomIntensity: 1.23
+  _bloomIntensity: 1.07
   _bloomMaxBrightness: 1000
   _bloomBoost0: 0
   _bloomBoost1: 0
@@ -9275,7 +9319,7 @@ MonoBehaviour:
   _bloomAntiflicker: 0
   _bloomUltra: 0
   _bloomUltraResolution: 10
-  _bloomThreshold: 2.5
+  _bloomThreshold: 1.94
   _bloomTint: {r: 1, g: 1, b: 1, a: 0}
   _bloomCustomize: 0
   _bloomDebug: 0
@@ -9287,9 +9331,9 @@ MonoBehaviour:
   _bloomWeight5: 0.5
   _bloomBlur: 0
   _bloomQuickerBlur: 0
-  _bloomDepthAtten: 1
+  _bloomDepthAtten: 0.992
   _bloomNearAtten: 0
-  _bloomLayerZBias: 0.0001
+  _bloomLayerZBias: -0.032
   _preRenderCameraEvent: 0
   _anamorphicFlares: 1
   _anamorphicFlaresIntensity: 1
@@ -9297,7 +9341,7 @@ MonoBehaviour:
   _anamorphicFlaresUltra: 0
   _anamorphicFlaresUltraResolution: 10
   _anamorphicFlaresThreshold: 2.5
-  _anamorphicFlaresSpread: 1
+  _anamorphicFlaresSpread: 1.014
   _anamorphicFlaresVertical: 0
   _anamorphicFlaresTint: {r: 1, g: 1, b: 1, a: 0.16470589}
   _anamorphicFlaresBlur: 0
@@ -9395,7 +9439,7 @@ MonoBehaviour:
   _pixelateDownscale: 0
   _antialiasStrength: 20
   _antialiasDepthThreshold: 0.001
-  isDirty: 0
+  isDirty: 1
   bMat: {fileID: 0}
 --- !u!114 &1901351324
 MonoBehaviour:
