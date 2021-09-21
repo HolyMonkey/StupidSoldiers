@@ -74,7 +74,6 @@ public abstract class Weapon : MonoBehaviour
         _shootDelayTime = ShootDelayTime();
         _jumpOnGround = JumpOnGround();
         _rotateSpeedNormalization = NormalizeRotationSpeed();
-
         _invulnerabilityAfterTouchGround = InvulnerabilityAfterTouchGround();
     }
 
@@ -128,6 +127,7 @@ public abstract class Weapon : MonoBehaviour
     {
         _modifireRotation = -_modifireRotation;        
     }
+
     private IEnumerator NormalizeRotationSpeed()
     {
         while (_currentRotationSpeed > _speedRotationAfterRecoil)
@@ -200,16 +200,17 @@ public abstract class Weapon : MonoBehaviour
 
     private bool CheckHit()
     {
-        RaycastHit hit;
+        RaycastHit[] hit;
         Ray ray = new Ray(transform.position,transform.right);
-        Physics.Raycast(ray, out hit,15);
+        hit = Physics.RaycastAll(ray,20);
 
-        if (hit.collider != null)
-        {            
-            if (hit.collider.gameObject.GetComponent<SlowMotionTrigger>())            
-                return true;
-            if (hit.collider.gameObject.GetComponent<Multiplier>())
-                return true;
+        if (hit != null)
+        {
+            foreach (var collider in hit)
+            {
+                if (collider.collider.gameObject.GetComponent<SlowMotionTrigger>())
+                    return true;
+            }
         }
         return false;
     }
@@ -239,11 +240,6 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _currentMoveYSpeed = _gravityForce;
         yield return null;
-    }
-
-    private IEnumerator ShowFireLine()
-    {
-        yield return new WaitForSeconds(_fireLineLiveDuration+1);
     }
 
     private IEnumerator ChangeSpeedAfterShoot()
@@ -282,8 +278,4 @@ public abstract class Weapon : MonoBehaviour
             _currentMoveYSpeed = 0;
     }
 
-    public void DisableShooting()
-    {
-        _canShoot = false;
-    }
 }

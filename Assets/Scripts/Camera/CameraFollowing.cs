@@ -12,15 +12,14 @@ public class CameraFollowing : MonoBehaviour
     [SerializeField] private float _smoothSpeedRemoved;
 
     [SerializeField] private float _slowMotionDuration;
-    [SerializeField] private AnimationCurve _slowMotionForce;
+    [SerializeField] private AnimationCurve _slowMotionCurve;
 
     private Vector3 _offset;
     private IEnumerator _slowMotion;
     private IEnumerator _shootDelay;
 
-
-    public event UnityAction EffectEnded;
-
+    private const float FixedDeltaTimeMultiplier = 0.02f;
+    private const float DefaultSmoothSpeed = 0.125f;
 
     private void WaitShootDelay()
     {
@@ -33,27 +32,28 @@ public class CameraFollowing : MonoBehaviour
     {
         _slowMotion = ShowSlowMotion();
         _offset = _target.transform.position - transform.position;
+
         _target.Shooted += WaitShootDelay;
-        _target.Hit += OnWeaponHitInTarget;
+        _target.Hit += OnBulletHitSlowMotionTarget;
 
         _shootDelay = ShootDelay();
     }
 
     private void OnDisable()
     {
-        _target.Hit -= OnWeaponHitInTarget;
+        _target.Hit -= OnBulletHitSlowMotionTarget;
         _target.Shooted -= WaitShootDelay;
     }
 
     private void FixedUpdate()
     {
         Vector3 desiredPosition = _target.transform.position - _offset;
-
-        transform.position = Vector3.Lerp(transform.position, desiredPosition,_smoothSpeed);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed);
     }
 
-    private void OnWeaponHitInTarget()
+    private void OnBulletHitSlowMotionTarget()
     {
+        StopCoroutine(_slowMotion);
         _slowMotion = ShowSlowMotion();
         StartCoroutine(_slowMotion);
     }
@@ -65,23 +65,28 @@ public class CameraFollowing : MonoBehaviour
         while (elapsedTime < _slowMotionDuration)
         {
             elapsedTime += Time.deltaTime;
-            Time.timeScale = _slowMotionForce.Evaluate(elapsedTime / _slowMotionDuration);
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            Time.timeScale = _slowMotionCurve.Evaluate(elapsedTime / _slowMotionDuration);
+            Time.fixedDeltaTime = Time.timeScale * FixedDeltaTimeMultiplier;
             yield return null;
         }
         Time.timeScale = 1;
     }
+
     private IEnumerator ShootDelay()
     {
-
-        _smoothSpeed = 0;
-        yield return new WaitForSeconds(_delayAfterShoot);
-
-        while (_smoothSpeed < 0.125f)
+        while (_smoothSpeed > 0)
         {
-            _smoothSpeed = Mathf.MoveTowards(_smoothSpeed, 0.125f, _smoothSpeedRemoved);
+            _smoothSpeed = Mathf.MoveTowards(_smoothSpeed, 0, _smoothSpeedRemoved);
             yield return null;
         }
-        _smoothSpeed = 0.125f;
+
+        yield return new WaitForSeconds(_delayAfterShoot);
+
+        while (_smoothSpeed < DefaultSmoothSpeed)
+        {
+            _smoothSpeed = Mathf.MoveTowards(_smoothSpeed, DefaultSmoothSpeed, _smoothSpeedRemoved);
+            yield return null;
+        }
+        _smoothSpeed = DefaultSmoothSpeed;
     }
 }
