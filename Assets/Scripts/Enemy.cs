@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(EnemyAnimator))]
 public class Enemy : MonoBehaviour
@@ -15,7 +16,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem _groundBloodEffect;
     [SerializeField] private ParticleSystem _bodyBloodEffect;
     [SerializeField] private ParticleSystem _groundWallEffect;
-    [SerializeField] private ParticleSystem _groundHeadColorSplat;
+
+    [SerializeField] private ParticleSystem _bang;
 
     [SerializeField] private SlowMotionTrigger _headTrigger;
 
@@ -25,6 +27,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _bulletSpawnPoint;
 
     private EnemyAnimator _enemyAnimator;
+
+    public event UnityAction Killed;
 
     private void OnEnable()
     {
@@ -56,7 +60,7 @@ public class Enemy : MonoBehaviour
 
         _enemyAnimator.StopPlayingAnimation();
         _ragDoll.StartFall();
-        
+        Killed?.Invoke();
     }
 
     private void ShowBloodEffects()
@@ -69,22 +73,19 @@ public class Enemy : MonoBehaviour
 
         var spineBloodEffectGround = Instantiate(_spineBloodEffectGround);
         spineBloodEffectGround.transform.position = _spineBloodSpawnPoint.transform.position;
-
+                
         var groundWallEffect = Instantiate(_groundWallEffect);
         groundWallEffect.transform.position = _spineBloodSpawnPoint.transform.position;
         groundWallEffect.Play();
 
-        var headGroundSplat = Instantiate(_groundHeadColorSplat);
-        headGroundSplat.transform.position = _headModel.transform.position;
-        StartCoroutine(Follow(headGroundSplat));
+        var bang= Instantiate(_bang);
+        bang.transform.position = new Vector3(_headModel.transform.position.x, _headModel.transform.position.y+3, _headModel.transform.position.z);
     }
 
     private void HeadHit()
-    {
-        _headModel.gameObject.transform.localScale = new Vector3( 0.001f, 0.001f, 0.001f);
-        _neck.gameObject.transform.localScale = new Vector3( 0.001f, 0.001f, 0.001f);
-        
-        var heaskBloodEffect = Instantiate(_neaskBloodEffect,_neck.transform);
+    {        
+
+        StartCoroutine(DestroyHead());
         Death();
     }
 
@@ -93,15 +94,18 @@ public class Enemy : MonoBehaviour
         var hitEffect = Instantiate(_bodyBloodEffect, transform);
         hitEffect.transform.position = hit.position;
     }
-
-    private IEnumerator Follow(ParticleSystem ps)
+    
+    private IEnumerator DestroyHead()
     {
+        float duration = 0.1f;
         float elapsedTime = 0;
-        while (elapsedTime < 100)
+        while (elapsedTime < duration)
         {
-            ps.transform.position = _headModel.transform.position;
             elapsedTime += Time.deltaTime;
+            _headModel.transform.localScale = Vector3.Lerp(_headModel.transform.localScale, new Vector3(1 - elapsedTime / duration , 1 - elapsedTime / duration , 1 - elapsedTime / duration),0.05f);
             yield return null;
         }
+        _headModel.transform.localScale = new Vector3(0, 0, 0);
+        _neck.transform.localScale = new Vector3(0, 0, 0);
     }
 }

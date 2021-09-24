@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
@@ -18,13 +17,11 @@ public class EnemyAnimator : MonoBehaviour
         float delay = Random.Range(_minAnimationDelay, _maxAnimationDelay);
 
         yield return new WaitForSeconds(delay);
-
-            _animator.Play("Idle");
+        _animator.Play("Idle");
     }
 
     public void StopPlayingAnimation()
     {
         _animator.enabled = false;
-
     }
 }

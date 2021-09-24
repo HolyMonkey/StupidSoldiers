@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CameraFollowing : MonoBehaviour
 {
@@ -13,13 +11,17 @@ public class CameraFollowing : MonoBehaviour
 
     [SerializeField] private float _slowMotionDuration;
     [SerializeField] private AnimationCurve _slowMotionCurve;
+    [SerializeField] private Enemy[] _enemys;
 
     private Vector3 _offset;
     private IEnumerator _slowMotion;
     private IEnumerator _shootDelay;
+    private Animator _animator;
 
     private const float FixedDeltaTimeMultiplier = 0.02f;
     private const float DefaultSmoothSpeed = 0.125f;
+
+    private bool _needShake = false;
 
     private void WaitShootDelay()
     {
@@ -30,6 +32,7 @@ public class CameraFollowing : MonoBehaviour
 
     private void OnEnable()
     {
+        _animator = GetComponent<Animator>();
         _slowMotion = ShowSlowMotion();
         _offset = _target.transform.position - transform.position;
 
@@ -37,12 +40,22 @@ public class CameraFollowing : MonoBehaviour
         _target.Hit += OnBulletHitSlowMotionTarget;
 
         _shootDelay = ShootDelay();
+
+        foreach(var enemy in _enemys)
+        {
+            enemy.Killed += OnEnemyKilled;
+        }
     }
 
     private void OnDisable()
     {
         _target.Hit -= OnBulletHitSlowMotionTarget;
         _target.Shooted -= WaitShootDelay;
+
+        foreach (var enemy in _enemys)
+        {
+            enemy.Killed -= OnEnemyKilled;
+        }
     }
 
     private void FixedUpdate()
@@ -56,6 +69,11 @@ public class CameraFollowing : MonoBehaviour
         StopCoroutine(_slowMotion);
         _slowMotion = ShowSlowMotion();
         StartCoroutine(_slowMotion);
+    }
+
+    private void OnEnemyKilled()
+    {
+        _animator.Play("Shake");
     }
 
     private IEnumerator ShowSlowMotion()

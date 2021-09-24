@@ -489,7 +489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37957183}
   m_LocalRotation: {x: -0, y: -0.75355333, z: -0, w: 0.65738684}
-  m_LocalPosition: {x: 45.49, y: -16.87, z: 20.119505}
+  m_LocalPosition: {x: 40.01, y: -16.87, z: 20.119505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 45074180}
@@ -595,8 +595,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 1295704709}
   _triggerBodyCapsuleCollider: {fileID: 37957187}
   _triggerHeadSphereCollider: {fileID: 1295704708}
@@ -627,7 +626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45026716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.04, y: 2.27, z: 0.86}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 437326625}
@@ -644,7 +643,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &45026719
 MonoBehaviour:
@@ -1530,7 +1529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133433710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.06, y: 2.31, z: 1.04}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 170767328}
@@ -1547,7 +1546,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &133433713
 MonoBehaviour:
@@ -2220,8 +2219,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 133433713}
   _triggerBodyCapsuleCollider: {fileID: 170767331}
   _triggerHeadSphereCollider: {fileID: 133433712}
@@ -2398,7 +2396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &176096184
 BoxCollider:
@@ -3877,8 +3875,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 542059743}
   _triggerBodyCapsuleCollider: {fileID: 288470207}
   _triggerHeadSphereCollider: {fileID: 542059742}
@@ -4643,8 +4640,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 1815934404}
   _triggerBodyCapsuleCollider: {fileID: 353197495}
   _triggerHeadSphereCollider: {fileID: 1815934403}
@@ -5519,8 +5515,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 45026719}
   _triggerBodyCapsuleCollider: {fileID: 437326628}
   _triggerHeadSphereCollider: {fileID: 45026718}
@@ -5968,7 +5963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &482841643
 BoxCollider:
@@ -6109,7 +6104,7 @@ MonoBehaviour:
   _speedRotationAfterRecoil: 350
   _speedReducedRotation: 300
   _speedChangeRotationToZeroAfterGrounded: 0.05
-  _delayBeforeChangeRotateDirection: 0.03
+  _delayBeforeChangeRotateDirection: 0.015
   _fireLineLiveDuration: 2
   _fireLine: {fileID: 19884158, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
   _invulnerabilityDurationAfterTouchGround: 0.5
@@ -6148,19 +6143,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _recoilMoveDuration: 2.5
+  _recoilMoveDuration: 2.3
   _recoilForceCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0034516575
-      value: 1.1611353
-      inSlope: -0.68170774
-      outSlope: -0.68170774
+      time: 0.008761716
+      value: 1.0104204
+      inSlope: -0.1723726
+      outSlope: -0.1723726
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.20618992
+      outWeight: 0.47545254
     - serializedVersion: 3
       time: 0.3381164
       value: 0.8819669
@@ -6796,7 +6791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542059740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.06, y: 2.4, z: 1}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 288470204}
@@ -6813,7 +6808,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &542059743
 MonoBehaviour:
@@ -7555,7 +7550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &581016982
 BoxCollider:
@@ -9694,7 +9689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &758419522
 BoxCollider:
@@ -16171,7 +16166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &1242470182
 BoxCollider:
@@ -16513,7 +16508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255597236}
   m_LocalRotation: {x: -0, y: -0.75355333, z: -0, w: 0.65738684}
-  m_LocalPosition: {x: 30.55, y: -16.87, z: 20.119505}
+  m_LocalPosition: {x: 26.58, y: -16.87, z: 20.119505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543450652007729740}
@@ -16619,8 +16614,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 646851528874408678, guid: bde2f00209f4eae49a776843e0d65a73,
-    type: 3}
+  _bang: {fileID: 4573899969976241339, guid: f07b06021bd240446bb0e3aa3bba6940, type: 3}
   _headTrigger: {fileID: 1473168536}
   _triggerBodyCapsuleCollider: {fileID: 1255597240}
   _triggerHeadSphereCollider: {fileID: 1473168535}
@@ -16714,7 +16708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295704706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.04, y: 2.34, z: 0.84}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 37957184}
@@ -16731,7 +16725,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &1295704709
 MonoBehaviour:
@@ -18184,7 +18178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473168533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.27, y: 2.37, z: 0.66}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 1255597237}
@@ -18201,7 +18195,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &1473168536
 MonoBehaviour:
@@ -18329,7 +18323,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 0}
+  _bang: {fileID: 0}
   _headTrigger: {fileID: 1453891467}
   _triggerBodyCapsuleCollider: {fileID: 1478846207}
   _triggerHeadSphereCollider: {fileID: 1453891466}
@@ -19737,7 +19731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &1653882395
 BoxCollider:
@@ -20197,7 +20191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &1730408309
 BoxCollider:
@@ -21094,7 +21088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815934401}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.95, y: 2.82, z: 0.22}
+  m_LocalPosition: {x: 3.03, y: 2.42, z: 0.78}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 353197492}
@@ -21111,7 +21105,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!114 &1815934404
 MonoBehaviour:
@@ -21453,7 +21447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &1838627673
 BoxCollider:
@@ -21859,7 +21853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75de3899e56ad26449346699364d5a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDecalDirty: {fileID: 198441514564820928, guid: d519ad6ef8ea3cd4f9acf13f6646a601,
+  _bulletDecalDirty: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
 --- !u!65 &1864555583
 BoxCollider:
@@ -22107,6 +22101,7 @@ GameObject:
   - component: {fileID: 1901351323}
   - component: {fileID: 1901351325}
   - component: {fileID: 1901351324}
+  - component: {fileID: 1901351326}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22195,40 +22190,83 @@ MonoBehaviour:
   _delayAfterShoot: 0.15
   _smoothSpeed: 0.125
   _smoothSpeedRemoved: 0.025
-  _slowMotionDuration: 1
+  _slowMotionDuration: 1.1
   _slowMotionCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: -0.002670288
       value: 1
-      inSlope: -20.679623
-      outSlope: -20.679623
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.035357773
-      value: 0.2688146
-      inSlope: -0.03771539
-      outSlope: -0.03771539
+      inSlope: -1.7086067
+      outSlope: -1.7086067
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.7816176
-      outWeight: 0.15195131
+      inWeight: 0
+      outWeight: 1
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.7579861
-      outSlope: 0.7579861
-      tangentMode: 34
+      time: 0.020189328
+      value: 0.030933408
+      inSlope: 0.024146268
+      outSlope: 0.024146268
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.03776033
+      value: 0.031050626
+      inSlope: -0.103772946
+      outSlope: -0.103772946
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.114965364
+      value: 1.0529697
+      inSlope: 6.280491
+      outSlope: 6.280491
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.68000895
+      outWeight: 0.38301018
+    - serializedVersion: 3
+      time: 0.1580547
+      value: 1.1833361
+      inSlope: -0.0039932383
+      outSlope: -0.0039932383
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.84373087
+      value: 0.98696613
+      inSlope: -0.05950073
+      outSlope: -0.05950073
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.19343567
+    - serializedVersion: 3
+      time: 1.0000613
+      value: 0.9942499
+      inSlope: 0.005673362
+      outSlope: 0.005673362
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26126897
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _enemys:
+  - {fileID: 1255597241}
+  - {fileID: 37957188}
+  - {fileID: 170767332}
+  - {fileID: 437326629}
+  - {fileID: 353197496}
+  - {fileID: 288470208}
 --- !u!114 &1901351323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22430,7 +22468,7 @@ MonoBehaviour:
   _pixelateDownscale: 0
   _antialiasStrength: 20
   _antialiasDepthThreshold: 0.001
-  isDirty: 1
+  isDirty: 0
   bMat: {fileID: 0}
 --- !u!114 &1901351324
 MonoBehaviour:
@@ -22509,6 +22547,25 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!95 &1901351326
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901351318}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95097475f1e4c4a4c88bb1bb2228f08e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1917286115
 GameObject:
   m_ObjectHideFlags: 0
@@ -32129,7 +32186,7 @@ MonoBehaviour:
   _bodyBloodEffect: {fileID: 19840564, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
   _groundWallEffect: {fileID: 7414723311276374211, guid: 14bedc62297a5c4409e1254ebb54b1b5,
     type: 3}
-  _groundHeadColorSplat: {fileID: 0}
+  _bang: {fileID: 0}
   _headTrigger: {fileID: 0}
   _triggerBodyCapsuleCollider: {fileID: 8818317178417917525}
   _triggerHeadSphereCollider: {fileID: 0}
