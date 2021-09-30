@@ -12,12 +12,6 @@ public class EnemyRagDollModel : MonoBehaviour
     [SerializeField] private float _yGravity;
     [SerializeField] private float _xVelocity;
 
-    [SerializeField] private Transform _center;
-
-    private float _xDirection = 0;
-    private float _xMoveForce = 0;
-    private Vector3 _collisionPoint;
-
     private void OnEnable()
     {
         foreach (var bone in _allBones)
@@ -29,7 +23,6 @@ public class EnemyRagDollModel : MonoBehaviour
 
     private IEnumerator SimulateGravity()
     {
-
         float yGravity = Random.Range(-5, _yGravity);      
 
         foreach (var bone in _explosionBones)
@@ -51,7 +44,6 @@ public class EnemyRagDollModel : MonoBehaviour
         {
             bone.velocity = new Vector3(0, 0, 0);
         }
-
     }
 
     public void StartFall()
@@ -67,6 +59,5 @@ public class EnemyRagDollModel : MonoBehaviour
 
     public void SetCollisionWithBulletPoint(Vector3 point)
     {
-        _collisionPoint = point;
     }
 }

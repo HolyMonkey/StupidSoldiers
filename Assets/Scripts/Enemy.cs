@@ -24,8 +24,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
 
-    [SerializeField] private Transform _bulletSpawnPoint;
-
     private EnemyAnimator _enemyAnimator;
 
     public event UnityAction Killed;
