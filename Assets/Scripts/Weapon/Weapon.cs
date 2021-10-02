@@ -132,7 +132,7 @@ public abstract class Weapon : MonoBehaviour
     {
         while (_currentRotationSpeed > _speedRotationAfterRecoil)
         {
-            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _speedRotationAfterRecoil, 0.001f) ;
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _speedRotationAfterRecoil, 0.0015f) ;
             yield return null;
         }
     }

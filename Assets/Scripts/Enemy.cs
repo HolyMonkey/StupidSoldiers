@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            _headModel.transform.localScale = Vector3.Lerp(_headModel.transform.localScale, new Vector3(1 - elapsedTime / duration , 1 - elapsedTime / duration , 1 - elapsedTime / duration),0.05f);
+            _headModel.transform.localScale = Vector3.Lerp(_headModel.transform.localScale, new Vector3(1 - elapsedTime / duration , 1 - elapsedTime / duration , 1 - elapsedTime / duration),0.009f);
             yield return null;
         }
         _headModel.transform.localScale = new Vector3(0, 0, 0);
