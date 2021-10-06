@@ -23,6 +23,8 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] private float _fireLineLiveDuration;
     [SerializeField] private ParticleSystem _fireLine;
+    [SerializeField] private ShootEffect _fireEffect;
+
 
     [SerializeField] private float _invulnerabilityDurationAfterTouchGround;
 
@@ -102,6 +104,9 @@ public abstract class Weapon : MonoBehaviour
         _spawnedFireLine.Play();
         _spawnedFireLine.startLifetime = _fireLineLiveDuration;
 
+        Instantiate(_fireEffect,_bulletSpawnPoint);
+        
+
         _audioSource.Play();
         _animator.Play("Shoot");
     }
@@ -139,6 +144,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Shoot()
     {
+
         _canShoot = false;
         _shootDelayTime = ShootDelayTime();
         StartCoroutine(_shootDelayTime);

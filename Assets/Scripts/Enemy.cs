@@ -23,10 +23,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
+    [SerializeField] private GameObject _model;
 
     private EnemyAnimator _enemyAnimator;
 
     public event UnityAction Killed;
+
+    public Transform GetModelTransform()
+    {
+        return _model.transform;
+    }
 
     private void OnEnable()
     {

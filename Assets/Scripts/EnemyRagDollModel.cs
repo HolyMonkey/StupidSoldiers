@@ -27,7 +27,7 @@ public class EnemyRagDollModel : MonoBehaviour
 
         foreach (var bone in _explosionBones)
         {
-            bone.AddExplosionForce(Random.Range(200, 250), new Vector3(_body.transform.position.x - Random.Range(1,4), _body.transform.position.y + Random.Range(0,3), _body.transform.position.z), 15);
+            bone.AddExplosionForce(Random.Range(200, 300), new Vector3(_body.transform.position.x - Random.Range(1,4), _body.transform.position.y + Random.Range(0,3), _body.transform.position.z), 15);
         }
 
         yield return new WaitForSeconds(Random.Range(0.05f,0.25f));
