@@ -889,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5119589304887632358
 Transform:
   m_ObjectHideFlags: 0
@@ -938,6 +938,7 @@ MonoBehaviour:
   _headTrigger: {fileID: 5119589304845899920}
   _triggerBodyCapsuleCollider: {fileID: 5119589304887632356}
   _triggerHeadSphereCollider: {fileID: 5119589304845899921}
+  _model: {fileID: 0}
 --- !u!136 &5119589304887632356
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -946,7 +947,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5119589304887632359}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.0805123
   m_Height: 3.7889957

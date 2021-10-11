@@ -24,18 +24,36 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
     [SerializeField] private GameObject _model;
+    [SerializeField] private Rigidbody _splat;
 
     private EnemyAnimator _enemyAnimator;
 
+    private Transform model;
+    private Rigidbody splat;
+
     public event UnityAction Killed;
+
+
 
     public Transform GetModelTransform()
     {
-        return _model.transform;
+        return model;
+    }
+    public Rigidbody GetModelRigidbody()
+    {
+        return splat;
+    }
+
+    public void SetCollidePosition(Vector3 position)
+    {
+        model.transform.position = position;
     }
 
     private void OnEnable()
     {
+        model = _model.transform;
+        splat = _splat;
+
         _headTrigger.Hit += HeadHit;
         _enemyAnimator = GetComponent<EnemyAnimator>();
     }
@@ -45,12 +63,11 @@ public class Enemy : MonoBehaviour
         _headTrigger.Hit -= HeadHit;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.GetComponent<Bullet>())
+        if (other.gameObject.GetComponent<Bullet>())
         {
             SpawnBloodEffect(other.gameObject.transform);
-            _ragDoll.SetCollisionWithBulletPoint(other.transform.position);
             Death();
         }
     }

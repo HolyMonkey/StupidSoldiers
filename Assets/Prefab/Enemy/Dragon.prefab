@@ -636,6 +636,7 @@ MonoBehaviour:
   _triggerBodyCapsuleCollider: {fileID: 7186732673622002008}
   _triggerHeadSphereCollider: {fileID: 7186732673741180109}
   _model: {fileID: 7186732674534810760}
+  _splat: {fileID: 0}
 --- !u!136 &7186732673622002008
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -644,7 +645,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7186732673622002005}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.762477
   m_Height: 4.1922064
@@ -879,6 +880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640333d7202cdcb429fb260b709ccd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
+  _decalPosition: {fileID: 0}
 --- !u!135 &7186732673741180109
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1345,10 +1348,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.35391828
-  m_Height: 0.9868788
+  m_Radius: 0.31115904
+  m_Height: 0.98687893
   m_Direction: 1
-  m_Center: {x: -0.17043453, y: 0.4933339, z: -0.0001200837}
+  m_Center: {x: -0.12763916, y: 0.49336076, z: -0.00007680738}
 --- !u!144 &7186732674097557602
 CharacterJoint:
   m_ObjectHideFlags: 0

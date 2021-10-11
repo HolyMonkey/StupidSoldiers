@@ -208,7 +208,7 @@ public abstract class Weapon : MonoBehaviour
     {
         RaycastHit[] hit;
         Ray ray = new Ray(transform.position,transform.right);
-        hit = Physics.RaycastAll(ray,20);
+        hit = Physics.RaycastAll(ray,25);
 
         if (hit != null)
         {

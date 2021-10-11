@@ -18,6 +18,7 @@ public class EnemyRagDollModel : MonoBehaviour
         {
             bone.useGravity = false;
             bone.isKinematic = true;
+            bone.gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
@@ -40,10 +41,7 @@ public class EnemyRagDollModel : MonoBehaviour
             yield return null;
         }
 
-        foreach (var bone in _allBones)
-        {
-            bone.velocity = new Vector3(0, 0, 0);
-        }
+
     }
 
     public void StartFall()
@@ -53,11 +51,10 @@ public class EnemyRagDollModel : MonoBehaviour
             bone.isKinematic = false;
             bone.useGravity = true;
             bone.velocity = new Vector3(0, 0, 0);
+            bone.gameObject.GetComponent<Collider>().enabled = true;
+
         }
         StartCoroutine(SimulateGravity());
     }
 
-    public void SetCollisionWithBulletPoint(Vector3 point)
-    {
-    }
 }
