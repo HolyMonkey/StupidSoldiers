@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(EnemyAnimator))]
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject _model;
     [SerializeField] private GameObject _neck;
     [SerializeField] private GameObject _headModel;
     [SerializeField] private GameObject _spineBloodSpawnPoint;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem _groundBloodEffect;
     [SerializeField] private ParticleSystem _bodyBloodEffect;
     [SerializeField] private ParticleSystem _groundWallEffect;
+    [SerializeField] private ParticleSystem _coinEffect;
 
     [SerializeField] private ParticleSystem _bang;
 
@@ -23,45 +25,53 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
-    [SerializeField] private GameObject _model;
-    [SerializeField] private Rigidbody _splat;
+    [SerializeField] private EnemyOptimization _optimization;
+
 
     private EnemyAnimator _enemyAnimator;
-
-    private Transform model;
-    private Rigidbody splat;
 
     public event UnityAction Killed;
 
 
-
-    public Transform GetModelTransform()
-    {
-        return model;
-    }
-    public Rigidbody GetModelRigidbody()
-    {
-        return splat;
-    }
-
-    public void SetCollidePosition(Vector3 position)
-    {
-        model.transform.position = position;
-    }
-
     private void OnEnable()
     {
-        model = _model.transform;
-        splat = _splat;
-
         _headTrigger.Hit += HeadHit;
         _enemyAnimator = GetComponent<EnemyAnimator>();
+
+        _optimization.Visible += OnVisible;
+        _optimization.Invisible += OnInvisible;
+
     }
 
     private void OnDisable()
     {
         _headTrigger.Hit -= HeadHit;
+
+        _optimization.Visible += OnVisible;
+        _optimization.Invisible += OnInvisible;
     }
+
+    public void ShowBodySplat(EnemyBodySplat splat, Vector3 position)
+    {
+        var spawnedSplat = Instantiate(splat);
+        spawnedSplat.gameObject.transform.SetParent(_ragDoll.GetMainBody().gameObject.transform);
+        spawnedSplat.transform.position = position;
+        spawnedSplat.SetJoint(_ragDoll.GetMainBody());
+        spawnedSplat.SetGravityVelocity(_ragDoll.GetYVelocity()); 
+    }
+
+    private void OnVisible()
+    {
+        _model.SetActive(true);
+        _enemyAnimator.ShowIdleAnimation();
+    }
+
+    private void OnInvisible()
+    {
+        _model.SetActive(false);
+        _enemyAnimator.StopShowIdleAnimation();
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -86,26 +96,28 @@ public class Enemy : MonoBehaviour
 
     private void ShowBloodEffects()
     {
-        var groundBlood = Instantiate(_groundBloodEffect);
-        groundBlood.transform.position = _spineBloodSpawnPoint.transform.position;
 
-        var spineBloodEffectWall = Instantiate(_spineBloodEffectWall);
-        spineBloodEffectWall.transform.position = _spineBloodSpawnPoint.transform.position;
+       // SpawnEffect(_groundBloodEffect, _spineBloodSpawnPoint.transform.position);
 
-        var spineBloodEffectGround = Instantiate(_spineBloodEffectGround);
-        spineBloodEffectGround.transform.position = _spineBloodSpawnPoint.transform.position;
-                
-        var groundWallEffect = Instantiate(_groundWallEffect);
-        groundWallEffect.transform.position = _spineBloodSpawnPoint.transform.position;
-        groundWallEffect.Play();
+        //SpawnEffect(_spineBloodEffectWall, _spineBloodSpawnPoint.transform.position);
 
-        var bang= Instantiate(_bang);
-        bang.transform.position = new Vector3(_headModel.transform.position.x, _headModel.transform.position.y+3, _headModel.transform.position.z);
+       // SpawnEffect(_spineBloodEffectGround, _spineBloodSpawnPoint.transform.position);
+
+       // SpawnEffect(_groundWallEffect, _spineBloodSpawnPoint.transform.position);
+        
+        SpawnEffect(_coinEffect, new Vector3(_spineBloodSpawnPoint.transform.position.x-1, _spineBloodSpawnPoint.transform.position.y, _spineBloodSpawnPoint.transform.position.z));
+
+        SpawnEffect(_bang, new Vector3(_headModel.transform.position.x, _headModel.transform.position.y + 3, _headModel.transform.position.z));
+    }
+
+    private void SpawnEffect(ParticleSystem effect, Vector3 position)
+    {
+        var spawnedEffect = Instantiate(effect);
+        spawnedEffect.transform.position = position;
     }
 
     private void HeadHit()
     {        
-
         StartCoroutine(DestroyHead());
         Death();
     }

@@ -4,30 +4,18 @@ using UnityEngine.Events;
 public class SlowMotionTrigger : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private Transform _decalPosition;
+    [SerializeField] private Transform _headDecalTransform;
 
-    public Transform GetModelTransform()
+    public void ShowBodySplat(EnemyBodySplat splat, Vector3 position)
     {
-        return _enemy.GetModelTransform();
-    }
-
-    public void SetCollidePosition()
-    {
-        _enemy.SetCollidePosition(_decalPosition.position);
-    }
-
-    public Rigidbody GetRigidbody()
-    {
-        return _enemy.GetModelRigidbody();
+        _enemy.ShowBodySplat(splat, _headDecalTransform.position);
     }
 
     public event UnityAction Hit;
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.GetComponent<Bullet>())
-        {
-            Hit?.Invoke();
-        }
+        if(other.gameObject.GetComponent<Bullet>())        
+            Hit?.Invoke();        
     }
 }

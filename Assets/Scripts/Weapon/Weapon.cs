@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerInput))]
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
@@ -16,7 +17,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float _minRotationSpeed;
     [SerializeField] private float _maxRotationSpeed;
     [SerializeField] private float _speedRotationAfterRecoil;
-    [SerializeField] private float _speedReducedRotation;
     [SerializeField] private float _speedChangeRotationToZeroAfterGrounded;
 
     [SerializeField] private float _delayBeforeChangeRotateDirection;
@@ -42,14 +42,21 @@ public abstract class Weapon : MonoBehaviour
     private float _currentMoveXSpeed=0;
     private float _currentMoveYSpeed=0;
     private float _currentRotationSpeed;
+
+    private float _rotateSpeedMultiplier=2f;
+    private float _moveSpeedMultplier=2f;
+
+
     private Vector3 _moveTarget;
     private Rigidbody _rigidbody;
     private ParticleSystem _spawnedFireLine;
-    private List<ParticleSystem> _fireLines= new List<ParticleSystem>();
+
+    private WeaponAnimator _weaponAnimator;
+    private PlayerInput _input;
 
     private bool _touchedOfGround = false;
     private bool _isInvulnerability = false;
-    private bool _canShoot = true;
+    private bool _canShoot = false;
 
     private IEnumerator _changeSpeedAfterShoot;
     private IEnumerator _normalizeGravityAfterShoot;
@@ -63,6 +70,7 @@ public abstract class Weapon : MonoBehaviour
     public event UnityAction Collided;
     public event UnityAction Shooted;
     public event UnityAction Hit;
+    public event UnityAction Death;
 
     private void Start()
     {
@@ -79,13 +87,28 @@ public abstract class Weapon : MonoBehaviour
         _invulnerabilityAfterTouchGround = InvulnerabilityAfterTouchGround();
     }
 
+    private void OnEnable()
+    {
+        _input = GetComponent<PlayerInput>();
+        _weaponAnimator = GetComponent<WeaponAnimator>();
+        _input.Touch += OnTouch;
+    }
+
+    private void OnDisable()
+    {
+        _input.Touch -= OnTouch;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) & _canShoot)
-            Shoot();
-
             Rotate();
             Move();
+    }
+
+    private void OnTouch()
+    {
+        if (_canShoot)
+            Shoot();
     }
 
     private void Rotate()
@@ -105,10 +128,11 @@ public abstract class Weapon : MonoBehaviour
         _spawnedFireLine.startLifetime = _fireLineLiveDuration;
 
         Instantiate(_fireEffect,_bulletSpawnPoint);
-        
 
         _audioSource.Play();
         _animator.Play("Shoot");
+
+        _weaponAnimator.Shoot();
     }
 
     private void ChangeRotateSpeed()
@@ -121,12 +145,15 @@ public abstract class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Ground>()& !_isInvulnerability )
+        if (other.GetComponent<Ground>() & !_isInvulnerability)
         {
             _isInvulnerability = true;
-            _touchedOfGround = true; 
+            _touchedOfGround = true;
             Touch();
+            _animator.Play("Touch");
         }
+        else if (other.GetComponent<DeathZone>())
+            Death?.Invoke();
     }
     private void ReversRotateDirection()
     {
@@ -137,7 +164,7 @@ public abstract class Weapon : MonoBehaviour
     {
         while (_currentRotationSpeed > _speedRotationAfterRecoil)
         {
-            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _speedRotationAfterRecoil, 0.0015f) ;
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _speedRotationAfterRecoil, 0.004f) ;
             yield return null;
         }
     }
@@ -207,14 +234,14 @@ public abstract class Weapon : MonoBehaviour
     private bool CheckHit()
     {
         RaycastHit[] hit;
-        Ray ray = new Ray(transform.position,transform.right);
+        Ray ray = new Ray(_bulletSpawnPoint.transform.position,transform.right);        
         hit = Physics.RaycastAll(ray,25);
 
         if (hit != null)
         {
             foreach (var collider in hit)
             {
-                if (collider.collider.gameObject.GetComponent<SlowMotionTrigger>())
+                if (collider.collider.gameObject.GetComponent<SlowMotionTrigger>()| collider.collider.gameObject.GetComponent<Multiplier>())
                     return true;
             }
         }
@@ -284,4 +311,12 @@ public abstract class Weapon : MonoBehaviour
             _currentMoveYSpeed = 0;
     }
 
+    public void CanShoot()
+    {
+        _canShoot = true;
+    }
+    public void DisableShoot()
+    {
+        _canShoot = false;
+    }
 }

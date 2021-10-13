@@ -1,42 +1,64 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _praise;
-    [SerializeField] private CanvasGroup _praiseCanvasGroup;
-    [SerializeField] private float _showPraiseDuration;
-    [SerializeField] private AnimationCurve _praiseCurve;
+    [SerializeField] private WinPanel _winPanel;
+    [SerializeField] private LosePanel _losePanel;
+    [SerializeField] private PlayPanel _playPanel;
+    [SerializeField] private StartPanel _startPanel;
 
-    private IEnumerator _changePraiseImage;
-    private const string PraiseValue = "Headshot";
+    public event UnityAction RestartButtonClicked;
+    public event UnityAction StartButtonClicked;
+    public event UnityAction ContinueButtonClicked;
 
     private void OnEnable()
     {
-        _changePraiseImage = ChangePraiseImage();
-        _praise.text = PraiseValue;
+        _startPanel.ShowPanel();
+
+        _startPanel.StartButtonClicked += OnStartButtonClicked;
+        _winPanel.ContinueButtonClicked += OnContinueButtonClicked;
+        _losePanel.RestartButtonClicked += OnRestartButtonClicked;
     }
 
-    public void ShowPraise()
+    private void OnDisable()
     {
-        StopCoroutine(_changePraiseImage);
-        _changePraiseImage = ChangePraiseImage();
-        StartCoroutine(_changePraiseImage);
+        _startPanel.StartButtonClicked -= OnStartButtonClicked;
+        _winPanel.ContinueButtonClicked -= OnContinueButtonClicked;
+        _losePanel.RestartButtonClicked -= OnRestartButtonClicked;
     }
 
-    private IEnumerator ChangePraiseImage()
+
+    private void OnRestartButtonClicked()
     {
-        float elapsedTime = 0;
-        
-        while (elapsedTime < _showPraiseDuration)
-        {
-            float progress = elapsedTime / _showPraiseDuration;
-            elapsedTime += Time.deltaTime;
-            _praiseCanvasGroup.alpha = _praiseCurve.Evaluate(progress);
-
-            yield return null;
-        }
+        RestartButtonClicked?.Invoke();
     }
 
+    private void OnStartButtonClicked()
+    {
+        StartButtonClicked?.Invoke();
+        _startPanel.ClosePanel();
+    }
+
+    private void OnContinueButtonClicked()
+    {
+        ContinueButtonClicked?.Invoke();
+    }
+
+    public void ShowResultPanel(float result)
+    {
+        _winPanel.ShowPanel(result);
+    }
+
+    public void ShowLosePanel()
+    {
+        _losePanel.ShowPanel();
+    }
+
+    public void ShowPlayPanel()
+    {
+
+    }
 }
