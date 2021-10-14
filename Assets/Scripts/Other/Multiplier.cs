@@ -41,6 +41,11 @@ public class Multiplier : MonoBehaviour
         }
     }
 
+    public void Disable()
+    {
+        _canDestroy = false;
+    }
+
     private IEnumerator ChangeScale()
     {
         float elapsedTime = 0;

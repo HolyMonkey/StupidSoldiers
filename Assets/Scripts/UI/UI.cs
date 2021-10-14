@@ -41,6 +41,7 @@ public class UI : MonoBehaviour
     {
         StartButtonClicked?.Invoke();
         _startPanel.ClosePanel();
+        _playPanel.ShowPanel();
     }
 
     private void OnContinueButtonClicked()
@@ -48,18 +49,29 @@ public class UI : MonoBehaviour
         ContinueButtonClicked?.Invoke();
     }
 
-    public void ShowResultPanel(float result)
+    public void ShowResultPanel(int result,int multiplier)
     {
-        _winPanel.ShowPanel(result);
+        _playPanel.ClosePanel();
+        _winPanel.ShowPanel(result, multiplier);
     }
 
     public void ShowLosePanel()
     {
+        _playPanel.ClosePanel();
         _losePanel.ShowPanel();
+    }
+    public void ClosePlayPanel()
+    {
+        _playPanel.ClosePanel();
     }
 
     public void ShowPlayPanel()
     {
+        _playPanel.ShowPanel();
+    }
 
+    public void SetCurrentLevel(int number)
+    {
+        _playPanel.SetCurrentLevel(number);
     }
 }

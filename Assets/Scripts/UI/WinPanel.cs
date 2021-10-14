@@ -10,6 +10,11 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button _continueButton;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _rewardText;
+    [SerializeField] private TMP_Text _multiplierText;
+
+    private int _reward = 0;
+    private int _multiplier= 1;
 
     public event UnityAction ContinueButtonClicked;
 
@@ -28,14 +33,44 @@ public class WinPanel : MonoBehaviour
         ContinueButtonClicked?.Invoke();
     }
 
-    public void ShowPanel(float result)
+    public void ShowPanel(int result,int multiplier)
     {
-        _text.text = "Nice";// "+"+result.ToString();
         _panel.SetActive(true);
+
+        _multiplier = multiplier;
+        _reward = result;
+
+        _text.text = "You win!";
+
+        StartCoroutine(ShowRewardCoins());
     }
 
     public void ClosePanel()
     {
         _panel.SetActive(false);
     }
+
+    private IEnumerator ShowRewardCoins()
+    {
+        int currentCoins = 0;
+
+        while (currentCoins < _reward)
+        {
+            currentCoins++;
+            _rewardText.text = "+" + currentCoins.ToString() + "$";
+            yield return new WaitForSeconds(0.01f);
+        }
+        _multiplierText.text = "X" + _multiplier;
+
+        yield return new WaitForSeconds(1);
+
+        _multiplierText.text = "";
+
+        _reward *= _multiplier;
+
+        _rewardText.text = "+" + _reward.ToString() + "$";
+
+        yield return null;
+    }
+    
 }

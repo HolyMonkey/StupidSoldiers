@@ -21,8 +21,5 @@ public class PlayerInput : MonoBehaviour
         {
             _isTouched = false;
         }
-
-
-
     }
 }
