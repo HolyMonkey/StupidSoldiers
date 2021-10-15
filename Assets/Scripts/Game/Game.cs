@@ -6,13 +6,22 @@ public class Game : MonoBehaviour
     [SerializeField] private Weapon _weapon;
     [SerializeField] private UI _ui;
     [SerializeField] private Multiplier[] _multipliers;
-    [SerializeField] private int _levelNumber;
-    [SerializeField] private int _nextSceneIndex;
     [SerializeField] private int _currentSceneIndex;
+    [SerializeField] private int _nextSceneIndex;
     [SerializeField] private Wallet _wallet;
+    [SerializeField] private DataSaver _dataSaver;
+
+    private int _levelNumber;
+
+    public uint LevelNumber => (uint)_levelNumber;
 
     private void OnEnable()
     {
+        _dataSaver.DownloadSave();
+
+        _wallet.SetCoins((int)_dataSaver.GetCoinsCount());
+        _levelNumber = (int)_dataSaver.GetCurrentLevelNumber();
+
         Time.timeScale = 1;
         _weapon.Death += OnWeaponDead;
 
@@ -52,8 +61,10 @@ public class Game : MonoBehaviour
     private void OnMultiplierHit(Multiplier multiplier)
     {
         _weapon.DisableShoot();
-        _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
+
         _ui.ClosePlayPanel();
+        _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
+        _wallet.SetMultiplier(multiplier.MultiplierValue);
 
         foreach(var mult in _multipliers)
         {
@@ -74,6 +85,7 @@ public class Game : MonoBehaviour
 
     private void OnContinueButtonClick()
     {
+        _dataSaver.SaveData();
         SceneManager.LoadScene(_nextSceneIndex);
     }
 }

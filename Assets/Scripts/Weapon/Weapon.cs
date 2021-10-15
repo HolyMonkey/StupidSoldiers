@@ -74,7 +74,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+
         _audioSource.clip = _shootSound;
         _currentMoveYSpeed = _gravityForce;
 
@@ -91,6 +91,8 @@ public abstract class Weapon : MonoBehaviour
     {
         _input = GetComponent<PlayerInput>();
         _weaponAnimator = GetComponent<WeaponAnimator>();
+        _rigidbody = GetComponent<Rigidbody>();
+
         _input.Touch += OnTouch;
     }
 
@@ -101,8 +103,8 @@ public abstract class Weapon : MonoBehaviour
 
     private void Update()
     {
-            Rotate();
-            Move();
+        Rotate();
+        Move();
     }
 
     private void OnTouch()

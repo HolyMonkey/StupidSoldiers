@@ -20,8 +20,8 @@ public class PlayPanel : MonoBehaviour
     private ProgressBar _progressBar;
     private IEnumerator _showProgress;
     private IEnumerator _changeCoins;
-    private int _currentCoinsCount = 0;
     private int _targetCoinsCount = 0;
+        private int _currentCoinsCount ;
 
     private void OnEnable()
     {
@@ -46,6 +46,8 @@ public class PlayPanel : MonoBehaviour
 
     public void ShowPanel()
     {
+        _currentCoinsCount = _playerWallet.Coins;
+        _coins.text = _playerWallet.Coins.ToString();
         StartCoroutine(VisiblePanel());
 
         _panel.SetActive(true);

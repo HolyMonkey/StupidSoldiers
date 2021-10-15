@@ -19,25 +19,23 @@ public class Wallet : MonoBehaviour
         _enemyWatcher.EnemyDeath -= AddCoins;
     }
 
-    public void AddCoins(int coin)
+    public void AddCoins(int increase)
     {
-        if (coin > 0)
+        if (increase > 0)
         {
-            Coins += coin;
-            Increase += coin;
-            ChangeCoinsCount?.Invoke(Coins);
+            Increase += increase;
+            ChangeCoinsCount?.Invoke(Coins+Increase);
         }
     }
 
     public void SetMultiplier(int multiplier)
-    {
+    {        
         Increase *= multiplier;
+        Coins += Increase;
     }
 
-    // заменить на событие
     public void SetCoins(int coins)
     {
         Coins = coins;
     }
-
 }
