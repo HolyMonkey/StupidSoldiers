@@ -12,7 +12,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private EnemyBodySplat _bodySplat;
     [SerializeField] private AudioClip _sound;
     [SerializeField] private AudioSource _audioSource;
-    
+
+    private bool _canCollide = true;
 
     private Rigidbody _rigidbody;
 
@@ -38,33 +39,37 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CheckCollideWithTarget(collision))
+        if (_canCollide)
         {
-            _audioSource.clip = _sound;
-            _audioSource.Play();
-            
-            if (collision.gameObject.GetComponent<WallGround>())
+            if (CheckCollideWithTarget(collision))
             {
-                var effect = Instantiate(_collideWithWallEffect);
-                effect.transform.position = new Vector3(transform.position.x - 0.15f, transform.position.y, transform.position.z);
-            }
-            else if (collision.gameObject.GetComponent<Ground>())
-            {
-                var effect = Instantiate(_collideWithGroundEffect);
-                effect.transform.position = new Vector3(transform.position.x, collision.gameObject.GetComponent<Ground>().Height, transform.position.z);
-            }
+                _canCollide = false;
+                _audioSource.clip = _sound;
+                _audioSource.Play();
 
-            else if (collision.gameObject.GetComponent<Enemy>() )
-            {
-                collision.gameObject.GetComponent<Enemy>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
+                if (collision.gameObject.GetComponent<WallGround>())
+                {
+                    var effect = Instantiate(_collideWithWallEffect);
+                    effect.transform.position = new Vector3(transform.position.x - 0.15f, transform.position.y, transform.position.z);
+                }
+                else if (collision.gameObject.GetComponent<Ground>())
+                {
+                    var effect = Instantiate(_collideWithGroundEffect);
+                    effect.transform.position = new Vector3(transform.position.x, collision.gameObject.GetComponent<Ground>().Height, transform.position.z);
+                }
+
+                else if (collision.gameObject.GetComponent<Enemy>())
+                {
+                    collision.gameObject.GetComponent<Enemy>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
+                }
+                else if (collision.gameObject.GetComponent<SlowMotionTrigger>())
+                {
+                    collision.gameObject.GetComponent<SlowMotionTrigger>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
+                }
             }
-            else if (collision.gameObject.GetComponent<SlowMotionTrigger>())
-            {
-                collision.gameObject.GetComponent<SlowMotionTrigger>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
-            }
+            if (!collision.gameObject.GetComponent<Weapon>())
+                Destroy(gameObject);
         }
-        if(!collision.gameObject.GetComponent<Weapon>())
-        Destroy(gameObject);
     }
 
     private bool CheckCollideWithTarget(Collision other)

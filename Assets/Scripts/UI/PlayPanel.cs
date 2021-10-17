@@ -47,7 +47,7 @@ public class PlayPanel : MonoBehaviour
     public void ShowPanel()
     {
         _currentCoinsCount = _playerWallet.Coins;
-        _coins.text = _playerWallet.Coins.ToString();
+        _coins.text = _playerWallet.Coins.ToString()+"$";
         StartCoroutine(VisiblePanel());
 
         _panel.SetActive(true);

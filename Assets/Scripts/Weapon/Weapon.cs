@@ -237,7 +237,7 @@ public abstract class Weapon : MonoBehaviour
     {
         RaycastHit[] hit;
         Ray ray = new Ray(_bulletSpawnPoint.transform.position,transform.right);        
-        hit = Physics.RaycastAll(ray,25);
+        hit = Physics.RaycastAll(ray,30);
 
         if (hit != null)
         {
