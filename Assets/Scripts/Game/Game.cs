@@ -15,6 +15,13 @@ public class Game : MonoBehaviour
 
     public uint LevelNumber => (uint)_levelNumber;
 
+    private void Awake()
+    {
+        Amplitude amplitude = Amplitude.Instance;
+        amplitude.logging = true;
+        amplitude.init("29b6029db35e5c402c671b66b54a60d9");
+
+    }
     private void OnEnable()
     {
         _dataSaver.DownloadSave();
