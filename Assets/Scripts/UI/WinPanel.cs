@@ -57,7 +57,7 @@ public class WinPanel : MonoBehaviour
         while (currentCoins < _reward)
         {
             currentCoins++;
-            _rewardText.text = "+" + currentCoins.ToString() + "$";
+            _rewardText.text = "+" + currentCoins.ToString();
             yield return new WaitForSeconds(0.01f);
         }
         _multiplierText.text = "X" + _multiplier;
@@ -68,7 +68,7 @@ public class WinPanel : MonoBehaviour
 
         _reward *= _multiplier;
 
-        _rewardText.text = "+" + _reward.ToString() + "$";
+        _rewardText.text = "+" + _reward.ToString();
 
         yield return null;
     }

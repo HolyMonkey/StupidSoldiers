@@ -47,7 +47,7 @@ public class PlayPanel : MonoBehaviour
     public void ShowPanel()
     {
         _currentCoinsCount = _playerWallet.Coins;
-        _coins.text = _playerWallet.Coins.ToString()+"$";
+        _coins.text = _playerWallet.Coins.ToString();
         StartCoroutine(VisiblePanel());
 
         _panel.SetActive(true);
@@ -97,7 +97,7 @@ public class PlayPanel : MonoBehaviour
         while (_currentCoinsCount < _targetCoinsCount)
         {
             _currentCoinsCount++;
-            _coins.text = _currentCoinsCount.ToString() + "$";
+            _coins.text = _currentCoinsCount.ToString();
             yield return new WaitForSeconds(_changeCoinsDelay);
         }
     }
