@@ -75,6 +75,7 @@ public class Game : MonoBehaviour
 
         foreach(var mult in _multipliers)
         {
+            if(mult!=multiplier)
             mult.Disable();
         }
     }
