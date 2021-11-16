@@ -39,44 +39,48 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_canCollide)
+        if (!_canCollide) 
+            return;
+        
+        if (CheckCollideWithTarget(collision))
         {
-            if (CheckCollideWithTarget(collision))
+            _canCollide = false;
+            _audioSource.clip = _sound;
+            _audioSource.Play();
+
+            if (collision.gameObject.GetComponent<WallGround>())
             {
-                _canCollide = false;
-                _audioSource.clip = _sound;
-                _audioSource.Play();
-
-                if (collision.gameObject.GetComponent<WallGround>())
-                {
-                    var effect = Instantiate(_collideWithWallEffect);
-                    effect.transform.position = new Vector3(transform.position.x - 0.15f, transform.position.y, transform.position.z);
-                }
-                else if (collision.gameObject.GetComponent<Ground>())
-                {
-                    var effect = Instantiate(_collideWithGroundEffect);
-                    effect.transform.position = new Vector3(transform.position.x, collision.gameObject.GetComponent<Ground>().Height, transform.position.z);
-                }
-
-                else if (collision.gameObject.GetComponent<Enemy>())
-                {
-                    collision.gameObject.GetComponent<Enemy>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
-                }
-                else if (collision.gameObject.GetComponent<SlowMotionTrigger>())
-                {
-                    collision.gameObject.GetComponent<SlowMotionTrigger>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
-                }
+                var effect = Instantiate(_collideWithWallEffect);
+                effect.transform.position = new Vector3(transform.position.x - 0.15f, transform.position.y, transform.position.z);
             }
-            if (!collision.gameObject.GetComponent<Weapon>())
-                Destroy(gameObject);
+            else if (collision.gameObject.GetComponent<Ground>())
+            {
+                var effect = Instantiate(_collideWithGroundEffect);
+                effect.transform.position = new Vector3(transform.position.x, collision.gameObject.GetComponent<Ground>().Height, transform.position.z);
+            }
+
+            else if (collision.gameObject.GetComponent<Enemy>())
+            {
+                collision.gameObject.GetComponent<Enemy>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
+            }
+            else if (collision.gameObject.GetComponent<SlowMotionTrigger>())
+            {
+                collision.gameObject.GetComponent<SlowMotionTrigger>().ShowBodySplat(_bodySplat, collision.contacts[0].point);
+            }
         }
+        
+        if (!collision.gameObject.GetComponent<Weapon>())
+            Destroy(gameObject);
     }
 
     private bool CheckCollideWithTarget(Collision other)
     {
-        if (other.gameObject.GetComponent<Multiplier>() | other.gameObject.GetComponent<Barrier>() | other.gameObject.GetComponent<Multiplier>() | other.gameObject.GetComponent<Enemy>() | other.gameObject.GetComponent<SlowMotionTrigger>() | other.gameObject.GetComponent<Ground>()| other.gameObject.GetComponent<WallGround>())
-            return true;
-
-        return false;
+        return other.gameObject.GetComponent<Multiplier>() | 
+               other.gameObject.GetComponent<Barrier>() | 
+               other.gameObject.GetComponent<Multiplier>() | 
+               other.gameObject.GetComponent<Enemy>() | 
+               other.gameObject.GetComponent<SlowMotionTrigger>() | 
+               other.gameObject.GetComponent<Ground>()| 
+               other.gameObject.GetComponent<WallGround>();
     }
 }

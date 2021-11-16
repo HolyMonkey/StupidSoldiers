@@ -6,6 +6,6 @@ public class ShootEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        Destroy(this.gameObject, _lifeTime);   
+        Destroy(gameObject, _lifeTime);   
     }
 }

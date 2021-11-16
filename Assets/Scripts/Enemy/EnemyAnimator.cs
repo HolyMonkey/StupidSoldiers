@@ -6,7 +6,8 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private float _minAnimationDelay;
     [SerializeField] private float _maxAnimationDelay;
     [SerializeField] private Animator _animator;
-    private bool _isKilled=false;
+
+    private bool _isKilled;
 
     private void OnEnable()
     {
@@ -28,12 +29,12 @@ public class EnemyAnimator : MonoBehaviour
     }
 
     public void ShowIdleAnimation()
-    {    
-        if (!_isKilled)
-        {
+    {
+        if (_isKilled) 
+            return;
+        
         _animator.enabled = true;
         _animator.Play("Idle");
-        }
     }
     public void StopShowIdleAnimation()
     {

@@ -18,11 +18,9 @@ public class WeaponAnimator : MonoBehaviour
 
     public void Shoot()
     {
-
-            StopCoroutine(_changeBodyScale);
-            _changeBodyScale = ChangeBodyScale();
-            StartCoroutine(_changeBodyScale);
-       
+        StopCoroutine(_changeBodyScale);
+        _changeBodyScale = ChangeBodyScale();
+        StartCoroutine(_changeBodyScale);
     }
 
 
@@ -31,12 +29,11 @@ public class WeaponAnimator : MonoBehaviour
         yield return new WaitForSeconds(_delayAfterShoot);
 
         float elapsedTime = 0;
-        float progress = 0;
 
         while (elapsedTime < _scaleChangeDuration)
         {
             elapsedTime += Time.deltaTime;
-            progress = elapsedTime / _scaleChangeDuration;
+            var progress = elapsedTime / _scaleChangeDuration;
 
             _body.transform.localScale = new Vector3(_scaleCurve.Evaluate(progress)*_scaleChangeSpeed, _scaleCurve.Evaluate(progress) * _scaleChangeSpeed, _scaleCurve.Evaluate(progress) * _scaleChangeSpeed);
             yield return null;

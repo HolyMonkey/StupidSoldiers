@@ -8,8 +8,7 @@ public class LosePanel : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button _restartButton;
-
-
+    
     public event UnityAction RestartButtonClicked;
 
     private void OnEnable()

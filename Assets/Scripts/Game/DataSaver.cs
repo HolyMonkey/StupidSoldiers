@@ -30,15 +30,10 @@ public class DataSaver : MonoBehaviour
 
     public void SaveData()
     {
-        Amplitude.Instance.setUserProperty("level_last", _game.LevelNumber);
-
         _save.CoinsCount =  (uint)_wallet.Coins;
         _save.CurrentLevelNumber = _game.LevelNumber+1;
-        SetLastLevel();
-
-
+        
         File.WriteAllText(_path, JsonUtility.ToJson(_save));
-
     }
 
     public void DownloadSave()
@@ -53,8 +48,7 @@ public class DataSaver : MonoBehaviour
         if (File.Exists(_path))
         {
             _save = JsonUtility.FromJson<Save>(File.ReadAllText(_path));
-            SetDaysAfter();
-            SetSessioinID();
+            SetSessionID();
         }
         else
         {
@@ -72,34 +66,13 @@ public class DataSaver : MonoBehaviour
         _save.LastLevel = 1;
         _save.DaysAfter = 1;
         _save.SessionsID = 1;
-
-        string time = DateTime.Now.ToString("dd/MM/yy");
-
-          Amplitude.Instance.addUserProperty("session_id", 1);
-          Amplitude.Instance.addUserProperty("reg_day", time);
-          Amplitude.Instance.addUserProperty("days_after", 0);
-          Amplitude.Instance.addUserProperty("level_last", 1);
     }
-    private void SetDaysAfter()
+    
+    private void SetSessionID()
     {
-        System.DateTime lastDay = DateTime.ParseExact(_save.RegDay, "dd/MM/yy", null);
-
-        int days = (System.DateTime.Now - lastDay).Days;
-
-        Amplitude.Instance.setUserProperty("days_after", days);
-    }
-
-    private void SetSessioinID()
-    {
-        Amplitude.Instance.setUserProperty("session_id", _save.SessionsID);
         _save.SessionsID += 1;
     }
-
-    private void SetLastLevel()
-    {
-        Amplitude.Instance.addUserProperty("level_last", _game.LevelNumber);
-    }
-
+    
     public uint GetCoinsCount()
     {
         return _save.CoinsCount;

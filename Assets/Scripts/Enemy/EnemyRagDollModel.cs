@@ -9,8 +9,7 @@ public class EnemyRagDollModel : MonoBehaviour
     [SerializeField] private Rigidbody _body;
     [SerializeField] private float _fallDuration;
     [SerializeField] private float _yGravity;
-    [SerializeField] private float _xVelocity;
-
+    
     private void OnEnable()
     {
         foreach (var bone in _allBones)
@@ -29,9 +28,11 @@ public class EnemyRagDollModel : MonoBehaviour
         {
             bone.AddExplosionForce(Random.Range(200, 300), new Vector3(_body.transform.position.x - Random.Range(1, 4), _body.transform.position.y + Random.Range(0, 3), _body.transform.position.z), 15);
         }
+        
         yield return new WaitForSeconds(Random.Range(0.05f, 0.25f));
 
         float elapsedTime = 0;
+        
         while (elapsedTime < _fallDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -49,6 +50,7 @@ public class EnemyRagDollModel : MonoBehaviour
             bone.velocity = new Vector3(0, 0, 0);
             bone.gameObject.GetComponent<Collider>().enabled = true;
         }
+        
         StartCoroutine(SimulateGravity());
     }
 

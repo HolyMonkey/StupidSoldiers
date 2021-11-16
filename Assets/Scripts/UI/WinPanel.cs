@@ -13,8 +13,8 @@ public class WinPanel : MonoBehaviour
     [SerializeField] private TMP_Text _rewardText;
     [SerializeField] private TMP_Text _multiplierText;
 
-    private int _reward = 0;
-    private int _multiplier= 1;
+    private int _reward;
+    private int _multiplier = 1;
 
     public event UnityAction ContinueButtonClicked;
 

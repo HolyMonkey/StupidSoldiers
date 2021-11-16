@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ProgressBar))]
 public class PlayPanel : MonoBehaviour
 {
-
     [SerializeField] private GameObject _panel;
     [SerializeField] private Slider _progress;
     [SerializeField] private TMP_Text _coins;
@@ -20,8 +19,8 @@ public class PlayPanel : MonoBehaviour
     private ProgressBar _progressBar;
     private IEnumerator _showProgress;
     private IEnumerator _changeCoins;
-    private int _targetCoinsCount = 0;
-        private int _currentCoinsCount ;
+    private int _targetCoinsCount;
+    private int _currentCoinsCount ;
 
     private void OnEnable()
     {

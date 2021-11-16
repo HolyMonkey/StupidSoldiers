@@ -10,15 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _headModel;
     [SerializeField] private GameObject _spineBloodSpawnPoint;
     [SerializeField] private EnemyRagDollModel _ragDoll;
-
-    [SerializeField] private ParticleSystem _spineBloodEffectWall;
-    [SerializeField] private ParticleSystem _spineBloodEffectGround;
-    [SerializeField] private ParticleSystem _neaskBloodEffect;
-    [SerializeField] private ParticleSystem _groundBloodEffect;
+    
     [SerializeField] private ParticleSystem _bodyBloodEffect;
-    [SerializeField] private ParticleSystem _groundWallEffect;
     [SerializeField] private ParticleSystem _coinEffect;
-
     [SerializeField] private ParticleSystem _bang;
 
     [SerializeField] private SlowMotionTrigger _headTrigger;
@@ -26,13 +20,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
     [SerializeField] private EnemyOptimization _optimization;
-
-
+    
     private EnemyAnimator _enemyAnimator;
 
     public event UnityAction Killed;
-
-
+    
     private void OnEnable()
     {
         _headTrigger.Hit += HeadHit;
@@ -40,7 +32,6 @@ public class Enemy : MonoBehaviour
 
         _optimization.Visible += OnVisible;
         _optimization.Invisible += OnInvisible;
-
     }
 
     private void OnDisable()
@@ -75,11 +66,11 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<Bullet>())
-        {
-            SpawnBloodEffect(other.gameObject.transform);
-            Death();
-        }
+        if (!other.gameObject.GetComponent<Bullet>()) 
+            return;
+        
+        SpawnBloodEffect(other.gameObject.transform);
+        Death();
     }
 
     private void Death()
@@ -96,17 +87,7 @@ public class Enemy : MonoBehaviour
 
     private void ShowBloodEffects()
     {
-
-       // SpawnEffect(_groundBloodEffect, _spineBloodSpawnPoint.transform.position);
-
-        //SpawnEffect(_spineBloodEffectWall, _spineBloodSpawnPoint.transform.position);
-
-       // SpawnEffect(_spineBloodEffectGround, _spineBloodSpawnPoint.transform.position);
-
-       // SpawnEffect(_groundWallEffect, _spineBloodSpawnPoint.transform.position);
-        
         SpawnEffect(_coinEffect, new Vector3(_spineBloodSpawnPoint.transform.position.x-1, _spineBloodSpawnPoint.transform.position.y, _spineBloodSpawnPoint.transform.position.z));
-
         SpawnEffect(_bang, new Vector3(_headModel.transform.position.x, _headModel.transform.position.y + 3, _headModel.transform.position.z));
     }
 
@@ -132,12 +113,14 @@ public class Enemy : MonoBehaviour
     {
         float duration = 0.1f;
         float elapsedTime = 0;
+        
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             _headModel.transform.localScale = Vector3.Lerp(_headModel.transform.localScale, new Vector3(1 - elapsedTime / duration , 1 - elapsedTime / duration , 1 - elapsedTime / duration),0.009f);
             yield return null;
         }
+        
         _headModel.transform.localScale = new Vector3(0, 0, 0);
         _neck.transform.localScale = new Vector3(0, 0, 0);
     }

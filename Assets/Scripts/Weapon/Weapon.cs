@@ -39,14 +39,13 @@ public abstract class Weapon : MonoBehaviour
 
     
     private float _modifireRotation = 1;
-    private float _currentMoveXSpeed=0;
-    private float _currentMoveYSpeed=0;
+    private float _currentMoveXSpeed;
+    private float _currentMoveYSpeed;
     private float _currentRotationSpeed;
 
-    private float _rotateSpeedMultiplier=2f;
-    private float _moveSpeedMultplier=2f;
-
-
+    private float _rotateSpeedMultiplier = 2f;
+    private float _moveSpeedMultplier = 2f;
+    
     private Vector3 _moveTarget;
     private Rigidbody _rigidbody;
     private ParticleSystem _spawnedFireLine;
@@ -54,9 +53,9 @@ public abstract class Weapon : MonoBehaviour
     private WeaponAnimator _weaponAnimator;
     private PlayerInput _input;
 
-    private bool _touchedOfGround = false;
-    private bool _isInvulnerability = false;
-    private bool _canShoot = false;
+    private bool _touchedOfGround;
+    private bool _isInvulnerability;
+    private bool _canShoot;
 
     private IEnumerator _changeSpeedAfterShoot;
     private IEnumerator _normalizeGravityAfterShoot;
@@ -74,7 +73,6 @@ public abstract class Weapon : MonoBehaviour
 
     private void Start()
     {
-
         _audioSource.clip = _shootSound;
         _currentMoveYSpeed = _gravityForce;
 
@@ -118,7 +116,7 @@ public abstract class Weapon : MonoBehaviour
         transform.Rotate(0,0,_currentRotationSpeed* -_modifireRotation*Time.deltaTime);
     }
 
-    private void SpawnButtlet()
+    private void SpawnBullet()
     {
         var bullet = Instantiate(_bulletTemplate, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
     }
@@ -184,7 +182,7 @@ public abstract class Weapon : MonoBehaviour
         Shooted?.Invoke();
 
         ShowShootEffect();
-        SpawnButtlet();
+        SpawnBullet();
 
         StartCoroutine(ChangeRotateDirection());
         ChangeRotateSpeed();
@@ -310,7 +308,8 @@ public abstract class Weapon : MonoBehaviour
             _currentMoveXSpeed = 0;
             yield return null;
         }
-            _currentMoveYSpeed = 0;
+        
+        _currentMoveYSpeed = 0;
     }
 
     public void CanShoot()

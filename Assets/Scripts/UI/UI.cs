@@ -9,8 +9,7 @@ public class UI : MonoBehaviour
     [SerializeField] private LosePanel _losePanel;
     [SerializeField] private PlayPanel _playPanel;
     [SerializeField] private StartPanel _startPanel;
-
-
+    
     public event UnityAction RestartButtonClicked;
     public event UnityAction StartButtonClicked;
     public event UnityAction ContinueButtonClicked;
@@ -30,8 +29,7 @@ public class UI : MonoBehaviour
         _winPanel.ContinueButtonClicked -= OnContinueButtonClicked;
         _losePanel.RestartButtonClicked -= OnRestartButtonClicked;
     }
-
-
+    
     private void OnRestartButtonClicked()
     {
         RestartButtonClicked?.Invoke();

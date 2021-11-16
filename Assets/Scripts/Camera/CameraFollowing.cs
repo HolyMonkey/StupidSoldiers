@@ -87,6 +87,7 @@ public class CameraFollowing : MonoBehaviour
             Time.fixedDeltaTime = Time.timeScale * FixedDeltaTimeMultiplier;
             yield return null;
         }
+        
         Time.timeScale = 1;
     }
 
@@ -105,6 +106,7 @@ public class CameraFollowing : MonoBehaviour
             _smoothSpeed = Mathf.MoveTowards(_smoothSpeed, DefaultSmoothSpeed, _smoothSpeedRemoved);
             yield return null;
         }
+        
         _smoothSpeed = DefaultSmoothSpeed;
     }
 }

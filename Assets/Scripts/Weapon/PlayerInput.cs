@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     public event UnityAction Touch;
 
-    private bool _isTouched = false;
+    private bool _isTouched;
 
     private void Update()
     {
