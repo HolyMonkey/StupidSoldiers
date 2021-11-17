@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) | Input.touchCount>0)
+        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0 || Input.GetMouseButtonDown(0))
         {
             if (!_isTouched)
             {
