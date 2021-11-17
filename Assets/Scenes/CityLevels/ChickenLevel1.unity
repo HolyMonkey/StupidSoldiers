@@ -3606,12 +3606,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.812
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -10566,6 +10566,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 514897533}
     m_Modifications:
+    - target: {fileID: 2018586106, guid: 450a1f48e8497384283ae0d7304851c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.958008
+      objectReference: {fileID: 0}
     - target: {fileID: 178829120697458144, guid: 450a1f48e8497384283ae0d7304851c9,
         type: 3}
       propertyPath: m_Name
@@ -10684,12 +10688,12 @@ PrefabInstance:
     - target: {fileID: 178829121382745460, guid: 450a1f48e8497384283ae0d7304851c9,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.597
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 178829121382745460, guid: 450a1f48e8497384283ae0d7304851c9,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 450a1f48e8497384283ae0d7304851c9, type: 3}
@@ -12662,11 +12666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LosePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 1451367862608449475, guid: 24eab7bbbd02a6047ad239e942a916ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1451367862608449476, guid: 24eab7bbbd02a6047ad239e942a916ae,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12771,6 +12770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451367863267205194, guid: 24eab7bbbd02a6047ad239e942a916ae,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.000183
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24eab7bbbd02a6047ad239e942a916ae, type: 3}
@@ -13865,11 +13869,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WinPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2007644712573030066, guid: 2ea2e694844b9e446bf22ca23d47da72,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2007644712573030067, guid: 2ea2e694844b9e446bf22ca23d47da72,
         type: 3}
@@ -18964,7 +18963,6 @@ MonoBehaviour:
   _body: {fileID: 2653545740371928838}
   _fallDuration: 10
   _yGravity: -27
-  _xVelocity: 0
 --- !u!136 &5485320251842141754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18996,17 +18994,7 @@ MonoBehaviour:
   _headModel: {fileID: 3398201233680475564}
   _spineBloodSpawnPoint: {fileID: 5485320252248446455}
   _ragDoll: {fileID: 5485320251842141753}
-  _spineBloodEffectWall: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _spineBloodEffectGround: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _neaskBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _groundBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
   _bodyBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _groundWallEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
   _coinEffect: {fileID: 5826713065331520978, guid: cc6068e533fd61d4baf4ffdf407f0eab,
     type: 3}
@@ -19139,17 +19127,7 @@ MonoBehaviour:
   _headModel: {fileID: 3398201233956336919}
   _spineBloodSpawnPoint: {fileID: 5485320251989361996}
   _ragDoll: {fileID: 5485320252136738434}
-  _spineBloodEffectWall: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _spineBloodEffectGround: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _neaskBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _groundBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
   _bodyBloodEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
-    type: 3}
-  _groundWallEffect: {fileID: 285321734545940495, guid: 101491f669208c04ea55465a9ec9db07,
     type: 3}
   _coinEffect: {fileID: 5826713065331520978, guid: cc6068e533fd61d4baf4ffdf407f0eab,
     type: 3}
@@ -19207,7 +19185,6 @@ MonoBehaviour:
   _body: {fileID: 2653545740127565757}
   _fallDuration: 10
   _yGravity: -27
-  _xVelocity: 0
 --- !u!114 &5485320252136738435
 MonoBehaviour:
   m_ObjectHideFlags: 0

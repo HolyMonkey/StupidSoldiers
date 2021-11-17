@@ -20,7 +20,7 @@ public class PlayPanel : MonoBehaviour
     private IEnumerator _showProgress;
     private IEnumerator _changeCoins;
     private int _targetCoinsCount;
-    private int _currentCoinsCount ;
+    private int _currentCoinsCount;
 
     private void OnEnable()
     {
