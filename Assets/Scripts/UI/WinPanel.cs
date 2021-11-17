@@ -40,7 +40,7 @@ public class WinPanel : MonoBehaviour
         _multiplier = multiplier;
         _reward = result;
 
-        _text.text = "You win!";
+        _text.text = "Победа!";
 
         StartCoroutine(ShowRewardCoins());
     }
