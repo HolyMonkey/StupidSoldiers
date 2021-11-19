@@ -4,91 +4,53 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class YandexSDK : MonoBehaviour {
-    public static YandexSDK instance;
-    [DllImport("__Internal")]
-    private static extern void GetUserData();
-    [DllImport("__Internal")]
-    private static extern void ShowFullscreenAd();
-    /// <summary>
-    /// Returns an int value which is sent to index.html
-    /// </summary>
-    /// <param name="placement"></param>
-    /// <returns></returns>
-    [DllImport("__Internal")]
-    private static extern int ShowRewardedAd(string placement);
-    [DllImport("__Internal")]
-    private static extern void GerReward();
-    [DllImport("__Internal")]
-    private static extern void AuthenticateUser();
-    [DllImport("__Internal")]
-    private static extern void InitPurchases();
-    [DllImport("__Internal")]
-    private static extern void Purchase(string id);
+    
+    public static YandexSDK Instance;
+    
+    [DllImport("__Internal")] private static extern void GetUserData();
+    [DllImport("__Internal")] private static extern void ShowFullscreenAd();
+    [DllImport("__Internal")] private static extern int ShowRewardedAd(string placement);
+    [DllImport("__Internal")] private static extern void GetReward();
+    [DllImport("__Internal")] private static extern void AuthenticateUser();
+    [DllImport("__Internal")] private static extern void InitPurchases();
+    [DllImport("__Internal")] private static extern void Purchase(string id);
 
-    public UserData user;
-    public event Action onUserDataReceived;
+    public UserData UserData { get; private set; }
 
-    public event Action onInterstitialShown;
-    public event Action<string> onInterstitialFailed;
-    /// <summary>
-    /// Пользователь открыл рекламу
-    /// </summary>
-    public event Action<int> onRewardedAdOpened;
-    /// <summary>
-    /// Пользователь должен получить награду за просмотр рекламы
-    /// </summary>
-    public event Action<string> onRewardedAdReward;
-    /// <summary>
-    /// Пользователь закрыл рекламу
-    /// </summary>
-    public event Action<int> onRewardedAdClosed;
-    /// <summary>
-    /// Вызов/просмотр рекламы повлёк за собой ошибку
-    /// </summary>
-    public event Action<string> onRewardedAdError;
-    /// <summary>
-    /// Покупка успешно совершена
-    /// </summary>
-    public event Action<string> onPurchaseSuccess;
-    /// <summary>
-    /// Покупка не удалась: в консоли разработчика не добавлен товар с таким id,
-    /// пользователь не авторизовался, передумал и закрыл окно оплаты,
-    /// истекло отведенное на покупку время, не хватило денег и т. д.
-    /// </summary>
-    public event Action<string> onPurchaseFailed;
-
-    public event Action onClose;
+    public event Action<UserData> UserDataReceived;
+    public event Action InterstitialAdShown;
+    public event Action<string> InterstitialAdFailed;
+    public event Action<int> RewardedAdOpened;
+    public event Action<string> RewardedAdShown;
+    public event Action<int> RewardedAdClosed;
+    public event Action<string> RewardedAdError;
+    public event Action<string> PurchaseSuccess;
+    public event Action<string> PurchaseFailed;
+    public event Action Closed;
 
     public Queue<int> rewardedAdPlacementsAsInt = new Queue<int>();
     public Queue<string> rewardedAdsPlacements = new Queue<string>();
 
     private void Awake() {
-        if (instance == null) {
-            instance = this;
+        if (Instance == null) {
+            Instance = this;
         }
         else {
             Destroy(gameObject);
         }
     }
-
-    /// <summary>
-    /// Call this to ask user to authenticate
-    /// </summary>
+    
     public void Authenticate() {
         AuthenticateUser();
     }
 
     /// <summary>
-    /// Call this to show interstitial ad. Don't call frequently. There is a 3 minute delay after each show.
+    /// Don't call frequently. There is a 3 minute delay after each show.
     /// </summary>
     public void ShowInterstitial() {
         ShowFullscreenAd();
     }
-
-    /// <summary>
-    /// Call this to show rewarded ad
-    /// </summary>
-    /// <param name="placement"></param>
+    
     public void ShowRewarded(string placement) {
         rewardedAdPlacementsAsInt.Enqueue(ShowRewardedAd(placement));
         rewardedAdsPlacements.Enqueue(placement);
@@ -110,15 +72,15 @@ public class YandexSDK : MonoBehaviour {
     }
     
     public void StoreUserData(string data) {
-        user = JsonUtility.FromJson<UserData>(data);
-        onUserDataReceived();
+        UserData = JsonUtility.FromJson<UserData>(data);
+        UserDataReceived?.Invoke(UserData);
     }
 
     /// <summary>
     /// Callback from index.html
     /// </summary>
     public void OnInterstitialShown() {
-        onInterstitialShown();
+        InterstitialAdShown?.Invoke();
     }
 
     /// <summary>
@@ -126,7 +88,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="error"></param>
     public void OnInterstitialError(string error) {
-        onInterstitialFailed(error);
+        InterstitialAdFailed?.Invoke(error);
     }
 
     /// <summary>
@@ -134,7 +96,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="placement"></param>
     public void OnRewardedOpen(int placement) {
-        onRewardedAdOpened(placement);
+        RewardedAdOpened?.Invoke(placement);
     }
 
     /// <summary>
@@ -143,7 +105,7 @@ public class YandexSDK : MonoBehaviour {
     /// <param name="placement"></param>
     public void OnRewarded(int placement) {
         if (placement == rewardedAdPlacementsAsInt.Dequeue()) {
-            onRewardedAdReward.Invoke(rewardedAdsPlacements.Dequeue());
+            RewardedAdShown?.Invoke(rewardedAdsPlacements.Dequeue());
         }
     }
 
@@ -152,7 +114,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="placement"></param>
     public void OnRewardedClose(int placement) {
-        onRewardedAdClosed(placement);
+        RewardedAdClosed?.Invoke(placement);
     }
 
     /// <summary>
@@ -160,7 +122,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="placement"></param>
     public void OnRewardedError(string placement) {
-        onRewardedAdError(placement);
+        RewardedAdError?.Invoke(placement);
         rewardedAdsPlacements.Clear();
         rewardedAdPlacementsAsInt.Clear();
     }
@@ -170,7 +132,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="id"></param>
     public void OnPurchaseSuccess(string id) {
-        onPurchaseSuccess(id);
+        PurchaseSuccess?.Invoke(id);
     }
 
     /// <summary>
@@ -178,7 +140,7 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="error"></param>
     public void OnPurchaseFailed(string error) {
-        onPurchaseFailed(error);
+        PurchaseFailed?.Invoke(error);
     }
     
     /// <summary>
@@ -186,14 +148,14 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="error"></param>
     public void OnClose() {
-        onClose.Invoke();
+        Closed?.Invoke();
     }
 }
 
 public struct UserData {
-    public string id;
-    public string name;
-    public string avatarUrlSmall;
-    public string avatarUrlMedium;
-    public string avatarUrlLarge;
+    public string Id;
+    public string Name;
+    public string AvatarUrlSmall;
+    public string AvatarUrlMedium;
+    public string AvatarUrlLarge;
 }

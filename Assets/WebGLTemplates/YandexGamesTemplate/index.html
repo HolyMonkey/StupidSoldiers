@@ -37,10 +37,10 @@
           }
         }
       })
-              .then(ysdk => {
-                sdk = ysdk;
-                sdk.adv.showFullscreenAdv({callbacks:{}});
-              });
+      .then(ysdk => {
+        sdk = ysdk;
+        sdk.adv.showFullscreenAdv({callbacks:{}});
+      });
 
 
       function auth(){
@@ -69,7 +69,7 @@
         }
       }
 
-      function showFullscrenAd(){
+      function showFullscreenAd(){
         sdk.adv.showFullscreenAdv({
           callbacks: {
             onClose: function(wasShown) {

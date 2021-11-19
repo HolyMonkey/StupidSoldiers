@@ -16,7 +16,7 @@
   },
 
   ShowFullscreenAd: function () {
-    showFullscrenAd();
+    showFullscreenAd();
   },
 
   ShowRewardedAd: function(placement) {
