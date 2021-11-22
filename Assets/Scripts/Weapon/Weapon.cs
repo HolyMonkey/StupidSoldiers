@@ -171,7 +171,6 @@ public abstract class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-
         _canShoot = false;
         _shootDelayTime = ShootDelayTime();
         StartCoroutine(_shootDelayTime);

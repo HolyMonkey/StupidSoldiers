@@ -17,10 +17,13 @@ public class Game : MonoBehaviour
     
     private void OnEnable()
     {
-        _dataSaver.DownloadSave();
+        //_dataSaver.DownloadSave();
 
-        _wallet.SetCoins((int)_dataSaver.GetCoinsCount());
-        _levelNumber = (int)_dataSaver.GetCurrentLevelNumber();
+        //_wallet.SetCoins((int)_dataSaver.GetCoinsCount());
+        //_levelNumber = (int)_dataSaver.GetCurrentLevelNumber();
+        
+        _wallet.SetCoins(0);
+        _levelNumber = 1;
 
         Time.timeScale = 1;
         _weapon.Death += OnWeaponDead;
@@ -86,7 +89,7 @@ public class Game : MonoBehaviour
 
     private void OnContinueButtonClick()
     {
-        _dataSaver.SaveData();
+        //_dataSaver.SaveData();
         SceneManager.LoadScene(_nextSceneIndex);
     }
 }

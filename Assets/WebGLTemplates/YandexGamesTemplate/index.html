@@ -40,6 +40,7 @@
       .then(ysdk => {
         sdk = ysdk;
         sdk.adv.showFullscreenAdv({callbacks:{}});
+        getLeaderboardEntries('1', 10);
       });
 
 
@@ -124,6 +125,12 @@
           // истекло отведенное на покупку время, не хватило денег и т. д.
           unityInstance.SendMessage('YandexSDK', 'OnPurchaseFailed', err);
         })
+      }
+      
+      function getLeaderboardEntries(name, quantityTop) {
+        sdk.getLeaderboards()
+          .then(lb => lb.getLeaderboardEntries(name, { quantityTop }))
+          .then(res => console.log(res));
       }
 
       window.onbeforeunload = function(e) {

@@ -14,6 +14,9 @@ public class YandexSDK : MonoBehaviour {
     [DllImport("__Internal")] private static extern void AuthenticateUser();
     [DllImport("__Internal")] private static extern void InitPurchases();
     [DllImport("__Internal")] private static extern void Purchase(string id);
+    
+    private readonly Queue<int> _rewardedAdPlacementsAsInt = new Queue<int>();
+    private readonly Queue<string> _rewardedAdsPlacements = new Queue<string>();
 
     public UserData UserData { get; private set; }
 
@@ -27,9 +30,7 @@ public class YandexSDK : MonoBehaviour {
     public event Action<string> PurchaseSuccess;
     public event Action<string> PurchaseFailed;
     public event Action Closed;
-
-    public Queue<int> rewardedAdPlacementsAsInt = new Queue<int>();
-    public Queue<string> rewardedAdsPlacements = new Queue<string>();
+    
 
     private void Awake() {
         if (Instance == null) {
@@ -52,8 +53,8 @@ public class YandexSDK : MonoBehaviour {
     }
     
     public void ShowRewarded(string placement) {
-        rewardedAdPlacementsAsInt.Enqueue(ShowRewardedAd(placement));
-        rewardedAdsPlacements.Enqueue(placement);
+        _rewardedAdPlacementsAsInt.Enqueue(ShowRewardedAd(placement));
+        _rewardedAdsPlacements.Enqueue(placement);
     }
     
     /// <summary>
@@ -104,8 +105,8 @@ public class YandexSDK : MonoBehaviour {
     /// </summary>
     /// <param name="placement"></param>
     public void OnRewarded(int placement) {
-        if (placement == rewardedAdPlacementsAsInt.Dequeue()) {
-            RewardedAdShown?.Invoke(rewardedAdsPlacements.Dequeue());
+        if (placement == _rewardedAdPlacementsAsInt.Dequeue()) {
+            RewardedAdShown?.Invoke(_rewardedAdsPlacements.Dequeue());
         }
     }
 
@@ -123,8 +124,8 @@ public class YandexSDK : MonoBehaviour {
     /// <param name="placement"></param>
     public void OnRewardedError(string placement) {
         RewardedAdError?.Invoke(placement);
-        rewardedAdsPlacements.Clear();
-        rewardedAdPlacementsAsInt.Clear();
+        _rewardedAdsPlacements.Clear();
+        _rewardedAdPlacementsAsInt.Clear();
     }
 
     /// <summary>
