@@ -10,10 +10,17 @@ public class LeaderboardEntryView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _score;
     
-    public void Initialize(LeaderboardGetEntriesResponse.Entry leaderboardEntry)
+    public void Initialize(LeaderboardEntryResponse leaderboardEntry)
     {
         _rank.text = leaderboardEntry.rank.ToString();
-        _name.text = leaderboardEntry.player.publicName;
+        _name.text = FormatName(leaderboardEntry);
         _score.text = leaderboardEntry.formattedScore;
+    }
+
+    private string FormatName(LeaderboardEntryResponse leaderboardEntry)
+    {
+        return string.IsNullOrEmpty(leaderboardEntry.player.publicName) 
+            ? "Anon"
+            : leaderboardEntry.player.publicName;
     }
 }

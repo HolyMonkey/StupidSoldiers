@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YandexGames;
 
 public class Game : MonoBehaviour
 {
@@ -13,17 +14,12 @@ public class Game : MonoBehaviour
 
     private int _levelNumber;
 
-    public uint LevelNumber => (uint)_levelNumber;
-    
     private void OnEnable()
     {
-        //_dataSaver.DownloadSave();
+        _dataSaver.DownloadSave();
 
-        //_wallet.SetCoins((int)_dataSaver.GetCoinsCount());
-        //_levelNumber = (int)_dataSaver.GetCurrentLevelNumber();
-        
-        _wallet.SetCoins(0);
-        _levelNumber = 1;
+        _wallet.SetCoins(_dataSaver.GetCoinsCount());
+        _levelNumber = _dataSaver.GetCurrentLevelNumber();
 
         Time.timeScale = 1;
         _weapon.Death += OnWeaponDead;
@@ -89,7 +85,8 @@ public class Game : MonoBehaviour
 
     private void OnContinueButtonClick()
     {
-        //_dataSaver.SaveData();
+        _dataSaver.SaveData(_wallet.Coins, _levelNumber + 1);
+        InterestialAd.Show();
         SceneManager.LoadScene(_nextSceneIndex);
     }
 }

@@ -11,8 +11,6 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private LeaderboardEntryView _template;
     [SerializeField] private GameObject _panel;
     
-    private const string LeaderboardName = "1";
-
     private IEnumerator Start()
     {
         _panel.SetActive(false);
@@ -22,17 +20,19 @@ public class LeaderboardPanel : MonoBehaviour
 #endif
         
         yield return YandexGamesSdk.WaitForInitialization();
-        
+
         if (!PlayerAccount.IsAuthorized)
             yield break;
         
-        yield return Leaderboard.WaitForInitialization();
-        Leaderboard.GetEntries(LeaderboardName, OnLeaderboardReceived);
+        Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderboardReceived);
     }
     
     private void OnLeaderboardReceived(LeaderboardGetEntriesResponse result)
     {
-        foreach (LeaderboardGetEntriesResponse.Entry leaderboardEntry in result.entries)
+        if (result.entries.Length == 0)
+            return;
+        
+        foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
         {
             var leaderboardEntryView = Instantiate(_template, _panel.transform);
             leaderboardEntryView.Initialize(leaderboardEntry);
