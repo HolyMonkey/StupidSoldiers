@@ -20,6 +20,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private CapsuleCollider _triggerBodyCapsuleCollider;
     [SerializeField] private SphereCollider _triggerHeadSphereCollider;
     [SerializeField] private EnemyOptimization _optimization;
+
+    [SerializeField] private float _slowMotionCooldown;
+
+    private bool _canSlowMotion = true;
     
     private EnemyAnimator _enemyAnimator;
 
@@ -44,11 +48,16 @@ public class Enemy : MonoBehaviour
 
     public void ShowBodySplat(EnemyBodySplat splat, Vector3 position)
     {
-        var spawnedSplat = Instantiate(splat);
-        spawnedSplat.gameObject.transform.SetParent(_ragDoll.GetMainBody().gameObject.transform);
-        spawnedSplat.transform.position = position;
-        spawnedSplat.SetJoint(_ragDoll.GetMainBody());
-        spawnedSplat.SetGravityVelocity(_ragDoll.GetYVelocity()); 
+        if(_canSlowMotion == true)
+        {
+            var spawnedSplat = Instantiate(splat);
+            spawnedSplat.gameObject.transform.SetParent(_ragDoll.GetMainBody().gameObject.transform);
+            spawnedSplat.transform.position = position;
+            spawnedSplat.SetJoint(_ragDoll.GetMainBody());
+            spawnedSplat.SetGravityVelocity(_ragDoll.GetYVelocity());
+            StartCoroutine(StartSlowMotionCooldown(_slowMotionCooldown));
+            _canSlowMotion = false;
+        }      
     }
 
     private void OnVisible()
@@ -123,5 +132,12 @@ public class Enemy : MonoBehaviour
         
         _headModel.transform.localScale = new Vector3(0, 0, 0);
         _neck.transform.localScale = new Vector3(0, 0, 0);
+    }
+
+    private IEnumerator StartSlowMotionCooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        _canSlowMotion = true;
+        StopCoroutine(StartSlowMotionCooldown(cooldown));
     }
 }
