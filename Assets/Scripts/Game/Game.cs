@@ -11,8 +11,14 @@ public class Game : MonoBehaviour
     [SerializeField] private int _nextSceneIndex;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private DataSaver _dataSaver;
+    [SerializeField] private int _enemyCount;
 
     private int _levelNumber;
+
+    public void DescreaseEnemyCount()
+    {
+        _enemyCount--;
+    }
 
     private void OnEnable()
     {
@@ -59,16 +65,21 @@ public class Game : MonoBehaviour
 
     private void OnMultiplierHit(Multiplier multiplier)
     {
-        _weapon.DisableShoot();
-
-        _ui.ClosePlayPanel();
-        _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
-        _wallet.SetMultiplier(multiplier.MultiplierValue);
-
-        foreach(var mult in _multipliers)
+        if (_enemyCount <= 0)
         {
-            if(mult!=multiplier)
-                mult.Disable();
+            _weapon.DisableShoot();
+
+            _ui.ClosePlayPanel();
+
+            _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
+
+            _wallet.SetMultiplier(multiplier.MultiplierValue);
+
+            foreach (var mult in _multipliers)
+            {
+                if (mult != multiplier)
+                    mult.Disable();
+            }
         }
     }
 

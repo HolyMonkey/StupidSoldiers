@@ -37,6 +37,7 @@ public class Multiplier : MonoBehaviour
         if (_canDestroy)
         {
             _canDestroy = false;
+            Instantiate(_hitEffect,transform);
             StartCoroutine(ChangeScale());
         }
     }

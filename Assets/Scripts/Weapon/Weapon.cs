@@ -73,6 +73,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Start()
     {
+        _canShoot = true;
         _audioSource.clip = _shootSound;
         _currentMoveYSpeed = _gravityForce;
 

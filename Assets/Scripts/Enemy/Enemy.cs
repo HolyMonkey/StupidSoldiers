@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float _slowMotionCooldown;
 
+    [SerializeField] private Game _game;
+
     private bool _canSlowMotion = true;
     
     private EnemyAnimator _enemyAnimator;
@@ -92,6 +94,7 @@ public class Enemy : MonoBehaviour
         _enemyAnimator.StopPlayingAnimation();
         _ragDoll.StartFall();
         Killed?.Invoke();
+        _game.DescreaseEnemyCount();
     }
 
     private void ShowBloodEffects()
