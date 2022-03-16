@@ -19,6 +19,7 @@ public class Multiplier : MonoBehaviour
     private void OnEnable()
     {
         _text.text = "x"+_multiplier.ToString();
+        _canDestroy = false;
     }
 
     public event UnityAction<Multiplier> MultiplierHit;
@@ -60,5 +61,10 @@ public class Multiplier : MonoBehaviour
             yield return null;
         }
         gameObject.SetActive(false);
+    }
+
+    public void ChangeCanDestroyStatus()
+    {
+        _canDestroy = true;
     }
 }

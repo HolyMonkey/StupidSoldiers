@@ -18,6 +18,13 @@ public class Game : MonoBehaviour
     public void DescreaseEnemyCount()
     {
         _enemyCount--;
+        if(_enemyCount == 0)
+        {
+            foreach(var multiplier in _multipliers)
+            {
+                multiplier.ChangeCanDestroyStatus();
+            }
+        }
     }
 
     private void OnEnable()
