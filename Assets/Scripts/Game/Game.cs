@@ -12,14 +12,21 @@ public class Game : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private DataSaver _dataSaver;
     [SerializeField] private int _enemyCount;
+    [SerializeField] private GameObject _levelCompleteText;
 
     private int _levelNumber;
+    private int _killedEnemy;
+
+    public int EnemyCount => _enemyCount;
+    public int KilledEnemy => _killedEnemy;
 
     public void DescreaseEnemyCount()
     {
         _enemyCount--;
+        _killedEnemy++;
         if(_enemyCount == 0)
         {
+            _levelCompleteText.SetActive(true);
             foreach(var multiplier in _multipliers)
             {
                 multiplier.ChangeCanDestroyStatus();
@@ -29,6 +36,8 @@ public class Game : MonoBehaviour
 
     private void OnEnable()
     {
+        _killedEnemy = 0;
+
         _dataSaver.DownloadSave();
 
         _wallet.SetCoins(_dataSaver.GetCoinsCount());
@@ -47,6 +56,8 @@ public class Game : MonoBehaviour
         }
 
         _ui.SetCurrentLevel(_levelNumber);
+
+        _levelCompleteText.SetActive(false);
     }
 
     private void OnDisable()

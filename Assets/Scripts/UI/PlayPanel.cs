@@ -15,6 +15,7 @@ public class PlayPanel : MonoBehaviour
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _nextLevel;
     [SerializeField] private float _changeCoinsDelay;
+    [SerializeField] private Game _game;
 
     private ProgressBar _progressBar;
     private IEnumerator _showProgress;
@@ -28,6 +29,7 @@ public class PlayPanel : MonoBehaviour
         _playerWallet.ChangeCoinsCount += OnCoinsCountChanged;
         _showProgress = ShowProgress();
         _changeCoins = ChangeCoinsCount();
+        _progress.maxValue = _game.EnemyCount;
     }
 
     private void OnDisable()
@@ -62,15 +64,15 @@ public class PlayPanel : MonoBehaviour
 
     public void SetCurrentLevel(int number)
     {
-        _currentLevel.text = number.ToString();
-        _nextLevel.text = (number+1).ToString();
+        _currentLevel.text = (number+1).ToString();
+        _nextLevel.text = (number+2).ToString();
     }
 
     private IEnumerator ShowProgress()
     {
         while (true)
         {
-            _progress.value = _progressBar.Progress;
+            _progress.value = _game.KilledEnemy;
             yield return null;
         }
     }
