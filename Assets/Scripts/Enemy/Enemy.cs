@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         _enemyAnimator.StopPlayingAnimation();
         _ragDoll.StartFall();
         Killed?.Invoke();
-        _game.DescreaseEnemyCount();
+        //_game.DescreaseEnemyCount();
     }
 
     private void ShowBloodEffects()

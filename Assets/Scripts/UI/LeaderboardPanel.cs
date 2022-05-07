@@ -23,7 +23,9 @@ public class LeaderboardPanel : MonoBehaviour
 
         if (!PlayerAccount.IsAuthorized)
             yield break;
-        
+
+        Debug.Log(PlayerAccount.IsAuthorized);
+
         Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderboardReceived);
     }
     

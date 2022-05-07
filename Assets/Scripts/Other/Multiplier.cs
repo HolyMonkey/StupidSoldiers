@@ -19,7 +19,7 @@ public class Multiplier : MonoBehaviour
     private void OnEnable()
     {
         _text.text = "x"+_multiplier.ToString();
-        _canDestroy = false;
+        //_canDestroy = false;
     }
 
     public event UnityAction<Multiplier> MultiplierHit;

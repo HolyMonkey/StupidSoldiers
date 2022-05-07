@@ -72,7 +72,7 @@ public class PlayPanel : MonoBehaviour
     {
         while (true)
         {
-            _progress.value = _game.KilledEnemy;
+            _progress.value = _progressBar.Progress;
             yield return null;
         }
     }

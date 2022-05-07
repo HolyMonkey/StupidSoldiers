@@ -38,4 +38,10 @@ public class Wallet : MonoBehaviour
     {
         Coins = coins;
     }
+
+    public void DescreasCoins(int coins)
+    {
+        Coins -= coins;
+        ChangeCoinsCount?.Invoke(Coins - Increase);
+    }
 }

@@ -13,6 +13,7 @@ public class YandexGamesDataSaver : DataSaver
     {
         _coins = PlayerPrefs.GetInt(YandexGamesConstants.CoinsKey);
         _levelNumber = PlayerPrefs.GetInt(YandexGamesConstants.LevelNumberKey);
+     
     }
 
     public override int GetCoinsCount()

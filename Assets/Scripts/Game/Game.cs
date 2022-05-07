@@ -20,19 +20,19 @@ public class Game : MonoBehaviour
     public int EnemyCount => _enemyCount;
     public int KilledEnemy => _killedEnemy;
 
-    public void DescreaseEnemyCount()
-    {
-        _enemyCount--;
-        _killedEnemy++;
-        if(_enemyCount == 0)
-        {
-            _levelCompleteText.SetActive(true);
-            foreach(var multiplier in _multipliers)
-            {
-                multiplier.ChangeCanDestroyStatus();
-            }
-        }
-    }
+    //public void DescreaseEnemyCount()
+    //{
+    //    _enemyCount--;
+    //    _killedEnemy++;
+    //    if(_enemyCount == 0)
+    //    {
+    //        _levelCompleteText.SetActive(true);
+    //        foreach(var multiplier in _multipliers)
+    //        {
+    //            multiplier.ChangeCanDestroyStatus();
+    //        }
+    //    }
+    //}
 
     private void OnEnable()
     {
@@ -50,7 +50,7 @@ public class Game : MonoBehaviour
         _ui.ContinueButtonClicked += OnContinueButtonClick;
         _ui.RestartButtonClicked += OnRestartButtonClick;
 
-        foreach(var multiplier in _multipliers)
+        foreach (var multiplier in _multipliers)
         {
             multiplier.MultiplierHit += OnMultiplierHit;
         }
@@ -83,22 +83,20 @@ public class Game : MonoBehaviour
 
     private void OnMultiplierHit(Multiplier multiplier)
     {
-        if (_enemyCount <= 0)
+        _weapon.DisableShoot();
+
+        _ui.ClosePlayPanel();
+
+        _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
+
+        _wallet.SetMultiplier(multiplier.MultiplierValue);
+
+        foreach (var mult in _multipliers)
         {
-            _weapon.DisableShoot();
-
-            _ui.ClosePlayPanel();
-
-            _ui.ShowResultPanel(_wallet.Increase, multiplier.MultiplierValue);
-
-            _wallet.SetMultiplier(multiplier.MultiplierValue);
-
-            foreach (var mult in _multipliers)
-            {
-                if (mult != multiplier)
-                    mult.Disable();
-            }
+            if (mult != multiplier)
+                mult.Disable();
         }
+
     }
 
     private void OnStartButtonClick()
