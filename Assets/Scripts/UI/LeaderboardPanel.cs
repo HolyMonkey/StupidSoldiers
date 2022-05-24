@@ -10,36 +10,88 @@ public class LeaderboardPanel : MonoBehaviour
 {
     [SerializeField] private LeaderboardEntryView _template;
     [SerializeField] private GameObject _panel;
-    
-    private IEnumerator Start()
+    [SerializeField] private GameObject[] _panels;
+    [SerializeField] private TMP_Text[] _numbers;
+    [SerializeField] private TMP_Text[] _names;
+    [SerializeField] private TMP_Text[] _points;
+
+    private void Start()
     {
         _panel.SetActive(false);
-        
+    }
+
+    public void OnLederbordButtonOn() => StartCoroutine(ReciveLederbord());
+
+    private IEnumerator ReciveLederbord()
+    {
 #if !UNITY_WEBGL || UNITY_EDITOR
         yield break;
 #endif
-        
+
         yield return YandexGamesSdk.WaitForInitialization();
 
         if (!PlayerAccount.IsAuthorized)
-            yield break;
-
-        Debug.Log(PlayerAccount.IsAuthorized);
+            PlayerAccount.Authorize();
+        //yield break;
 
         Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderboardReceived);
     }
-    
+
     private void OnLeaderboardReceived(LeaderboardGetEntriesResponse result)
     {
         if (result.entries.Length == 0)
             return;
-        
-        foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
+
+        foreach (var panel in _panels)
+            panel.SetActive(false);
+
+        foreach (var number in _numbers)
+            number.gameObject.SetActive(false);
+
+        foreach (var name in _names)
+            name.gameObject.SetActive(false);
+
+        foreach (var point in _points)
+            point.gameObject.SetActive(false);
+
+        if (result.entries.Length > 7)
         {
-            var leaderboardEntryView = Instantiate(_template, _panel.transform);
-            leaderboardEntryView.Initialize(leaderboardEntry);
+            for(int i= 0; i < 7; i++)
+            {
+                _numbers[i].text = result.entries[i].rank.ToString();
+                _names[i].text = result.entries[i].player.publicName;
+                _points[i].text = result.entries[i].score.ToString();
+                _panels[i].SetActive(true);
+                _numbers[i].gameObject.SetActive(true);
+                _names[i].gameObject.SetActive(true);
+                _points[i].gameObject.SetActive(true);
+
+            }
         }
-        
-        _panel.SetActive(true);
+        else
+        {
+            for (int i = 0; i < result.entries.Length; i++)
+            {
+                _numbers[i].text = result.entries[i].rank.ToString();
+                _names[i].text = result.entries[i].player.publicName;
+                _points[i].text = result.entries[i].score.ToString();
+                _panels[i].SetActive(true);
+                _numbers[i].gameObject.SetActive(true);
+                _names[i].gameObject.SetActive(true);
+                _points[i].gameObject.SetActive(true);
+
+            }
+        }
+        //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
+        //{
+        //    var leaderboardEntryView = Instantiate(_template,_panel.transform);
+        //    //var ledeborbEntryViewRect = leaderboardEntryView.GetComponent<RectTransform>();
+        //    //ledeborbEntryViewRect.anchorMin = new Vector2(ledeborbEntryViewRect.anchorMin.x, ledeborbEntryViewRect.anchorMin.y + 2);
+        //    //ledeborbEntryViewRect.anchorMax = new Vector2(ledeborbEntryViewRect.anchorMax.x, ledeborbEntryViewRect.anchorMax.y + 2);
+        //    leaderboardEntryView.Initialize(leaderboardEntry);
+        //}
+
+        if (_panel.activeSelf == false)
+            _panel.SetActive(true);
     }
 }

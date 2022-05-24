@@ -8,6 +8,7 @@ using YandexGames;
 public class AppStart : MonoBehaviour
 {
     private const int GameScene = 1;
+
     private IEnumerator Start()
     {
         yield return YandexGamesSdk.WaitForInitialization();
