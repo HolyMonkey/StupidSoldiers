@@ -3129,6 +3129,7 @@ MonoBehaviour:
   _dataSaver: {fileID: 1599607992}
   _enemyCount: 5
   _levelCompleteText: {fileID: 1767739046}
+  _shopButton: {fileID: 1767739047}
 --- !u!1 &284045940
 GameObject:
   m_ObjectHideFlags: 0
@@ -14022,6 +14023,31 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 680728947}
+    - target: {fileID: 2357473055150543995, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357473055150543995, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357473055150543995, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357473055150543995, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357473055150543995, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7995964507452280428, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: _weapon
@@ -14174,6 +14200,12 @@ MonoBehaviour:
 --- !u!1 &1767739046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5024081648615605384, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767739044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1767739047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5274259990044571642, guid: 92a504c33ca09844680e3ec2f190f4e4,
     type: 3}
   m_PrefabInstance: {fileID: 1767739044}
   m_PrefabAsset: {fileID: 0}

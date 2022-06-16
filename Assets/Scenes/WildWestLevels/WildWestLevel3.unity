@@ -2691,6 +2691,7 @@ MonoBehaviour:
   _dataSaver: {fileID: 1090931353}
   _enemyCount: 5
   _levelCompleteText: {fileID: 961648363}
+  _shopButton: {fileID: 961648364}
 --- !u!1001 &276183025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8393,6 +8394,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7154087521832893275, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7995964506097241378, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: m_RootOrder
@@ -8635,6 +8641,12 @@ MonoBehaviour:
 --- !u!1 &961648363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5024081648615605384, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 961648361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &961648364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5274259990044571642, guid: 92a504c33ca09844680e3ec2f190f4e4,
     type: 3}
   m_PrefabInstance: {fileID: 961648361}
   m_PrefabAsset: {fileID: 0}
