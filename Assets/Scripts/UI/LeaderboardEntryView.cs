@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using YandexGames;
+using Agava.YandexGames;
 
 public class LeaderboardEntryView : MonoBehaviour
 {

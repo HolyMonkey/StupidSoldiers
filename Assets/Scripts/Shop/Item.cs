@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public abstract class Item : MonoBehaviour
     [SerializeField] protected TMP_Text PriceText;
     [SerializeField] protected Sprite IconViev;
     [SerializeField] protected TMP_Text BuyText;
+    [SerializeField] protected Button Button;
 
     protected bool IsBuy;
 
@@ -19,19 +19,31 @@ public abstract class Item : MonoBehaviour
     {
         PriceText.text = Price.ToString();
         IconViev = Icon;
+        IsBuy = false;
     }
 
     private void Update()
     {
         if (Player.Wallet.Coins >= Price)
-            BuyText.text = "Купить";
+            Button.enabled = false;
         else
-            BuyText.text = "Недостаточно денег";
+            Button.enabled = true;
     }
 
     public void Bye()
     {
         if (Player.Wallet.Coins >= Price)
+        {
             Player.ChangeScene(Scene, Price);
+            IsBuy = true;
+        }
+
+        if (IsBuy == true)
+        {
+            PriceText.text = "Куплено";
+            Button.enabled = false;
+        }
+         
+            
     }
 }

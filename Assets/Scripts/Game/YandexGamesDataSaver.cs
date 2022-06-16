@@ -1,8 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
-using YandexGames;
+using Agava.YandexGames;
 
 public class YandexGamesDataSaver : DataSaver
 {
