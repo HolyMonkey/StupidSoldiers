@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.42010146, g: 0.861, b: 0.861, a: 1}
+  m_FogColor: {r: 0.8627451, g: 0.8352941, b: 0.41960785, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 51.3
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.5
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 83aac703c966b493d952713bc2e01283, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6fc6652ed834922468cdd63bb95f7fe2, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0.9354697, g: 0.878903, b: 0.66080904, a: 1}
+  m_IndirectSpecularColor: {r: 0.14693457, g: 0.13600174, b: 0.12840974, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2848,6 +2848,7 @@ MonoBehaviour:
   _dataSaver: {fileID: 33190628}
   _enemyCount: 6
   _levelCompleteText: {fileID: 2142802300}
+  _leaderbordButton: {fileID: 0}
   _shopButton: {fileID: 2142802301}
 --- !u!1001 &279638723
 PrefabInstance:

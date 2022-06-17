@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     [SerializeField] private DataSaver _dataSaver;
     [SerializeField] private int _enemyCount;
     [SerializeField] private GameObject _levelCompleteText;
+    [SerializeField] private GameObject _leaderbordButton;
     [SerializeField] private GameObject _shopButton;
 
     private int _levelNumber;
@@ -104,6 +105,7 @@ public class Game : MonoBehaviour
     {
         _weapon.CanShoot();
         _ui.ShowPlayPanel();
+        _leaderbordButton.SetActive(false);
         _shopButton.SetActive(false);
     }
 

@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.42010146, g: 0.861, b: 0.861, a: 1}
+  m_FogColor: {r: 0.8679245, g: 0.5101405, b: 0.42986825, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 51.3
@@ -2389,6 +2389,7 @@ MonoBehaviour:
   _dataSaver: {fileID: 1608376560}
   _enemyCount: 5
   _levelCompleteText: {fileID: 2029675364}
+  _leaderbordButton: {fileID: 1980478367}
   _shopButton: {fileID: 2029675365}
 --- !u!1 &284045940
 GameObject:
@@ -12532,6 +12533,12 @@ Transform:
   m_Father: {fileID: 680728943}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1980478367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1835708014, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2029675362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2003102735
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0.14818972, g: 0.51317024, b: 0.81949735, a: 1}
+  m_IndirectSpecularColor: {r: 0.16635466, g: 0.6920601, b: 0.9490637, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2780,6 +2780,7 @@ MonoBehaviour:
   _dataSaver: {fileID: 1493666191}
   _enemyCount: 6
   _levelCompleteText: {fileID: 738588153}
+  _leaderbordButton: {fileID: 950065018}
   _shopButton: {fileID: 738588154}
 --- !u!1001 &272692513
 PrefabInstance:
@@ -9790,6 +9791,12 @@ Transform:
   m_Father: {fileID: 627771526}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &950065018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1835708014, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 738588151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &955157150
 GameObject:
   m_ObjectHideFlags: 0
