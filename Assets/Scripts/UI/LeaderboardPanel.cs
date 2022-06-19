@@ -90,7 +90,6 @@ public class LeaderboardPanel : MonoBehaviour
                 _points[i].gameObject.SetActive(true);
                 _pointPanels[i].SetActive(true);
                 _numberPanels[i].SetActive(true);
-
             }
         }
         //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
