@@ -17,7 +17,7 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private GameObject[] _pointPanels;
     [SerializeField] private GameObject[] _numberPanels;
 
-    private void Start()
+    private void Awake()
     {
         _panel.SetActive(false);
     }
@@ -102,6 +102,9 @@ public class LeaderboardPanel : MonoBehaviour
         //}
 
         if (_panel.activeSelf == false)
-            _panel.SetActive(true);
+        {
+            _panel.SetActive(true);       
+        }
+          
     }
 }

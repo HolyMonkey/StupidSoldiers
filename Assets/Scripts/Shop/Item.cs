@@ -24,13 +24,13 @@ public abstract class Item : MonoBehaviour
 
     private void Update()
     {
-        if (Player.Wallet.Coins >= Price)
+        if (Player.Wallet.Coins <= Price)
             Button.enabled = false;
         else
             Button.enabled = true;
     }
 
-    public void Bye()
+    public virtual void Bye()
     {
         if (Player.Wallet.Coins >= Price)
         {

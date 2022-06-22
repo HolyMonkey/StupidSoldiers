@@ -18,6 +18,7 @@ public class Game : MonoBehaviour
 
     private int _levelNumber;
     private int _killedEnemy;
+    private PlayerInput _playerInput;
 
     public int EnemyCount => _enemyCount;
     public int KilledEnemy => _killedEnemy;
@@ -35,6 +36,11 @@ public class Game : MonoBehaviour
     //        }
     //    }
     //}
+
+    private void Awake()
+    {
+        _playerInput = FindObjectOfType<PlayerInput>();
+    }
 
     private void OnEnable()
     {
@@ -107,6 +113,15 @@ public class Game : MonoBehaviour
         _ui.ShowPlayPanel();
         _leaderbordButton.SetActive(false);
         _shopButton.SetActive(false);
+
+        if (_playerInput == null)
+        {
+            throw new UnityException("Player input is not found");
+        }
+        else
+        {
+            _playerInput.StartGame();
+        }
     }
 
     private void OnRestartButtonClick()
