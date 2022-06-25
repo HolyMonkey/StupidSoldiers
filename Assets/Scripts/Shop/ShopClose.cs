@@ -8,7 +8,6 @@ public class ShopClose : MonoBehaviour
 
     public void CloseButtonOn()
     {    
-        Time.timeScale = 1f;
         _shop.SetActive(false);
     }
 }

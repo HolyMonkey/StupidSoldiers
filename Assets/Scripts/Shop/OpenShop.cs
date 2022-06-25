@@ -9,6 +9,5 @@ public class OpenShop : MonoBehaviour
     public void ShopButonOn()
     {
         _shop.SetActive(true);
-        Time.timeScale = 0f;
     }
 }
