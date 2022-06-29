@@ -16,13 +16,19 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private TMP_Text[] _points;
     [SerializeField] private GameObject[] _pointPanels;
     [SerializeField] private GameObject[] _numberPanels;
+    [SerializeField] private GameObject _closeButton;
 
     private void Awake()
     {
         _panel.SetActive(false);
+        _closeButton.SetActive(false);
     }
 
-    public void OnLederbordButtonOn() => StartCoroutine(ReciveLederbord());
+    public void OnLederbordButtonOn()
+    {
+        StartCoroutine(ReciveLederbord());
+        _closeButton.SetActive(true);
+    }
 
     private IEnumerator ReciveLederbord()
     {
@@ -56,7 +62,7 @@ public class LeaderboardPanel : MonoBehaviour
         foreach (var point in _points)
             point.gameObject.SetActive(false);
 
-        foreach (var pointPanel in _pointPanels)    
+        foreach (var pointPanel in _pointPanels)
             pointPanel.SetActive(false);
 
         foreach (var numberPanel in _numberPanels)
@@ -64,7 +70,7 @@ public class LeaderboardPanel : MonoBehaviour
 
         if (result.entries.Length > 7)
         {
-            for(int i= 0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 _numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
@@ -103,8 +109,8 @@ public class LeaderboardPanel : MonoBehaviour
 
         if (_panel.activeSelf == false)
         {
-            _panel.SetActive(true);       
+            _panel.SetActive(true);
         }
-          
+
     }
 }
