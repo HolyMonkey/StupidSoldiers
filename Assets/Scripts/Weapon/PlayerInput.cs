@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
-    public event UnityAction Touch;
-
     private bool _isTouched;
     private bool _isGameStarted;
+
+    public event UnityAction Touch;
 
     private void Awake()
     {
@@ -28,7 +28,6 @@ public class PlayerInput : MonoBehaviour
                         return;
                     }
                 }            
-                Debug.Log(WebEventSystem.current.IsPointerOverGameObject());
             }
               
 

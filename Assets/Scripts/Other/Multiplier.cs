@@ -10,10 +10,10 @@ public class Multiplier : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private AnimationCurve _destroyCurve;
-
     [SerializeField] private float _scaleDuration;
 
     private bool _canDestroy = true;
+
     public int MultiplierValue => _multiplier;
 
     private void OnEnable()
