@@ -14,8 +14,9 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private TMP_Text[] _numbers;
     [SerializeField] private TMP_Text[] _names;
     [SerializeField] private TMP_Text[] _points;
-    [SerializeField] private GameObject[] _pointPanels;
-    [SerializeField] private GameObject[] _numberPanels;
+    //[SerializeField] private GameObject[] _pointPanels;
+    //[SerializeField] private GameObject[] _numberPanels;
+    [SerializeField] private GameObject[] _images;
     [SerializeField] private GameObject _closeButton;
 
     private void Awake()
@@ -62,11 +63,14 @@ public class LeaderboardPanel : MonoBehaviour
         foreach (var point in _points)
             point.gameObject.SetActive(false);
 
-        foreach (var pointPanel in _pointPanels)
-            pointPanel.SetActive(false);
+        foreach (var image in _images)
+            image.SetActive(false);
 
-        foreach (var numberPanel in _numberPanels)
-            numberPanel.SetActive(false);
+        //foreach (var pointPanel in _pointPanels)
+        //    pointPanel.SetActive(false);
+
+        //foreach (var numberPanel in _numberPanels)
+        //    numberPanel.SetActive(false);
 
         if (result.entries.Length > 7)
         {
@@ -79,8 +83,9 @@ public class LeaderboardPanel : MonoBehaviour
                 _numbers[i].gameObject.SetActive(true);
                 _names[i].gameObject.SetActive(true);
                 _points[i].gameObject.SetActive(true);
-                _pointPanels[i].SetActive(true);
-                _numberPanels[i].SetActive(true);
+                _images[i].SetActive(true);
+                //_pointPanels[i].SetActive(true);
+                //_numberPanels[i].SetActive(true);
             }
         }
         else
@@ -94,8 +99,9 @@ public class LeaderboardPanel : MonoBehaviour
                 _numbers[i].gameObject.SetActive(true);
                 _names[i].gameObject.SetActive(true);
                 _points[i].gameObject.SetActive(true);
-                _pointPanels[i].SetActive(true);
-                _numberPanels[i].SetActive(true);
+                //_pointPanels[i].SetActive(true);
+                //_numberPanels[i].SetActive(true);
+                _images[i].SetActive(true);
             }
         }
         //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
