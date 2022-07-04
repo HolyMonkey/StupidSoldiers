@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.85882354, g: 0.6901961, b: 0.1254902, a: 1}
+  m_FogColor: {r: 0.5764706, g: 0.45882353, b: 0.0627451, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 51.3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0.85839844, g: 0.69057703, b: 0.12548819, a: 1}
+  m_IndirectSpecularColor: {r: 0.57617134, g: 0.4587406, b: 0.062743895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20664,7 +20664,7 @@ PrefabInstance:
     - target: {fileID: 1211506402, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Button
       value: 
-      objectReference: {fileID: 2029675369}
+      objectReference: {fileID: 0}
     - target: {fileID: 1211506402, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Player
       value: 
@@ -20926,18 +20926,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2029675362}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2029675369 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 363755984728082499, guid: 92a504c33ca09844680e3ec2f190f4e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2029675362}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2032353790
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,14 +21,14 @@ public class LeaderboardPanel : MonoBehaviour
 
     private void Awake()
     {
-        _panel.SetActive(false);
         _closeButton.SetActive(false);
+        _panel.SetActive(false);      
     }
 
     public void OnLederbordButtonOn()
     {
-        StartCoroutine(ReciveLederbord());
         _closeButton.SetActive(true);
+        StartCoroutine(ReciveLederbord());      
     }
 
     private IEnumerator ReciveLederbord()

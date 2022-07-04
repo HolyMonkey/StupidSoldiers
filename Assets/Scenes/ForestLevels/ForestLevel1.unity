@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.033018887, g: 0.7764766, b: 1, a: 1}
+  m_FogColor: {r: 0.019607844, g: 0.28235295, b: 0.49019608, a: 1}
   m_FogMode: 1
   m_FogDensity: 0
   m_LinearFogStart: 100
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0, g: 0.7810795, b: 0.99999946, a: 1}
+  m_IndirectSpecularColor: {r: 0.019607564, g: 0.28222653, b: 0.4899897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27461,7 +27461,7 @@ PrefabInstance:
     - target: {fileID: 1211506402, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Button
       value: 
-      objectReference: {fileID: 1767739051}
+      objectReference: {fileID: 0}
     - target: {fileID: 1211506402, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Player
       value: 
@@ -27487,6 +27487,16 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 531488222}
+    - target: {fileID: 358386243626507702, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 531488222}
+    - target: {fileID: 437736201516474157, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 531488222}
     - target: {fileID: 1351948777631932189, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: Player
@@ -27503,6 +27513,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 531488222}
     - target: {fileID: 1888317212400506349, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 531488222}
+    - target: {fileID: 2122552631491703875, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: Player
       value: 
@@ -27687,6 +27702,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8000571186629103911, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 531488222}
+    - target: {fileID: 8059463880682933824, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 531488222}
     - target: {fileID: 8230850972909246109, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: Player
@@ -27723,18 +27748,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1767739044}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1767739051 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 363755984728082499, guid: 92a504c33ca09844680e3ec2f190f4e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1767739044}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1772110428
 PrefabInstance:
   m_ObjectHideFlags: 0
