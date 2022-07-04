@@ -19,16 +19,19 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private GameObject[] _images;
     [SerializeField] private GameObject _closeButton;
 
+    private PlayerInput _playerInput;
+
     private void Awake()
     {
         _closeButton.SetActive(false);
-        _panel.SetActive(false);      
+        _panel.SetActive(false);
+        _playerInput = FindObjectOfType<PlayerInput>();
     }
 
     public void OnLederbordButtonOn()
     {
         _closeButton.SetActive(true);
-        StartCoroutine(ReciveLederbord());      
+        StartCoroutine(ReciveLederbord());     
     }
 
     private IEnumerator ReciveLederbord()
@@ -115,7 +118,15 @@ public class LeaderboardPanel : MonoBehaviour
 
         if (_panel.activeSelf == false)
         {
-            _panel.SetActive(true);
+            if (_playerInput == null)
+            {
+                throw new UnityException("Player input is not found");
+            }             
+            else
+            {
+                _playerInput.SetPanelActive();
+                _panel.SetActive(true);
+            }        
         }
 
     }

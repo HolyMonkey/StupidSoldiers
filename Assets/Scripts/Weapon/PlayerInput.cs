@@ -7,12 +7,14 @@ public class PlayerInput : MonoBehaviour
 {
     private bool _isTouched;
     private bool _isGameStarted;
+    private bool _isPanelOpen;
 
     public event UnityAction Touch;
 
     private void Awake()
     {
         _isGameStarted = false;
+        _isPanelOpen = false;
     }
 
     private void Update()
@@ -21,21 +23,21 @@ public class PlayerInput : MonoBehaviour
         {
             if (Input.GetMouseButton(0) || Input.touchCount > 0)
             {
-                if(_isGameStarted == false)
+                if (_isGameStarted == false || _isPanelOpen == true)
                 {
                     if (WebEventSystem.current.IsPointerOverGameObject())
                     {
                         return;
                     }
-                }            
+                }
             }
-              
+
 
             if (!_isTouched)
             {
-                    _isTouched = true;
-                    Touch?.Invoke();                           
-            }   
+                _isTouched = true;
+                Touch?.Invoke();
+            }
         }
         else
         {
@@ -46,5 +48,15 @@ public class PlayerInput : MonoBehaviour
     public void StartGame()
     {
         _isGameStarted = true;
+    }
+
+    public void SetPanelActive()
+    {
+        _isPanelOpen = true;
+    }
+
+    public void SetPanelNotActive()
+    {
+        _isPanelOpen = false;
     }
 }
