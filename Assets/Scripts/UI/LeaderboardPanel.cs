@@ -30,7 +30,7 @@ public class LeaderboardPanel : MonoBehaviour
 
     public void OnLederbordButtonOn()
     {
-        _closeButton.SetActive(true);
+       
         StartCoroutine(ReciveLederbord());     
     }
 
@@ -126,6 +126,7 @@ public class LeaderboardPanel : MonoBehaviour
             {
                 _playerInput.SetPanelActive();
                 _panel.SetActive(true);
+                _closeButton.SetActive(true);
             }        
         }
 

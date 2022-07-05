@@ -9,6 +9,8 @@ public class PlayerInput : MonoBehaviour
     private bool _isGameStarted;
     private bool _isPanelOpen;
 
+    public bool IsPanelOpen => _isPanelOpen;
+
     public event UnityAction Touch;
 
     private void Awake()

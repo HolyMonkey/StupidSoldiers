@@ -15,10 +15,10 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.1254902, g: 0.4509804, b: 0.1254902, a: 1}
+  m_FogColor: {r: 0.04223035, g: 0.6328134, b: 0.6886792, a: 1}
   m_FogMode: 1
-  m_FogDensity: 0.01
-  m_LinearFogStart: 30
+  m_FogDensity: 0.02
+  m_LinearFogStart: 40
   m_LinearFogEnd: 100
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b9950bed461297d4aad5f109ad5f2251, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 1
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -3603,6 +3603,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House-9
       objectReference: {fileID: 0}
+    - target: {fileID: 5901919087553410215, guid: 214b623c47d45dc4db8321dd93421fc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6533602173379915293, guid: 214b623c47d45dc4db8321dd93421fc5,
         type: 3}
       propertyPath: m_RootOrder
@@ -6048,6 +6053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House-3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
@@ -8665,6 +8675,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House-3 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
       propertyPath: m_RootOrder
@@ -9270,7 +9285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827207599
 Transform:
   m_ObjectHideFlags: 0
@@ -9368,7 +9383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827556296
 Transform:
   m_ObjectHideFlags: 0
@@ -9599,6 +9614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House-3 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
@@ -10805,6 +10825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House-3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
@@ -12506,7 +12531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1095428015
 Transform:
   m_ObjectHideFlags: 0
@@ -13016,7 +13041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1120359391
 Transform:
   m_ObjectHideFlags: 0
@@ -13311,6 +13336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House-3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
@@ -13872,7 +13902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1225478587
 Transform:
   m_ObjectHideFlags: 0
@@ -13970,7 +14000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1235283910
 Transform:
   m_ObjectHideFlags: 0
@@ -15765,6 +15795,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House-9 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5901919087553410215, guid: 214b623c47d45dc4db8321dd93421fc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6533602173379915293, guid: 214b623c47d45dc4db8321dd93421fc5,
         type: 3}
       propertyPath: m_RootOrder
@@ -16716,6 +16751,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: House-3
       objectReference: {fileID: 0}
+    - target: {fileID: 7290809096406309903, guid: 091f82b09a4efc542805a5b8da74d395,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7955037623688119989, guid: 091f82b09a4efc542805a5b8da74d395,
         type: 3}
       propertyPath: m_RootOrder
@@ -17623,7 +17663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1724735804
 Transform:
   m_ObjectHideFlags: 0
@@ -19708,7 +19748,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.09812211, g: 0.4245283, b: 0.09812211, a: 1}
+  m_BackGroundColor: {r: 0.07008722, g: 0.65259373, b: 0.7075472, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -20824,7 +20864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1961601745
 Transform:
   m_ObjectHideFlags: 0
@@ -21514,7 +21554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2012224121
 Transform:
   m_ObjectHideFlags: 0

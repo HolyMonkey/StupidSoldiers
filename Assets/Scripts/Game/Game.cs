@@ -109,18 +109,20 @@ public class Game : MonoBehaviour
 
     private void OnStartButtonClick()
     {
-        _weapon.CanShoot();
-        _ui.ShowPlayPanel();
-        _leaderbordButton.SetActive(false);
-        _shopButton.SetActive(false);
-
         if (_playerInput == null)
         {
             throw new UnityException("Player input is not found");
         }
-        else
+        else       
         {
-            _playerInput.StartGame();
+            if (_playerInput.IsPanelOpen == false)
+            {
+                _weapon.CanShoot();
+                _ui.ShowPlayPanel();
+                _leaderbordButton.SetActive(false);
+                _shopButton.SetActive(false);
+                _playerInput.StartGame();
+            }           
         }
     }
 
