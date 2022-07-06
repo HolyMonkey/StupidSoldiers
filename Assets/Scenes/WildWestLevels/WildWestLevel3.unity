@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5764706, g: 0.45882353, b: 0.0627451, a: 1}
+  m_FogColor: {r: 1, g: 0.57254905, b: 0.3529412, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0.57617134, g: 0.4587406, b: 0.062743895, a: 1}
+  m_IndirectSpecularColor: {r: 0.78536767, g: 0.6885777, b: 0.04875403, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5034,7 +5034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &275583809
 Transform:
   m_ObjectHideFlags: 0
@@ -9111,7 +9111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &605514969
 Transform:
   m_ObjectHideFlags: 0
@@ -13054,6 +13054,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 225908632, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 470410970, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Button
       value: 
@@ -13102,6 +13106,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 680728947}
+    - target: {fileID: 2084693422, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00002842098
+      objectReference: {fileID: 0}
     - target: {fileID: 2086093048, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Player
       value: 
@@ -13186,6 +13194,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2052850992}
+    - target: {fileID: 1823335200407250484, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1888317212400506349, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: Player
@@ -13386,6 +13399,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5790455891581577989, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6126167286016613004, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -13454,7 +13472,7 @@ PrefabInstance:
     - target: {fileID: 7154087521832893275, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7809545193944970249, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
@@ -13474,7 +13492,7 @@ PrefabInstance:
     - target: {fileID: 7995964506442168546, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7995964507005063101, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
@@ -21204,7 +21222,7 @@ PrefabInstance:
     - target: {fileID: 9141384898035458287, guid: 63e2ff6bd3e9c5b479cba4dcda8ab8ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.179302
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 9141384898035458287, guid: 63e2ff6bd3e9c5b479cba4dcda8ab8ab,
         type: 3}
@@ -21811,7 +21829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1730009872
 Transform:
   m_ObjectHideFlags: 0
@@ -23793,8 +23811,8 @@ Camera:
   m_GameObject: {fileID: 1901351318}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.3529412, g: 0.68235296, b: 1, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 0.57254905, b: 0.3529412, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -24459,7 +24477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1924291388
 Transform:
   m_ObjectHideFlags: 0

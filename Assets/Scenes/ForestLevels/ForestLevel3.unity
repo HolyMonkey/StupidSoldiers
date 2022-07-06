@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.019607844, g: 0.28235295, b: 0.49019608, a: 1}
-  m_FogMode: 1
-  m_FogDensity: 0.01
+  m_FogColor: {r: 0.015686275, g: 0.3882353, b: 0.6784314, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.004
   m_LinearFogStart: 5
   m_LinearFogEnd: 500
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1929573348}
-  m_IndirectSpecularColor: {r: 0.019607564, g: 0.28222653, b: 0.4899897, a: 1}
+  m_IndirectSpecularColor: {r: 0.019607564, g: 0.38818341, b: 0.6821286, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22441,6 +22441,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225908632, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225908632, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 470410970, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Button
       value: 
@@ -22469,6 +22477,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 680728947}
+    - target: {fileID: 2084693422, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00008058207
+      objectReference: {fileID: 0}
     - target: {fileID: 2086093048, guid: 92a504c33ca09844680e3ec2f190f4e4, type: 3}
       propertyPath: Player
       value: 

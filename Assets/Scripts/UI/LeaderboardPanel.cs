@@ -11,19 +11,19 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private LeaderboardEntryView _template;
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject[] _panels;
-    [SerializeField] private TMP_Text[] _numbers;
+    //[SerializeField] private TMP_Text[] _numbers;
     [SerializeField] private TMP_Text[] _names;
     [SerializeField] private TMP_Text[] _points;
     //[SerializeField] private GameObject[] _pointPanels;
     //[SerializeField] private GameObject[] _numberPanels;
     [SerializeField] private GameObject[] _images;
-    [SerializeField] private GameObject _closeButton;
+    //[SerializeField] private GameObject _closeButton;
 
     private PlayerInput _playerInput;
 
     private void Awake()
     {
-        _closeButton.SetActive(false);
+        //_closeButton.SetActive(false);
         _panel.SetActive(false);
         _playerInput = FindObjectOfType<PlayerInput>();
     }
@@ -57,8 +57,8 @@ public class LeaderboardPanel : MonoBehaviour
         foreach (var panel in _panels)
             panel.SetActive(false);
 
-        foreach (var number in _numbers)
-            number.gameObject.SetActive(false);
+        //foreach (var number in _numbers)
+        //    number.gameObject.SetActive(false);
 
         foreach (var name in _names)
             name.gameObject.SetActive(false);
@@ -79,11 +79,11 @@ public class LeaderboardPanel : MonoBehaviour
         {
             for (int i = 0; i < 7; i++)
             {
-                _numbers[i].text = result.entries[i].rank.ToString();
+                //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
                 _panels[i].SetActive(true);
-                _numbers[i].gameObject.SetActive(true);
+                //_numbers[i].gameObject.SetActive(true);
                 _names[i].gameObject.SetActive(true);
                 _points[i].gameObject.SetActive(true);
                 _images[i].SetActive(true);
@@ -95,11 +95,11 @@ public class LeaderboardPanel : MonoBehaviour
         {
             for (int i = 0; i < result.entries.Length; i++)
             {
-                _numbers[i].text = result.entries[i].rank.ToString();
+                //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
                 _panels[i].SetActive(true);
-                _numbers[i].gameObject.SetActive(true);
+                //_numbers[i].gameObject.SetActive(true);
                 _names[i].gameObject.SetActive(true);
                 _points[i].gameObject.SetActive(true);
                 //_pointPanels[i].SetActive(true);
@@ -126,7 +126,7 @@ public class LeaderboardPanel : MonoBehaviour
             {
                 _playerInput.SetPanelActive();
                 _panel.SetActive(true);
-                _closeButton.SetActive(true);
+                //_closeButton.SetActive(true);
             }        
         }
 
