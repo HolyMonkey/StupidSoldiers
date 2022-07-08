@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopClose : MonoBehaviour
 {
     [SerializeField] private GameObject _shop;
     [SerializeField] private GameObject _closeButton;
+    [SerializeField] private Button _leaderbordButton;
+    [SerializeField] private Button _startButton;
+    [SerializeField] private RawImage[] _startButtonsImage;
 
     private PlayerInput _playerInput;
 
@@ -23,8 +27,14 @@ public class ShopClose : MonoBehaviour
         }
         else
         {
-            _playerInput.SetPanelActive();
+            _playerInput.SetPanelNotActive();
             _closeButton.SetActive(false);
+            _leaderbordButton.enabled = true;
+            _startButton.enabled = true;
+
+            foreach (var startButtonImage in _startButtonsImage)
+                startButtonImage.gameObject.SetActive(true);
+
             _shop.SetActive(false);
         }    
     }

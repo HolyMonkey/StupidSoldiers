@@ -18,6 +18,9 @@ public class LeaderboardPanel : MonoBehaviour
     //[SerializeField] private GameObject[] _numberPanels;
     [SerializeField] private GameObject[] _images;
     //[SerializeField] private GameObject _closeButton;
+    [SerializeField] private Button _shopButton;
+    [SerializeField] private Button _startButton;
+    [SerializeField] private RawImage[] _startButtonsImage;
 
     private PlayerInput _playerInput;
 
@@ -30,8 +33,20 @@ public class LeaderboardPanel : MonoBehaviour
 
     public void OnLederbordButtonOn()
     {
-       
-        StartCoroutine(ReciveLederbord());     
+        if (_panel.activeSelf == true)
+        {
+            _panel.SetActive(false);
+            _playerInput.SetPanelNotActive();
+            _shopButton.enabled = true;
+            _startButton.enabled = true;
+
+            foreach (var startButtonImage in _startButtonsImage)
+                startButtonImage.gameObject.SetActive(true);
+        }        
+        else
+        {
+            StartCoroutine(ReciveLederbord());
+        }            
     }
 
     private IEnumerator ReciveLederbord()
@@ -77,7 +92,7 @@ public class LeaderboardPanel : MonoBehaviour
 
         if (result.entries.Length > 7)
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
             {
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
@@ -126,6 +141,12 @@ public class LeaderboardPanel : MonoBehaviour
             {
                 _playerInput.SetPanelActive();
                 _panel.SetActive(true);
+                _shopButton.enabled = false;
+                _startButton.enabled = false;
+
+                foreach (var startButtonImage in _startButtonsImage)
+                    startButtonImage.gameObject.SetActive(false);
+
                 //_closeButton.SetActive(true);
             }        
         }

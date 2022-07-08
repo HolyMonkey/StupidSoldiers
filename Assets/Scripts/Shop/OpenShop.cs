@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OpenShop : MonoBehaviour
 {
     [SerializeField] private GameObject _shop;
     [SerializeField] private GameObject _closeButton;
+    [SerializeField] private Button _leaderbordButton;
+    [SerializeField] private Button _startButton;
+    [SerializeField] private RawImage[] _startButtonsImage;
 
     private PlayerInput _playerInput;
 
@@ -25,7 +29,13 @@ public class OpenShop : MonoBehaviour
         {
             _playerInput.SetPanelActive();
             _closeButton.SetActive(true);
+            _leaderbordButton.enabled = false;
+            _startButton.enabled = false;
+
+            foreach (var startButtonImage in _startButtonsImage)
+                startButtonImage.gameObject.SetActive(false);
+
             _shop.SetActive(true);
-        }       
+        }
     }
 }

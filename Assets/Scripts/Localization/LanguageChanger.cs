@@ -8,11 +8,11 @@ public class LanguageChanger : MonoBehaviour
 {
     private void Awake()
     {
-        if (YandexGamesSdk.Environment.i18n.lang == "tr")
+        if (YandexGamesSdk.Environment.i18n.tld == "com.tr")
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[2];
         else if (YandexGamesSdk.Environment.i18n.lang == "ru")
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
-        else if (YandexGamesSdk.Environment.i18n.lang == "en")
+        else if (YandexGamesSdk.Environment.i18n.lang == "com")
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         else
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
