@@ -90,7 +90,7 @@ public class LeaderboardPanel : MonoBehaviour
         //foreach (var numberPanel in _numberPanels)
         //    numberPanel.SetActive(false);
 
-        if (result.entries.Length > 7)
+        if (result.entries.Length > 5)
         {
             for (int i = 0; i < 5; i++)
             {
@@ -108,7 +108,7 @@ public class LeaderboardPanel : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < result.entries.Length; i++)
+            for (int i = 0; i < result.entries.Length-1; i++)
             {
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;

@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using Agava.YandexGames;
+using Lean.Localization;
 
 public class LanguageChanger : MonoBehaviour
 {
+    [SerializeField] private LeanLocalization _leanLocalization;
+
     private void Awake()
     {
-        if (YandexGamesSdk.Environment.i18n.tld == "com.tr")
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[2];
-        else if (YandexGamesSdk.Environment.i18n.lang == "ru")
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
-        else if (YandexGamesSdk.Environment.i18n.lang == "com")
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
-        else
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+        switch (YandexGamesSdk.Environment.i18n.tld)
+        {
+            case "com":
+                _leanLocalization.CurrentLanguage = "English";
+                break;
+            case "com.tr":
+                _leanLocalization.CurrentLanguage = "Turkish";
+                break;
+            case "ru":
+                _leanLocalization.CurrentLanguage = "Russian";
+                break;
+            default:
+                _leanLocalization.CurrentLanguage = "English";              
+                break;
+        }
     }
 }
