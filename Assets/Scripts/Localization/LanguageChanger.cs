@@ -9,7 +9,7 @@ public class LanguageChanger : MonoBehaviour
 {
     [SerializeField] private LeanLocalization _leanLocalization;
 
-    private void Awake()
+    private void Start()
     {
         switch (YandexGamesSdk.Environment.i18n.tld)
         {
@@ -22,9 +22,9 @@ public class LanguageChanger : MonoBehaviour
             case "ru":
                 _leanLocalization.CurrentLanguage = "Russian";
                 break;
-            default:
-                _leanLocalization.CurrentLanguage = "English";              
-                break;
+                //default:
+                //    _leanLocalization.CurrentLanguage = "English";              
+                //    break;
         }
     }
 }
