@@ -16,13 +16,15 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private TMP_Text[] _points;
     //[SerializeField] private GameObject[] _pointPanels;
     //[SerializeField] private GameObject[] _numberPanels;
-    [SerializeField] private GameObject[] _images;
+    [SerializeField] private Image[] _images;
     //[SerializeField] private GameObject _closeButton;
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _startButton;
     [SerializeField] private RawImage[] _startButtonsImage;
+    [SerializeField] private Sprite[] _icons;
 
     private PlayerInput _playerInput;
+    private string _name;
 
     private void Awake()
     {
@@ -82,7 +84,7 @@ public class LeaderboardPanel : MonoBehaviour
             point.gameObject.SetActive(false);
 
         foreach (var image in _images)
-            image.SetActive(false);
+            image.gameObject.SetActive(false);
 
         //foreach (var pointPanel in _pointPanels)
         //    pointPanel.SetActive(false);
@@ -94,6 +96,13 @@ public class LeaderboardPanel : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
+                PlayerAccount.GetProfileData((result) =>
+                {
+                     _name = result.publicName;
+                   
+                });
+                if (_name == result.entries[i].player.publicName)
+                    _names[i].color = Color.green;
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
@@ -101,7 +110,9 @@ public class LeaderboardPanel : MonoBehaviour
                 //_numbers[i].gameObject.SetActive(true);
                 _names[i].gameObject.SetActive(true);
                 _points[i].gameObject.SetActive(true);
-                _images[i].SetActive(true);
+                var random = UnityEngine.Random.Range(0, _icons.Length - 1);
+                _images[i].sprite = _icons[random];
+                _images[i].gameObject.SetActive(true);                        
                 //_pointPanels[i].SetActive(true);
                 //_numberPanels[i].SetActive(true);
             }
@@ -110,6 +121,13 @@ public class LeaderboardPanel : MonoBehaviour
         {
             for (int i = 0; i < result.entries.Length-1; i++)
             {
+                PlayerAccount.GetProfileData((result) =>
+                {
+                    _name = result.publicName;
+
+                });
+                if (_name == result.entries[i].player.publicName)
+                    _names[i].color = Color.green;
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
@@ -119,7 +137,9 @@ public class LeaderboardPanel : MonoBehaviour
                 _points[i].gameObject.SetActive(true);
                 //_pointPanels[i].SetActive(true);
                 //_numberPanels[i].SetActive(true);
-                _images[i].SetActive(true);
+                var random = UnityEngine.Random.Range(0, _icons.Length - 1);
+                _images[i].sprite = _icons[random];
+                _images[i].gameObject.SetActive(true);
             }
         }
         //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)

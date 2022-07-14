@@ -11,20 +11,22 @@ public class LanguageChanger : MonoBehaviour
 
     private void Start()
     {
-        switch (YandexGamesSdk.Environment.i18n.tld)
+        switch (YandexGamesSdk.Environment.i18n.lang)
         {
-            case "com":
-                _leanLocalization.CurrentLanguage = "English";
+            case "en":
+                _leanLocalization.SetCurrentLanguage("English");
                 break;
-            case "com.tr":
-                _leanLocalization.CurrentLanguage = "Turkish";
+            case "tr":
+                _leanLocalization.SetCurrentLanguage("Turkish");
                 break;
             case "ru":
-                _leanLocalization.CurrentLanguage = "Russian";
+                _leanLocalization.SetCurrentLanguage("Russian");
                 break;
-                //default:
-                //    _leanLocalization.CurrentLanguage = "English";              
-                //    break;
+            default:
+                _leanLocalization.SetCurrentLanguage("English");
+                break;
         }
+
+        Debug.Log(YandexGamesSdk.Environment.i18n.lang);
     }
 }

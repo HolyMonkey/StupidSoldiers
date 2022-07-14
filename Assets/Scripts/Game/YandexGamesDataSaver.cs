@@ -38,4 +38,9 @@ public class YandexGamesDataSaver : DataSaver
         else
             Leaderboard.SetScore(YandexGamesConstants.LeaderboardName, coins, extraData: levelNumber.ToString());
     }
+
+    public void SaveItem(Item item)
+    {
+        PlayerPrefs.SetInt(item.KeyName, Convert.ToInt32(item.IsByed));
+    }
 }

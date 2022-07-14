@@ -1,6 +1,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 using System.Collections.Generic;
+using Agava.YandexGames.Utility;
 
 public class CloseOnTap : MonoBehaviour
 { 
@@ -11,19 +12,19 @@ public class CloseOnTap : MonoBehaviour
 
     private void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(gameObject);
+        WebEventSystem.current.SetSelectedGameObject(gameObject);
     }
 
     private void Update()
     {
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        PointerEventData pointer = new PointerEventData(WebEventSystem.current);
 
         if (Input.GetMouseButtonDown(0))
         {
             pointer.position = Input.mousePosition;
 
             List<RaycastResult> raycastResults = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointer, raycastResults);
+            WebEventSystem.current.RaycastAll(pointer, raycastResults);
 
             if (raycastResults.Count == 0)
             {

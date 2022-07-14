@@ -46,13 +46,13 @@ public class RewardedVideoHandler : MonoBehaviour
     private void OnAdErrorOccured(string obj)
     {
         Debug.Log("Video is not played");
-        //todo sound unmute
+        AudioListener.pause = false;
     }
 
     private void OnAdClosed()
     {
         Debug.Log("VideoClose");
-        //todo sound unmute
+        AudioListener.pause = false;
     }
 
     private void OnAdRewarded()
@@ -65,6 +65,6 @@ public class RewardedVideoHandler : MonoBehaviour
 
     private void OnAdOpened()
     {
-        //todo sound mute
+        AudioListener.pause = true;
     }
 }

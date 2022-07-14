@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,30 @@ public class EgChicken : Item
 {
     [SerializeField] private Material _eg;
 
+    private string _color;
+
     public override void Bye()
     {
-        if (Player.Wallet.Coins >= Price)
+        if(IsBuy== false)
+        {
+            if (Player.Wallet.Coins >= Price)
+            {
+                _eg.color = Scene;
+                Player.Wallet.DescreasCoins(Price);
+                IsBuy = true;
+                ByedText.gameObject.SetActive(false);
+                UseText.gameObject.SetActive(true);
+                ByeIcon.SetActive(false);
+                PlayerPrefs.SetInt(KeyName, Convert.ToInt32(IsBuy));
+                _color = JsonUtility.ToJson(Scene);
+                PlayerPrefs.SetString("LastByedEg", _color);
+                PlayerPrefs.SetInt("UsedTextId", TextId);
+                UseText.text = "Используется";
+            }
+        }
+        else
         {
             _eg.color = Scene;
-            Player.Wallet.DescreasCoins(Price);
-            IsBuy = true;
-        }
-
-        if (IsBuy == true)
-        {
-            PriceText.text = "Куплено";
-            Button.enabled = false;
         }
     }
 }

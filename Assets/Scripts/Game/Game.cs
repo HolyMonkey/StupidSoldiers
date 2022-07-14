@@ -15,6 +15,8 @@ public class Game : MonoBehaviour
     [SerializeField] private GameObject _levelCompleteText;
     [SerializeField] private GameObject _leaderbordButton;
     [SerializeField] private GameObject _shopButton;
+    [SerializeField] private GameObject _revardVideoButton;
+    [SerializeField] private GameObject _muteAudioButton;
 
     private int _levelNumber;
     private int _killedEnemy;
@@ -121,6 +123,8 @@ public class Game : MonoBehaviour
                 _ui.ShowPlayPanel();
                 _leaderbordButton.SetActive(false);
                 _shopButton.SetActive(false);
+                _muteAudioButton.SetActive(false);
+                _revardVideoButton.SetActive(false);
                 _playerInput.StartGame();
             }           
         }
@@ -133,6 +137,8 @@ public class Game : MonoBehaviour
 
     private void OnContinueButtonClick()
     {
+        if (_levelNumber == 18)
+            _levelNumber = 0;
         _dataSaver.SaveData(_wallet.Coins, _levelNumber + 1);
         InterestialAd.Show();
         SceneManager.LoadScene(_nextSceneIndex);
