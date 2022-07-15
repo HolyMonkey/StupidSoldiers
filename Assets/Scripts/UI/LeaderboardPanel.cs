@@ -44,11 +44,11 @@ public class LeaderboardPanel : MonoBehaviour
 
             foreach (var startButtonImage in _startButtonsImage)
                 startButtonImage.gameObject.SetActive(true);
-        }        
+        }
         else
         {
             StartCoroutine(ReciveLederbord());
-        }            
+        }
     }
 
     private IEnumerator ReciveLederbord()
@@ -62,6 +62,12 @@ public class LeaderboardPanel : MonoBehaviour
         if (!PlayerAccount.IsAuthorized)
             PlayerAccount.Authorize();
         //yield break;
+
+        PlayerAccount.GetProfileData((responseresult) =>
+        {
+            _name = responseresult.uniqueID;
+            Debug.Log(_name + " in response");
+        });
 
         Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderboardReceived);
     }
@@ -92,17 +98,28 @@ public class LeaderboardPanel : MonoBehaviour
         //foreach (var numberPanel in _numberPanels)
         //    numberPanel.SetActive(false);
 
-        if (result.entries.Length > 5)
+        if (result.entries.Length > 6)
         {
             for (int i = 0; i < 5; i++)
             {
-                PlayerAccount.GetProfileData((result) =>
-                {
-                     _name = result.publicName;
-                   
-                });
-                if (_name == result.entries[i].player.publicName)
-                    _names[i].color = Color.green;
+                //    PlayerAccount.GetProfileData((responseresult) =>
+                //    {
+                //         _name = responseresult.uniqueID;
+                //        Debug.Log(_name + " In response");
+                //        if (_name == result.entries[i].player.publicName)
+                //            _names[i].color = Color.green;
+                //    });
+                Debug.Log(_name + " in for");
+                Debug.Log(result.entries[i].player.uniqueID + "name in bord");
+
+                //if (_name == result.entries[i].player.uniqueID)
+                //{
+                //    Debug.Log(_names[i].color + "before change");
+                //    _names[i].color = Color.green;
+                //    Debug.Log("Color mast change");
+                //    Debug.Log(_names[i].color + "after change");
+                //}
+
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
@@ -112,22 +129,36 @@ public class LeaderboardPanel : MonoBehaviour
                 _points[i].gameObject.SetActive(true);
                 var random = UnityEngine.Random.Range(0, _icons.Length - 1);
                 _images[i].sprite = _icons[random];
-                _images[i].gameObject.SetActive(true);                        
+                _images[i].gameObject.SetActive(true);
+
+                if (_name == result.entries[i].player.uniqueID)
+                {
+                    Debug.Log(_names[i].color + "before change");
+                    _names[i].color = Color.green;
+                    Debug.Log("Color mast change");
+                    Debug.Log(_names[i].color + "after change");
+                }
                 //_pointPanels[i].SetActive(true);
                 //_numberPanels[i].SetActive(true);
             }
         }
         else
         {
-            for (int i = 0; i < result.entries.Length-1; i++)
+            for (int i = 0; i < result.entries.Length - 1; i++)
             {
-                PlayerAccount.GetProfileData((result) =>
-                {
-                    _name = result.publicName;
+                //PlayerAccount.GetProfileData((responseresult) =>
+                //{
+                //    _name = responseresult.uniqueID;
+                //    Debug.Log(_name + " in response");
+                //    if (_name == result.entries[i].player.uniqueID)
+                //        _names[i].color = Color.green;
 
-                });
-                if (_name == result.entries[i].player.publicName)
-                    _names[i].color = Color.green;
+                //});
+                Debug.Log(_name + " in for");
+                Debug.Log(result.entries[i].player.uniqueID + "name in bord");
+
+             
+
                 //_numbers[i].text = result.entries[i].rank.ToString();
                 _names[i].text = result.entries[i].player.publicName;
                 _points[i].text = result.entries[i].score.ToString();
@@ -140,6 +171,14 @@ public class LeaderboardPanel : MonoBehaviour
                 var random = UnityEngine.Random.Range(0, _icons.Length - 1);
                 _images[i].sprite = _icons[random];
                 _images[i].gameObject.SetActive(true);
+
+                if (_name == result.entries[i].player.uniqueID)
+                {
+                    Debug.Log(_names[i].color + "before change");
+                    _names[i].color = Color.green;
+                    Debug.Log("Color mast change");
+                    Debug.Log(_names[i].color + "after change");
+                }
             }
         }
         //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
@@ -156,7 +195,7 @@ public class LeaderboardPanel : MonoBehaviour
             if (_playerInput == null)
             {
                 throw new UnityException("Player input is not found");
-            }             
+            }
             else
             {
                 _playerInput.SetPanelActive();
@@ -168,7 +207,7 @@ public class LeaderboardPanel : MonoBehaviour
                     startButtonImage.gameObject.SetActive(false);
 
                 //_closeButton.SetActive(true);
-            }        
+            }
         }
 
     }

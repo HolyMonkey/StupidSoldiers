@@ -1,3 +1,4 @@
+using Lean.Localization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ public class Player : MonoBehaviour
         _wallet = GetComponent<Wallet>();
         _color = PlayerPrefs.GetString("LastByedChicken");
         _idOfUsedText = PlayerPrefs.GetInt("UsedTextId");
-        _usedTexts[_idOfUsedText].text = "Используется";
+        var translationUsed = LeanLocalization.GetTranslationText("UsedText");
+        _usedTexts[_idOfUsedText].text = translationUsed;
 
         if (_color != "")
         {

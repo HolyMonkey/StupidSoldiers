@@ -1,3 +1,4 @@
+using Lean.Localization;
 using System;
 using TMPro;
 using UnityEngine;
@@ -67,7 +68,8 @@ public abstract class Item : MonoBehaviour
                 UseText.gameObject.SetActive(true);
                 ByeIcon.SetActive(false);
                 PlayerPrefs.SetInt(KeyName, Convert.ToInt32(IsBuy));
-                UseText.text = "Используется";
+                var translationUsed = LeanLocalization.GetTranslationText("UsedText");
+                UseText.text = translationUsed;
             }       
         }
         else
