@@ -17,6 +17,11 @@ public class GoldViev : MonoBehaviour
         _text.text = _wallet.Coins.ToString();
     }
 
+    private void Update()
+    {
+        _text.text = _wallet.Coins.ToString();
+    }
+
     private void OnDisable()
     {
         _wallet.ChangeCoinsCount -= OnCoinsChanged;

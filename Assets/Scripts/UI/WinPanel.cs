@@ -1,3 +1,4 @@
+using Lean.Localization;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -39,8 +40,8 @@ public class WinPanel : MonoBehaviour
 
         _multiplier = multiplier;
         _reward = result;
-
-        _text.text = "Победа!";
+        var youWinText = LeanLocalization.GetTranslationText("Win");
+        _text.text = youWinText;
 
         StartCoroutine(ShowRewardCoins());
     }

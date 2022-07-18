@@ -33,8 +33,6 @@ public class RewardedVideoHandler : MonoBehaviour
     public void RevardedVedeoButtonOn()
     {
         VideoAd.Show(_adOpened, _adRewarded, _adClosed, _adErrorOccured);
-        
-      
     }
 
     private IEnumerator StartCooldown(int cooldown)
@@ -47,12 +45,14 @@ public class RewardedVideoHandler : MonoBehaviour
     {
         Debug.Log("Video is not played");
         AudioListener.pause = false;
+        AudioListener.volume = 0f;
     }
 
     private void OnAdClosed()
     {
         Debug.Log("VideoClose");
         AudioListener.pause = false;
+        AudioListener.volume = 1f;
     }
 
     private void OnAdRewarded()
@@ -66,5 +66,6 @@ public class RewardedVideoHandler : MonoBehaviour
     private void OnAdOpened()
     {
         AudioListener.pause = true;
+        AudioListener.volume = 0f;
     }
 }

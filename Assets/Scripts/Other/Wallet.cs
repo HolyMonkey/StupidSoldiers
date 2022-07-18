@@ -24,7 +24,8 @@ public class Wallet : MonoBehaviour
         if (increase > 0)
         {
             Increase += increase;
-            ChangeCoinsCount?.Invoke(Coins+Increase);
+            Coins += increase;
+            ChangeCoinsCount?.Invoke(Coins);
         }
     }
 
