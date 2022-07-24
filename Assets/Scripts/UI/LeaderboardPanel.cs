@@ -22,15 +22,18 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private RawImage[] _startButtonsImage;
     [SerializeField] private Sprite[] _icons;
+    [SerializeField] private GameObject _leaderbordButton;
 
     private PlayerInput _playerInput;
     private string _name;
+    private int _countOfEntries;
 
     private void Awake()
     {
         //_closeButton.SetActive(false);
         _panel.SetActive(false);
         _playerInput = FindObjectOfType<PlayerInput>();
+        ReciveCountOfEntries();
     }
 
     public void OnLederbordButtonOn()
@@ -48,6 +51,20 @@ public class LeaderboardPanel : MonoBehaviour
         else
         {
             StartCoroutine(ReciveLederbord());
+        }
+    }
+
+    private void ReciveCountOfEntries()
+    {
+        Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderbordInStartRecived); 
+      
+    }
+
+    private void OnLeaderbordInStartRecived(LeaderboardGetEntriesResponse result)
+    {
+        if (result.entries.Length == 0)
+        {
+            _leaderbordButton.SetActive(false);           
         }
     }
 
@@ -74,9 +91,6 @@ public class LeaderboardPanel : MonoBehaviour
 
     private void OnLeaderboardReceived(LeaderboardGetEntriesResponse result)
     {
-        if (result.entries.Length == 0)
-            return;
-
         foreach (var panel in _panels)
             panel.SetActive(false);
 

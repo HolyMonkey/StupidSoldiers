@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
+using System;
 
 public class Game : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class Game : MonoBehaviour
     private int _levelNumber;
     private int _killedEnemy;
     private PlayerInput _playerInput;
+    private Action _adOpened;
+    private Action<bool> _adClosed;
+    private Action _adOfline;
+    private Action<string> _adError;
 
     public int EnemyCount => _enemyCount;
     public int KilledEnemy => _killedEnemy;
@@ -68,6 +73,11 @@ public class Game : MonoBehaviour
         _ui.SetCurrentLevel(_levelNumber);
 
         _levelCompleteText.SetActive(false);
+
+        _adOpened += OnAdOpen;
+        _adClosed += OnAdClose;
+        _adOfline += OnAdOfline;
+        _adError += OnAdError;
     }
 
     private void OnDisable()
@@ -82,6 +92,11 @@ public class Game : MonoBehaviour
         {
             multiplier.MultiplierHit += OnMultiplierHit;
         }
+
+        _adOpened -= OnAdOpen;
+        _adClosed -= OnAdClose;
+        _adOfline -= OnAdOfline;
+        _adError -= OnAdError;
     }
 
     private void OnWeaponDead()
@@ -140,7 +155,36 @@ public class Game : MonoBehaviour
         if (_levelNumber == 18)
             _levelNumber = 0;
         _dataSaver.SaveData(_wallet.Coins, _levelNumber + 1);
-        InterestialAd.Show();
+        InterestialAd.Show(_adOpened, _adClosed, _adError, _adOfline);
+    }
+
+    private void OnAdError(string eror)
+    {
+        Debug.Log("VideoClose");
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
         SceneManager.LoadScene(_nextSceneIndex);
+    }
+
+    private void OnAdOfline()
+    {
+        Debug.Log("VideoClose");
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+        SceneManager.LoadScene(_nextSceneIndex);
+    }
+
+    private void OnAdClose(bool boolean)
+    {
+        Debug.Log("VideoClose");
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
+        SceneManager.LoadScene(_nextSceneIndex);
+    }
+
+    private void OnAdOpen()
+    {
+        AudioListener.pause = true;
+        AudioListener.volume = 0f;
     }
 }

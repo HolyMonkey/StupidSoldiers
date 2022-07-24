@@ -1,3 +1,4 @@
+using Lean.Localization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ public class EgChicken : Item
                 _color = JsonUtility.ToJson(Scene);
                 PlayerPrefs.SetString("LastByedEg", _color);
                 PlayerPrefs.SetInt("UsedTextId", TextId);
-                UseText.text = "Используется";
+                var translationUsed = LeanLocalization.GetTranslationText("UsedText");
+                UseText.text = translationUsed;
             }
         }
         else
