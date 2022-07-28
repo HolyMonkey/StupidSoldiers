@@ -52,7 +52,7 @@ public class RewardedVideoHandler : MonoBehaviour
     {
         Debug.Log("VideoClose");
         AudioListener.pause = false;
-        AudioListener.volume = 1f;
+        AudioListener.volume = 0.5f;
     }
 
     private void OnAdRewarded()

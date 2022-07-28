@@ -21,9 +21,6 @@ public class Player : MonoBehaviour
     {
         _wallet = GetComponent<Wallet>();
         _color = PlayerPrefs.GetString("LastByedChicken");
-        _idOfUsedText = PlayerPrefs.GetInt("UsedTextId");
-        var translationUsed = LeanLocalization.GetTranslationText("UsedText");
-        _usedTexts[_idOfUsedText].text = translationUsed;
 
         if (_color != "")
         {

@@ -14,7 +14,7 @@ public class GoldViev : MonoBehaviour
         _text = GetComponent<TMP_Text>();
         _wallet = FindObjectOfType<Wallet>();
         _wallet.ChangeCoinsCount += OnCoinsChanged;
-        _text.text = _wallet.Coins.ToString();
+        _text.text = _wallet.Coins.ToString();       
     }
 
     private void Update()

@@ -8,7 +8,6 @@ using Agava.YandexGames;
 
 public class LeaderboardPanel : MonoBehaviour
 {
-    [SerializeField] private LeaderboardEntryView _template;
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject[] _panels;
     //[SerializeField] private TMP_Text[] _numbers;
@@ -24,9 +23,14 @@ public class LeaderboardPanel : MonoBehaviour
     [SerializeField] private Sprite[] _icons;
     [SerializeField] private GameObject _leaderbordButton;
 
+    [SerializeField] private GameObject _template;
+    [SerializeField] private GameObject _fartherPanel;
+    [SerializeField] private int _maxLederbordEntriesCount;
+
     private PlayerInput _playerInput;
     private string _name;
     private int _countOfEntries;
+    private List<GameObject> _leaderBordEntryVievs = new List<GameObject>();
 
     private void Awake()
     {
@@ -83,7 +87,6 @@ public class LeaderboardPanel : MonoBehaviour
         PlayerAccount.GetProfileData((responseresult) =>
         {
             _name = responseresult.uniqueID;
-            Debug.Log(_name + " in response");
         });
 
         Leaderboard.GetEntries(YandexGamesConstants.LeaderboardName, OnLeaderboardReceived);
@@ -91,138 +94,145 @@ public class LeaderboardPanel : MonoBehaviour
 
     private void OnLeaderboardReceived(LeaderboardGetEntriesResponse result)
     {
-        foreach (var panel in _panels)
-            panel.SetActive(false);
+        //foreach (var panel in _panels)
+        //    panel.SetActive(false);
 
-        //foreach (var number in _numbers)
-        //    number.gameObject.SetActive(false);
+        //foreach (var name in _names)
+        //    name.gameObject.SetActive(false);
 
-        foreach (var name in _names)
-            name.gameObject.SetActive(false);
+        //foreach (var point in _points)
+        //    point.gameObject.SetActive(false);
 
-        foreach (var point in _points)
-            point.gameObject.SetActive(false);
+        //foreach (var image in _images)
+        //    image.gameObject.SetActive(false);
 
-        foreach (var image in _images)
-            image.gameObject.SetActive(false);
+        //if (result.entries.Length > 6)
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        Debug.Log(_name + " in for");
+        //        Debug.Log(result.entries[i].player.uniqueID + "name in bord");
+        //        Debug.Log(result.entries[i].player.publicName);
+        //        _names[i].text = result.entries[i].player.publicName;
+        //        _points[i].text = result.entries[i].score.ToString();
+        //        _panels[i].SetActive(true);
+        //        _names[i].gameObject.SetActive(true);
+        //        _points[i].gameObject.SetActive(true);
+        //        var random = UnityEngine.Random.Range(0, _icons.Length - 1);
+        //        _images[i].sprite = _icons[random];
+        //        _images[i].gameObject.SetActive(true);
 
-        //foreach (var pointPanel in _pointPanels)
-        //    pointPanel.SetActive(false);
+        //        if (_name == result.entries[i].player.uniqueID)
+        //        {
+        //            Debug.Log(_names[i].color + "before change");
+        //            _names[i].color = Color.green;
+        //            Debug.Log("Color mast change");
+        //            Debug.Log(_names[i].color + "after change");
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < result.entries.Length - 1; i++)
+        //    {
+        //        Debug.Log(_name + " in for");
+        //        Debug.Log(result.entries[i].player.uniqueID + "name in bord");
+        //        Debug.Log(result.entries[i].player.publicName);
+        //        _names[i].text = result.entries[i].player.publicName;
+        //        _points[i].text = result.entries[i].score.ToString();
+        //        _panels[i].SetActive(true);
+        //        _names[i].gameObject.SetActive(true);
+        //        _points[i].gameObject.SetActive(true);
+        //        var random = UnityEngine.Random.Range(0, _icons.Length - 1);
+        //        _images[i].sprite = _icons[random];
+        //        _images[i].gameObject.SetActive(true);
 
-        //foreach (var numberPanel in _numberPanels)
-        //    numberPanel.SetActive(false);
+        //        if (_name == result.entries[i].player.uniqueID)
+        //        {
+        //            Debug.Log(_names[i].color + "before change");
+        //            _names[i].color = Color.green;
+        //            Debug.Log("Color mast change");
+        //            Debug.Log(_names[i].color + "after change");
+        //        }
+        //    }
+        //}
 
-        if (result.entries.Length > 6)
+        //if (_panel.activeSelf == false)
+        //{
+        //    if (_playerInput == null)
+        //    {
+        //        throw new UnityException("Player input is not found");
+        //    }
+        //    else
+        //    {
+        //        _playerInput.SetPanelActive();
+        //        _panel.SetActive(true);
+        //        _shopButton.enabled = false;
+        //        _startButton.enabled = false;
+
+        //        foreach (var startButtonImage in _startButtonsImage)
+        //            startButtonImage.gameObject.SetActive(false);
+        //    }
+        //}
+
+        
+
+        foreach (var lederbordEntry in _leaderBordEntryVievs)
+            Destroy(lederbordEntry);
+
+        _leaderBordEntryVievs.Clear();
+
+        if (result.entries.Length > _maxLederbordEntriesCount)
         {
-            for (int i = 0; i < 5; i++)
+            Debug.Log(result.entries.Length + "test228");
+            for (int i = 0; i < _maxLederbordEntriesCount; i++)
             {
-                //    PlayerAccount.GetProfileData((responseresult) =>
-                //    {
-                //         _name = responseresult.uniqueID;
-                //        Debug.Log(_name + " In response");
-                //        if (_name == result.entries[i].player.publicName)
-                //            _names[i].color = Color.green;
-                //    });
-                Debug.Log(_name + " in for");
-                Debug.Log(result.entries[i].player.uniqueID + "name in bord");
-
-                //if (_name == result.entries[i].player.uniqueID)
-                //{
-                //    Debug.Log(_names[i].color + "before change");
-                //    _names[i].color = Color.green;
-                //    Debug.Log("Color mast change");
-                //    Debug.Log(_names[i].color + "after change");
-                //}
-
-                //_numbers[i].text = result.entries[i].rank.ToString();
-                _names[i].text = result.entries[i].player.publicName;
-                _points[i].text = result.entries[i].score.ToString();
-                _panels[i].SetActive(true);
-                //_numbers[i].gameObject.SetActive(true);
-                _names[i].gameObject.SetActive(true);
-                _points[i].gameObject.SetActive(true);
-                var random = UnityEngine.Random.Range(0, _icons.Length - 1);
-                _images[i].sprite = _icons[random];
-                _images[i].gameObject.SetActive(true);
-
-                if (_name == result.entries[i].player.uniqueID)
-                {
-                    Debug.Log(_names[i].color + "before change");
-                    _names[i].color = Color.green;
-                    Debug.Log("Color mast change");
-                    Debug.Log(_names[i].color + "after change");
-                }
-                //_pointPanels[i].SetActive(true);
-                //_numberPanels[i].SetActive(true);
+                Debug.Log(i + "test1");
+                Debug.Log(result.entries[i].player.publicName + "test11");
+                InstatiateLederbordData(result.entries[i]);
+                Debug.Log(i + "test2");
+                Debug.Log(result.entries[i].player.publicName + "test22");
             }
+        }               
+        else
+        {
+            Debug.Log(result.entries.Length + "test322");
+            for (int i = 0; i < result.entries.Length; i++)
+            {
+                Debug.Log(i + "test1");
+                Debug.Log(result.entries[i].player.publicName + "test11");
+                InstatiateLederbordData(result.entries[i]);
+                Debug.Log(i + "test2");
+                Debug.Log(result.entries[i].player.publicName + "test22");
+            }
+        }                      
+
+        Debug.Log("test");
+        Debug.Log(result.entries.Length);
+        _panel.SetActive(true);
+
+        if (_playerInput == null)
+        {
+            throw new UnityException("Player input is not found");
         }
         else
         {
-            for (int i = 0; i < result.entries.Length - 1; i++)
-            {
-                //PlayerAccount.GetProfileData((responseresult) =>
-                //{
-                //    _name = responseresult.uniqueID;
-                //    Debug.Log(_name + " in response");
-                //    if (_name == result.entries[i].player.uniqueID)
-                //        _names[i].color = Color.green;
+            _playerInput.SetPanelActive();
+            _shopButton.enabled = false;
+            _startButton.enabled = false;
 
-                //});
-                Debug.Log(_name + " in for");
-                Debug.Log(result.entries[i].player.uniqueID + "name in bord");
-
-             
-
-                //_numbers[i].text = result.entries[i].rank.ToString();
-                _names[i].text = result.entries[i].player.publicName;
-                _points[i].text = result.entries[i].score.ToString();
-                _panels[i].SetActive(true);
-                //_numbers[i].gameObject.SetActive(true);
-                _names[i].gameObject.SetActive(true);
-                _points[i].gameObject.SetActive(true);
-                //_pointPanels[i].SetActive(true);
-                //_numberPanels[i].SetActive(true);
-                var random = UnityEngine.Random.Range(0, _icons.Length - 1);
-                _images[i].sprite = _icons[random];
-                _images[i].gameObject.SetActive(true);
-
-                if (_name == result.entries[i].player.uniqueID)
-                {
-                    Debug.Log(_names[i].color + "before change");
-                    _names[i].color = Color.green;
-                    Debug.Log("Color mast change");
-                    Debug.Log(_names[i].color + "after change");
-                }
-            }
+            foreach (var startButtonImage in _startButtonsImage)
+                startButtonImage.gameObject.SetActive(false);
         }
-        //foreach (LeaderboardEntryResponse leaderboardEntry in result.entries)
-        //{
-        //    var leaderboardEntryView = Instantiate(_template,_panel.transform);
-        //    //var ledeborbEntryViewRect = leaderboardEntryView.GetComponent<RectTransform>();
-        //    //ledeborbEntryViewRect.anchorMin = new Vector2(ledeborbEntryViewRect.anchorMin.x, ledeborbEntryViewRect.anchorMin.y + 2);
-        //    //ledeborbEntryViewRect.anchorMax = new Vector2(ledeborbEntryViewRect.anchorMax.x, ledeborbEntryViewRect.anchorMax.y + 2);
-        //    leaderboardEntryView.Initialize(leaderboardEntry);
-        //}
+    }
 
-        if (_panel.activeSelf == false)
-        {
-            if (_playerInput == null)
-            {
-                throw new UnityException("Player input is not found");
-            }
-            else
-            {
-                _playerInput.SetPanelActive();
-                _panel.SetActive(true);
-                _shopButton.enabled = false;
-                _startButton.enabled = false;
-
-                foreach (var startButtonImage in _startButtonsImage)
-                    startButtonImage.gameObject.SetActive(false);
-
-                //_closeButton.SetActive(true);
-            }
-        }
+    private void InstatiateLederbordData(LeaderboardEntryResponse data)
+    {
+        Debug.Log("spawn");
+        var leaderboardEntryView = Instantiate(_template, _fartherPanel.transform);
+        leaderboardEntryView.TryGetComponent(out LeaderboardEntryView entryViev);
+        _leaderBordEntryVievs.Add(leaderboardEntryView);
+        entryViev.Initialize(data, data.player.uniqueID);
 
     }
 }

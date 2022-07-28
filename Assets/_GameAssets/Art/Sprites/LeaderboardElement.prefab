@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 552502370636458571}
   - component: {fileID: 552502370636458569}
   - component: {fileID: 552502370636458570}
+  - component: {fileID: 5718800024202775252}
   m_Layer: 0
   m_Name: LeaderboardElement
   m_TagString: Untagged
@@ -79,6 +80,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5718800024202775252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552502370636458572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ab082f87351cd4c9c1bfe6541c6060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrore: {fileID: 552502371161148626}
+  _name: {fileID: 552502370803299027}
+  _aviableIcons:
+  - {fileID: 21300000, guid: 28945521724e9ed4bb10a8c1d172019b, type: 3}
+  - {fileID: 21300000, guid: dcdc9a12648b20b42bce19f3c4a4dea7, type: 3}
+  - {fileID: 21300000, guid: b43589364e7021b4a89a604e610d0779, type: 3}
+  - {fileID: 21300000, guid: 8a64c98b447493d4195d50c54f47a68e, type: 3}
+  - {fileID: 21300000, guid: a29240087e7d0814781ef9d7f49b7c8a, type: 3}
+  _icon: {fileID: 5272599950881810947}
 --- !u!1 &552502370803299029
 GameObject:
   m_ObjectHideFlags: 0

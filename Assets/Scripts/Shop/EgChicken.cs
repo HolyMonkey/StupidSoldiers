@@ -29,11 +29,26 @@ public class EgChicken : Item
                 PlayerPrefs.SetInt("UsedTextId", TextId);
                 var translationUsed = LeanLocalization.GetTranslationText("UsedText");
                 UseText.text = translationUsed;
+                IsUsed = true;
+                PlayerPrefs.SetInt(IsUsedSaver, Convert.ToInt32(IsUsed));
+                PlayerPrefs.Save();
+
+                foreach (var item in Items)
+                    item.ChangeText();
             }
         }
         else
         {
             _eg.color = Scene;
+
+            var translationUsed = LeanLocalization.GetTranslationText("UsedText");
+            UseText.text = translationUsed;
+            IsUsed = true;
+            PlayerPrefs.SetInt(IsUsedSaver, Convert.ToInt32(IsUsed));
+            PlayerPrefs.Save();
+
+            foreach (var item in Items)
+                item.ChangeText();
         }
     }
 }

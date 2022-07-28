@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine.UI;
 
 public class LeaderboardEntryView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _rank;
-    [SerializeField] private TextMeshProUGUI _name;
-    [SerializeField] private TextMeshProUGUI _score;
-    
-    public void Initialize(LeaderboardEntryResponse leaderboardEntry)
-    {
-        _rank.text = leaderboardEntry.rank.ToString();
-        _name.text = FormatName(leaderboardEntry);
-        _score.text = leaderboardEntry.formattedScore;
-    }
+    [SerializeField] private TMP_Text _scrore;
+    [SerializeField] private TMP_Text _name;
+    [SerializeField] private Sprite[] _aviableIcons;
+    [SerializeField] private Image _icon;
 
-    private string FormatName(LeaderboardEntryResponse leaderboardEntry)
+    public void Initialize(LeaderboardEntryResponse data, string playerId)
     {
-        return string.IsNullOrEmpty(leaderboardEntry.player.publicName) 
-            ? "Anon"
-            : leaderboardEntry.player.publicName;
+        if (playerId == data.player.uniqueID)
+            _name.color = Color.green;
+
+        _scrore.text = data.score.ToString();
+        _name.text = data.player.publicName;
+        _icon.sprite = _aviableIcons[UnityEngine.Random.Range(0, _aviableIcons.Length - 1)];
     }
 }

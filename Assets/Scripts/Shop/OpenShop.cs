@@ -10,6 +10,7 @@ public class OpenShop : MonoBehaviour
     [SerializeField] private Button _leaderbordButton;
     [SerializeField] private Button _startButton;
     [SerializeField] private RawImage[] _startButtonsImage;
+    [SerializeField] private Item[] _items;
 
     private PlayerInput _playerInput;
 
@@ -32,10 +33,15 @@ public class OpenShop : MonoBehaviour
             _leaderbordButton.enabled = false;
             _startButton.enabled = false;
 
+            _shop.SetActive(true);
+
             foreach (var startButtonImage in _startButtonsImage)
                 startButtonImage.gameObject.SetActive(false);
 
-            _shop.SetActive(true);
+            foreach (var item in _items)
+                item.ChangeTextOnOpenShop();
+
+         
         }
     }
 }

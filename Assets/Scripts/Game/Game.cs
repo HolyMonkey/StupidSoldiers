@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
 
     public int EnemyCount => _enemyCount;
     public int KilledEnemy => _killedEnemy;
+    public int LevelNumber => _levelNumber;
 
     //public void DescreaseEnemyCount()
     //{
@@ -160,25 +161,22 @@ public class Game : MonoBehaviour
 
     private void OnAdError(string eror)
     {
-        Debug.Log("VideoClose");
         AudioListener.pause = false;
-        AudioListener.volume = 1f;
+        AudioListener.volume = 0.5f;
         SceneManager.LoadScene(_nextSceneIndex);
     }
 
     private void OnAdOfline()
     {
-        Debug.Log("VideoClose");
         AudioListener.pause = false;
-        AudioListener.volume = 1f;
+        AudioListener.volume = 0.5f;
         SceneManager.LoadScene(_nextSceneIndex);
     }
 
     private void OnAdClose(bool boolean)
     {
-        Debug.Log("VideoClose");
         AudioListener.pause = false;
-        AudioListener.volume = 1f;
+        AudioListener.volume = 0.5f;
         SceneManager.LoadScene(_nextSceneIndex);
     }
 
