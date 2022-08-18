@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
 using System;
+using GameAnalyticsSDK;
 
 public class Game : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Game : MonoBehaviour
     private Action<bool> _adClosed;
     private Action _adOfline;
     private Action<string> _adError;
+    private int _levelTimeSpent;
+    private int _totalPlayedTime;
 
     public int EnemyCount => _enemyCount;
     public int KilledEnemy => _killedEnemy;
@@ -48,7 +51,13 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         _playerInput = FindObjectOfType<PlayerInput>();
+        _totalPlayedTime = PlayerPrefs.GetInt("TotalPlayedTime");
+        _levelTimeSpent = 0;
+        PlayerPrefs.SetInt("TotalPlayedTime", _totalPlayedTime);
+        GameAnalitic.TotalPlayedTime(_totalPlayedTime);
     }
+
+
 
     private void OnEnable()
     {
@@ -100,6 +109,14 @@ public class Game : MonoBehaviour
         _adError -= OnAdError;
     }
 
+#if VK_GAMES
+    private void Update()
+    {
+        _totalPlayedTime++;     
+        _levelTimeSpent++;
+#endif
+    }
+
     private void OnWeaponDead()
     {
         Time.timeScale = 0;
@@ -142,6 +159,11 @@ public class Game : MonoBehaviour
                 _revardedVideoButton.SetActive(false);
                 _revardVideoButton.SetActive(false);
                 _playerInput.StartGame();
+#if VK_GAMES
+                GameAnalitic.StartLevel(_currentSceneIndex);
+                PlayerPrefs.SetInt("TotalPlayedTime", _totalPlayedTime);
+                GameAnalitic.TotalPlayedTime(_totalPlayedTime);
+#endif
             }
         }
     }
@@ -149,6 +171,11 @@ public class Game : MonoBehaviour
     private void OnRestartButtonClick()
     {
         SceneManager.LoadScene(_currentSceneIndex);
+#if VK_GAMES
+        GameAnalitic.RestartLevel(_currentSceneIndex, _levelTimeSpent);
+        PlayerPrefs.SetInt("TotalPlayedTime", _totalPlayedTime);
+        GameAnalitic.TotalPlayedTime(_totalPlayedTime);
+#endif
     }
 
     private void OnContinueButtonClick()
@@ -161,6 +188,11 @@ public class Game : MonoBehaviour
 #endif
 #if VK_GAMES
         Agava.VKGames.Interstitial.Show();
+        GameAnalitic.AddsStart(GameAnalyticsSDK.GAAdType.Interstitial);
+        GameAnalitic.AdsComplete(GameAnalyticsSDK.GAAdType.Interstitial);
+        GameAnalitic.EndLevel(_currentSceneIndex, _levelTimeSpent);
+        PlayerPrefs.SetInt("TotalPlayedTime", _totalPlayedTime);
+        GameAnalitic.TotalPlayedTime(_totalPlayedTime);
         SceneManager.LoadScene(_nextSceneIndex);
 #endif
 

@@ -36,6 +36,9 @@ public class Wallet : MonoBehaviour
             Increase += increase;
             Coins += increase;
             _dataSaver.SaveData(Coins, _game.LevelNumber);
+#if VK_GAMES
+            GameAnalitic.GainedMoney(increase, "enemy killed", "enemy");
+#endif
             ChangeCoinsCount?.Invoke(Coins);
         }
     }
@@ -44,6 +47,9 @@ public class Wallet : MonoBehaviour
     {        
         Increase *= multiplier;
         Coins += Increase;
+#if VK_GAMES
+        GameAnalitic.GainedMoney(Increase, "Multiplier hit", "mulriplier");
+#endif
     }
 
     public void SetCoins(int coins)

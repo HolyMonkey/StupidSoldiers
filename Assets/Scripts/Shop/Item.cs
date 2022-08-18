@@ -22,6 +22,7 @@ public abstract class Item : MonoBehaviour
     [SerializeField] protected int TextId;
     [SerializeField] protected string IsUsedSaver;
     [SerializeField] protected List<Item> Items;
+    [SerializeField] protected string _title;
 
     protected bool IsBuy;
     protected bool IsUsed;
@@ -90,6 +91,10 @@ public abstract class Item : MonoBehaviour
                 IsUsed = true;
                 PlayerPrefs.SetInt(IsUsedSaver, Convert.ToInt32(IsUsed));
                 PlayerPrefs.Save();
+
+#if VK_GAMES
+                GameAnalitic.SpentMoney(Price, _title);
+#endif
 
                 foreach (var item in Items)
                     item.ChangeText();

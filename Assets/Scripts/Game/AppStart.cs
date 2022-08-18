@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
+using GameAnalyticsSDK;
 
 public class AppStart : MonoBehaviour
 {
     private const int GameScene = 1;
+    private int _countOfGame;
 
     private IEnumerator Start()
     {
@@ -22,7 +24,18 @@ public class AppStart : MonoBehaviour
 
 #if VK_GAMES
         yield return Agava.VKGames.VKGamesSdk.Initialize();
-
+        GameAnalytics.Initialize();
+        if (PlayerPrefs.HasKey("GameCount"))
+        {
+            _countOfGame = PlayerPrefs.GetInt("GameCount");
+        }
+        else
+        {
+            _countOfGame = 0;
+        }
+        _countOfGame++;
+        GameAnalitic.StartGame(_countOfGame);
+        PlayerPrefs.SetInt("GameCount", _countOfGame);
         SceneManager.LoadScene(GameScene);
 #endif
     }

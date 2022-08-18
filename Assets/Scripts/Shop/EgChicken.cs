@@ -33,6 +33,10 @@ public class EgChicken : Item
                 PlayerPrefs.SetInt(IsUsedSaver, Convert.ToInt32(IsUsed));
                 PlayerPrefs.Save();
 
+#if VK_GAMES
+                GameAnalitic.SpentMoney(Price, _title);
+#endif
+
                 foreach (var item in Items)
                     item.ChangeText();
             }
