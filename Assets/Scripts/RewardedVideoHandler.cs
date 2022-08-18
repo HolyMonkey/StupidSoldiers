@@ -32,7 +32,12 @@ public class RewardedVideoHandler : MonoBehaviour
 
     public void RevardedVedeoButtonOn()
     {
+#if YANDEX_GAMES
         VideoAd.Show(_adOpened, _adRewarded, _adClosed, _adErrorOccured);
+#endif
+#if VK_GAMES
+        Agava.VKGames.VideoAd.Show(_adRewarded);
+#endif
     }
 
     private IEnumerator StartCooldown(int cooldown)

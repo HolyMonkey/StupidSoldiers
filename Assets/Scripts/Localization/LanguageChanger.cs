@@ -11,6 +11,8 @@ public class LanguageChanger : MonoBehaviour
 
     private void Start()
     {
+#if YANDEX_GAMES
+
         switch (YandexGamesSdk.Environment.i18n.lang)
         {
             case "en":
@@ -26,7 +28,9 @@ public class LanguageChanger : MonoBehaviour
                 _leanLocalization.SetCurrentLanguage("English");
                 break;
         }
-
-        Debug.Log(YandexGamesSdk.Environment.i18n.lang);
+#endif
+#if VK_GAMES
+        _leanLocalization.SetCurrentLanguage("Russian");
+#endif
     }
 }

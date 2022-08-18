@@ -30,6 +30,8 @@ public class YandexGamesDataSaver : DataSaver
         PlayerPrefs.SetInt(YandexGamesConstants.CoinsKey, coins);
         PlayerPrefs.SetInt(YandexGamesConstants.LevelNumberKey, levelNumber);
 
+
+#if YANDEX_GAMES
         if (!PlayerAccount.IsAuthorized)
             return;
         
@@ -37,6 +39,7 @@ public class YandexGamesDataSaver : DataSaver
             PlayerAccount.RequestPersonalProfileDataPermission(() => Leaderboard.SetScore(YandexGamesConstants.LeaderboardName, coins, extraData: levelNumber.ToString()));
         else
             Leaderboard.SetScore(YandexGamesConstants.LeaderboardName, coins, extraData: levelNumber.ToString());
+#endif
     }
 
     public void SaveItem(Item item)

@@ -11,12 +11,20 @@ public class AppStart : MonoBehaviour
 
     private IEnumerator Start()
     {
+#if YANDEX_GAMES
         yield return YandexGamesSdk.WaitForInitialization();
 
         if (!PlayerAccount.IsAuthorized)
             SceneManager.LoadScene(GameScene);
-        
+
         Leaderboard.GetPlayerEntry(YandexGamesConstants.LeaderboardName, OnLeaderboardPlayerEntry, _ => SceneManager.LoadScene(GameScene));
+#endif
+
+#if VK_GAMES
+        yield return Agava.VKGames.VKGamesSdk.Initialize();
+
+        SceneManager.LoadScene(GameScene);
+#endif
     }
     
     private void OnLeaderboardPlayerEntry(LeaderboardEntryResponse response)

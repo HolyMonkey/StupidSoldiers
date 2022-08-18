@@ -131,7 +131,7 @@ public class Game : MonoBehaviour
         {
             throw new UnityException("Player input is not found");
         }
-        else       
+        else
         {
             if (_playerInput.IsPanelOpen == false)
             {
@@ -142,7 +142,7 @@ public class Game : MonoBehaviour
                 _revardedVideoButton.SetActive(false);
                 _revardVideoButton.SetActive(false);
                 _playerInput.StartGame();
-            }           
+            }
         }
     }
 
@@ -156,7 +156,14 @@ public class Game : MonoBehaviour
         if (_levelNumber == 18)
             _levelNumber = 0;
         _dataSaver.SaveData(_wallet.Coins, _levelNumber + 1);
+#if YANDEX_GAMES
         InterestialAd.Show(_adOpened, _adClosed, _adError, _adOfline);
+#endif
+#if VK_GAMES
+        Agava.VKGames.Interstitial.Show();
+        SceneManager.LoadScene(_nextSceneIndex);
+#endif
+
     }
 
     private void OnAdError(string eror)
