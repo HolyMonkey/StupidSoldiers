@@ -4470,6 +4470,8 @@ MonoBehaviour:
   _shopButton: {fileID: 961648364}
   _revardVideoButton: {fileID: 961648366}
   _revardedVideoButton: {fileID: 961648365}
+  _inviteFriendsButton: {fileID: 1373519326}
+  _educationButton: {fileID: 1373519327}
 --- !u!1 &284045940
 GameObject:
   m_ObjectHideFlags: 0
@@ -12029,6 +12031,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1787896955451725802, guid: 92a504c33ca09844680e3ec2f190f4e4,
+        type: 3}
+      propertyPath: _money
+      value: 
+      objectReference: {fileID: 680728946}
     - target: {fileID: 2496377920743309857, guid: 92a504c33ca09844680e3ec2f190f4e4,
         type: 3}
       propertyPath: Player
@@ -17335,6 +17342,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8769978, y: 1, z: 0.6357462}
   m_Center: {x: 0.061501674, y: 0, z: 0.029906156}
+--- !u!1 &1373519326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1383867834793092267, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 961648361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1373519327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 319541982852476822, guid: 92a504c33ca09844680e3ec2f190f4e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 961648361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1378889546
 GameObject:
   m_ObjectHideFlags: 0

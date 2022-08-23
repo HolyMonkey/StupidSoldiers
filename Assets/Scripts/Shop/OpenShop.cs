@@ -11,6 +11,8 @@ public class OpenShop : MonoBehaviour
     [SerializeField] private Button _startButton;
     [SerializeField] private RawImage[] _startButtonsImage;
     [SerializeField] private Item[] _items;
+    [SerializeField] private Button _inviteFriendsButton;
+    [SerializeField] private Button _educationButton;
 
     private PlayerInput _playerInput;
 
@@ -32,6 +34,8 @@ public class OpenShop : MonoBehaviour
             _closeButton.SetActive(true);
             _leaderbordButton.enabled = false;
             _startButton.enabled = false;
+            _inviteFriendsButton.enabled = false;
+            _educationButton.enabled = false;
 
             _shop.SetActive(true);
 

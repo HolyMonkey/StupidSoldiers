@@ -11,6 +11,7 @@ public class CloseOnTap : MonoBehaviour
     [SerializeField] private GameObject _playButton;
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _startButton;
+    [SerializeField] private Button _inviteFriends;
     [SerializeField] private RawImage[] _startButtonsImage;
 
     private PlayerInput _playerInput;
@@ -48,6 +49,7 @@ public class CloseOnTap : MonoBehaviour
         _playerInput.SetPanelNotActive();
         _shopButton.enabled = true;
         _startButton.enabled = true;
+        _inviteFriends.enabled = true;
 
         foreach (var startButtonImage in _startButtonsImage)
             startButtonImage.gameObject.SetActive(true);

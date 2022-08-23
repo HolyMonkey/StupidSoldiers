@@ -10,6 +10,8 @@ public class ShopClose : MonoBehaviour
     [SerializeField] private Button _leaderbordButton;
     [SerializeField] private Button _startButton;
     [SerializeField] private RawImage[] _startButtonsImage;
+    [SerializeField] private Button _inviteFriendsButton;
+    [SerializeField] private Button _educationButton;
 
     private PlayerInput _playerInput;
 
@@ -31,6 +33,8 @@ public class ShopClose : MonoBehaviour
             _closeButton.SetActive(false);
             _leaderbordButton.enabled = true;
             _startButton.enabled = true;
+            _inviteFriendsButton.enabled = true;
+            _educationButton.enabled = true;
 
             foreach (var startButtonImage in _startButtonsImage)
                 startButtonImage.gameObject.SetActive(true);

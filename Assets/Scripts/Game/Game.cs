@@ -19,6 +19,8 @@ public class Game : MonoBehaviour
     [SerializeField] private GameObject _shopButton;
     [SerializeField] private GameObject _revardVideoButton;
     [SerializeField] private GameObject _revardedVideoButton;
+    [SerializeField] private GameObject _inviteFriendsButton;
+    [SerializeField] private GameObject _educationButton;
 
     private int _levelNumber;
     private int _killedEnemy;
@@ -51,10 +53,12 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         _playerInput = FindObjectOfType<PlayerInput>();
+#if VK_GAMES
         _totalPlayedTime = PlayerPrefs.GetInt("TotalPlayedTime");
         _levelTimeSpent = 0;
         PlayerPrefs.SetInt("TotalPlayedTime", _totalPlayedTime);
         GameAnalitic.TotalPlayedTime(_totalPlayedTime);
+#endif
     }
 
 
@@ -114,8 +118,9 @@ public class Game : MonoBehaviour
     {
         _totalPlayedTime++;     
         _levelTimeSpent++;
-#endif
+
     }
+#endif
 
     private void OnWeaponDead()
     {
@@ -156,6 +161,8 @@ public class Game : MonoBehaviour
                 _ui.ShowPlayPanel();
                 _leaderbordButton.SetActive(false);
                 _shopButton.SetActive(false);
+                _inviteFriendsButton.SetActive(false);
+                _educationButton.SetActive(false);
                 _revardedVideoButton.SetActive(false);
                 _revardVideoButton.SetActive(false);
                 _playerInput.StartGame();
