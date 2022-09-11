@@ -11,6 +11,22 @@ public class SoundMuteHandler : MonoBehaviour
 
     private bool _isSoundMute = false;
 
+    private void OnEnable()
+    {
+        Agava.WebUtility.WebApplication.InBackgroundChange += OnInBackgroundChange;
+    }
+
+    private void OnDisable()
+    {
+        Agava.WebUtility.WebApplication.InBackgroundChange -= OnInBackgroundChange;
+    }
+
+    private void OnInBackgroundChange(bool inBackground)
+    {
+        AudioListener.volume = inBackground ? 0f : 1f;
+        AudioListener.pause = inBackground;
+    }
+
     private void Start()
     {
         Debug.Log(_isSoundMute);
@@ -55,10 +71,10 @@ public class SoundMuteHandler : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (_isSoundMute == true)
-            return;
-        AudioListener.pause = WebApplication.InBackground;
-    }
+    //private void Update()
+    //{
+    //    if (_isSoundMute == true)
+    //        return;
+    //    AudioListener.pause = WebApplication.InBackground;
+    //}
 }
